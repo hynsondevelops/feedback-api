@@ -1,0 +1,2 @@
+class SentenceScore < ApplicationRecord
+end

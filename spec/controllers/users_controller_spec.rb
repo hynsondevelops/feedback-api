@@ -24,12 +24,15 @@ require 'rails_helper'
 # `rails-controller-testing` gem.
 
 RSpec.describe UsersController, type: :controller do
-
+  let(:user) {FactoryGirl.create(:user) }
   # This should return the minimal set of attributes required to create a valid
   # User. As you add validations to User, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
+    { "name" => user.name,
+      "email" => user.email,
+      "password_digest" => user.password_digest
+    } 
   }
 
   let(:invalid_attributes) {
@@ -42,18 +45,22 @@ RSpec.describe UsersController, type: :controller do
   let(:valid_session) { {} }
 
   describe "GET #index" do
-    it "returns a success response" do
-      user = User.create! valid_attributes
-      get :index, params: {}, session: valid_session
-      expect(response).to be_success
+    context "without authorization" do
+      it "returns 401" do
+        user = User.create! valid_attributes
+        get :index, params: {}, session: valid_session
+        expect(response).to have_http_status(401)
+      end
     end
   end
 
   describe "GET #show" do
-    it "returns a success response" do
-      user = User.create! valid_attributes
-      get :show, params: {id: user.to_param}, session: valid_session
-      expect(response).to be_success
+    context "without authorization" do
+      it "returns 401" do
+        user = User.create! valid_attributes
+        get :show, params: {id: user.to_param}, session: valid_session        
+        expect(response).to have_http_status(401)
+      end
     end
   end
 
@@ -83,47 +90,4 @@ RSpec.describe UsersController, type: :controller do
       end
     end
   end
-
-  describe "PUT #update" do
-    context "with valid params" do
-      let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
-      }
-
-      it "updates the requested user" do
-        user = User.create! valid_attributes
-        put :update, params: {id: user.to_param, user: new_attributes}, session: valid_session
-        user.reload
-        skip("Add assertions for updated state")
-      end
-
-      it "renders a JSON response with the user" do
-        user = User.create! valid_attributes
-
-        put :update, params: {id: user.to_param, user: valid_attributes}, session: valid_session
-        expect(response).to have_http_status(:ok)
-        expect(response.content_type).to eq('application/json')
-      end
-    end
-
-    context "with invalid params" do
-      it "renders a JSON response with errors for the user" do
-        user = User.create! valid_attributes
-
-        put :update, params: {id: user.to_param, user: invalid_attributes}, session: valid_session
-        expect(response).to have_http_status(:unprocessable_entity)
-        expect(response.content_type).to eq('application/json')
-      end
-    end
-  end
-
-  describe "DELETE #destroy" do
-    it "destroys the requested user" do
-      user = User.create! valid_attributes
-      expect {
-        delete :destroy, params: {id: user.to_param}, session: valid_session
-      }.to change(User, :count).by(-1)
-    end
-  end
-
 end

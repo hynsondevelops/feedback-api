@@ -1,0 +1,2 @@
+class RandomSentence < ApplicationRecord
+end

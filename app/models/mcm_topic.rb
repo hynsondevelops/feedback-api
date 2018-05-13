@@ -1,0 +1,2 @@
+class McmTopic < ApplicationRecord
+end

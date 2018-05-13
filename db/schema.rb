@@ -10,7 +10,37 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_05_13_181624) do
+ActiveRecord::Schema.define(version: 2018_05_13_235004) do
+
+  create_table "mcm_topics", force: :cascade do |t|
+    t.integer "user_id"
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "random_sentences", force: :cascade do |t|
+    t.integer "student_level_id"
+    t.string "sentence"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "sentence_scores", force: :cascade do |t|
+    t.integer "mcm_topic_id"
+    t.string "sentence"
+    t.integer "score"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "student_levels", force: :cascade do |t|
+    t.integer "user_id"
+    t.string "generic_text"
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "name"

@@ -1,20 +1,16 @@
 import React from 'react';
-import { Switch, HashRouter as Router, Route } from 'react-router-dom';
+import { Switch, BrowserRouter as Router, Route } from 'react-router-dom';
 import createBrowserHistory from 'history/createBrowserHistory';
 
-import IndexProject from './IndexProject';
-import NewProject from './NewProject';
-import EditProject from './EditProject';
-import NotFound from './NotFound';
+import McmTopicForm from './McmTopicForm';
+import Test from './Test';
 
 const history = createBrowserHistory();
 const Routes = () =>
   <Router history={history}>
     <Switch>
-      <Route path="/projects/:id/edit" component={EditProject} />
-      <Route path="/projects/new" component={NewProject} />
-      <Route path="/projects/" component={IndexProject} />
-      <Route path="*" component={NotFound} />
+      <Route exact path="/mcm_topic" component={McmTopicForm} />
+      <Route exact path="/test" component={Test} />
     </Switch>
   </Router>;
 

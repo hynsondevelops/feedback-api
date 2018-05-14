@@ -35,5 +35,13 @@ module FeedbackApi
     #adding JWT encode and decode
     config.autoload_paths << Rails.root.join('lib')
 
+    config.middleware.insert_before 0, Rack::Cors do
+      allow do
+        origins 'http://localhost:8000'
+        resource '*',
+                 headers: :any,
+                 methods: %I[get post options delete patch puts]
+      end
+    end
   end
 end

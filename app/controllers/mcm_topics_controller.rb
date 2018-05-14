@@ -46,6 +46,6 @@ class McmTopicsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def mcm_topic_params
-      params.require(:mcm_topic).permit(:user_id, :name)
+      params.require(:mcm_topic).permit(:user_id, :name, sentence_scores_attributes: [:id, :score, :sentence, :_destroy])
     end
 end

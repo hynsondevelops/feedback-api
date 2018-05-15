@@ -10,7 +10,7 @@ class McmTopicsController < ApplicationController
 
   # GET /mcm_topics/1
   def show
-    render json: @mcm_topic
+    render json: @mcm_topic, :include => :sentence_scores
   end
 
   # POST /mcm_topics

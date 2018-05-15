@@ -60,14 +60,15 @@ class UserLogIn extends Component {
         <div>
         <h3> Success! </h3>
         <Link to={{pathname: "/mcm_topics/new/" + this.state.auth_token, state: {auth_token: this.state.auth_token}}}>About</Link>
+        <Link to={{pathname: "/mcm_topics/9/edit/" + this.state.auth_token, state: {auth_token: this.state.auth_token}}}>About</Link>
 
         <Router history={this.props.history}>
           <Switch>
             <Route exact path="/test" component={Test} />
             <Route path="/mcm_topics/new/:auth_token" component={NewMcmTopic} />
-            <Route exact path="/mcm_topics/:id/edit" component={EditMcmTopic} />
+            <Route path="/mcm_topics/:id/edit/:auth_token" component={EditMcmTopic} />
           </Switch>
-        </Router>;
+        </Router>
         </div>
 
       )

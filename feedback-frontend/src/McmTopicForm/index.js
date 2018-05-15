@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import axiosClient from '../axiosClient';
 let axios = require('axios');
 
 class McmTopicForm extends Component {
@@ -13,6 +12,13 @@ class McmTopicForm extends Component {
 			_destroy: false
 		};
 
+		let axiosClient = axios.create({
+		  baseURL: 'http://localhost:3000',
+		  headers: {'Authorization': this.props.auth_token}
+		});
+		this.axiosClient = axiosClient
+		let auth_token = "";
+		
 		this.state = {
 			mcm_topic: {
 			  name: '',
@@ -20,17 +26,30 @@ class McmTopicForm extends Component {
 			  errors: {},
 			  sentence_scores_attributes: [Object.assign({}, this.emptySentenceScore)]
 			},
-			auth_token: null
+			auth_token: this.props.match.params.auth_token
 		};
 	}
 
 	componentWillMount() {
 		console.log("componentWillMount")
+		console.log(this.props.match.params.auth_token)
+		console.log(this.axiosClient)
+		let axiosClient = axios.create({
+		  baseURL: 'http://localhost:3000',
+		  headers: {'Authorization': this.props.match.params.auth_token}
+		});
 	  if (this.props.match.params.id) {
 	    axiosClient
 	      .get(`/mcm_topics/${this.props.match.params.id}`)
 	      .then(response => {
-	        this.setState({ mcm_topic: response.data });
+	      	console.log(response)
+	      	let mcm_topic_JSON = response.data
+	      	let mcm_topic_formatted = {name: mcm_topic_JSON.name, user_id: mcm_topic_JSON.user_id, sentence_scores_attributes: [], errors: {}}
+	      	for (let i = 0; i < mcm_topic_JSON.sentence_scores.length; i++) {
+	      		mcm_topic_formatted.sentence_scores_attributes.push({sentence: mcm_topic_JSON.sentence_scores[i].sentence, score: mcm_topic_JSON.sentence_scores[i].score, id: mcm_topic_JSON.sentence_scores[i].id, _destroy: false})
+	      	}
+	      	console.log(mcm_topic_formatted)
+	        this.setState({ mcm_topic: mcm_topic_formatted});
 	      });
 	  }
 	}
@@ -47,7 +66,6 @@ class McmTopicForm extends Component {
 	            onChange={e => this.handleMcmTopicNameChange(e)}
 	            value={this.state.mcm_topic.name}
 	            className="form-control" />
-	          {this.renderMcmTopicNameInlineError()}
 	        </div>
 	        <hr />
 	        <div className="sentence-scores-fieldset">
@@ -78,6 +96,7 @@ class McmTopicForm extends Component {
 
 	renderSentenceScoresForm() {
 	  let counter = 0;
+	  console.log(this.state.mcm_topic)
 	  return this.state.mcm_topic.sentence_scores_attributes.map((sentence_score, index) => {
 	    if (sentence_score._destroy === false) {
 	      let sentenceScoreDOM = (
@@ -106,7 +125,6 @@ class McmTopicForm extends Component {
 	              type="text"
 	              value={sentence_score.name}
 	              className="form-control"/>
-	            {this.renderSentenceScoreInlineError(sentence_score)}
 	          </div>
 	        </div>
 	      );
@@ -167,11 +185,7 @@ class McmTopicForm extends Component {
 	  for (let i = 0; i < mcm_topic_data.sentence_scores_attributes.length; i++) {
 	  	mcm_topic_data.sentence_scores_attributes[i].errors = undefined
 	  }
-	  let axiosClient = axios.create({
-	    baseURL: 'http://localhost:3000',
-	    headers: {'Authorization': this.props.auth_token}
-	  });
-	  axiosClient
+	  this.axiosClient
 	  	[submitMethod](url,
 	      {mcm_topic: mcm_topic_data}, 
 	    )

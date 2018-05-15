@@ -13,11 +13,7 @@ const history = createBrowserHistory();
 const Routes = () =>
   <Router history={history}>
   	<Switch>
-      <Route exact path="/mcm_topic" component={McmTopicForm} />
-      <Route exact path="/test" component={Test} />
-      <Route path="/mcm_topics/new" component={NewMcmTopic} />
-      <Route exact path="/mcm_topics/:id/edit" component={EditMcmTopic} />
-      <Route path="/login" component={UserLogIn} />
+      <Route path="/" component={UserLogIn} />
 
     </Switch>
   </Router>;

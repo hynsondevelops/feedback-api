@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axiosClient from '../axiosClient';
+let axios = require('axios');
 
 class McmTopicForm extends Component {
 	constructor(props) {
@@ -18,7 +19,8 @@ class McmTopicForm extends Component {
 			  user_id: 1,
 			  errors: {},
 			  sentence_scores_attributes: [Object.assign({}, this.emptySentenceScore)]
-			}
+			},
+			auth_token: null
 		};
 	}
 
@@ -155,6 +157,7 @@ class McmTopicForm extends Component {
 	}
 
 	handleFormSubmit() {
+		console.log(this.props.auth_token)
 	  let submitMethod = this.state.mcm_topic.id ? 'patch' : 'post';
 	  let url = this.state.mcm_topic.id
 	    ? `/mcm_topics/${this.state.mcm_topic.id}.json`
@@ -164,10 +167,14 @@ class McmTopicForm extends Component {
 	  for (let i = 0; i < mcm_topic_data.sentence_scores_attributes.length; i++) {
 	  	mcm_topic_data.sentence_scores_attributes[i].errors = undefined
 	  }
+	  let axiosClient = axios.create({
+	    baseURL: 'http://localhost:3000',
+	    headers: {'Authorization': this.props.auth_token}
+	  });
 	  axiosClient
-	    [submitMethod](url, {
-	      mcm_topic: mcm_topic_data
-	    })
+	  	[submitMethod](url,
+	      {mcm_topic: mcm_topic_data}, 
+	    )
 	    .then(response => {
 	      this.props.history.push('/mcm_topics');
 	    })

@@ -1,13 +1,19 @@
 import React, { Component } from 'react';
 import axiosClient from '../axiosClient';
+import NewMcmTopic from '../NewMcmTopic';
+import { Switch, HashRouter as Router, Route } from 'react-router-dom';
+import EditMcmTopic from '../EditMcmTopic';
+import Test from '../Test';
+import { Link } from 'react-router-dom'
+
 
 class UserLogIn extends Component {
   constructor(props) {
   	super(props);
 
   	this.state = {
-	  email: '',
-	  password: '',
+	  email: 'hynsondevelop@gmail.com',
+	  password: 'password23',
 	  auth_token: null,
 	  errors: {},
   	};
@@ -50,7 +56,22 @@ class UserLogIn extends Component {
         )  		
   	}
   	else {
-  		return (<h3> Success! </h3>)
+  		return (
+        <div>
+        <h3> Success! </h3>
+        <Link to={{pathname: "/mcm_topics/new/" + this.state.auth_token, state: {auth_token: this.state.auth_token}}}>About</Link>
+
+        <Router history={this.props.history}>
+          <Switch>
+            <Route exact path="/test" component={Test} />
+            <Route path="/mcm_topics/new/:auth_token" component={NewMcmTopic} />
+            <Route exact path="/mcm_topics/:id/edit" component={EditMcmTopic} />
+          </Switch>
+        </Router>;
+        </div>
+
+      )
+
   	}
   }
 
@@ -62,7 +83,6 @@ class UserLogIn extends Component {
         password: this.state.password
       })
       .then(response => {
-      	console.log(response.data)
       	this.setState({auth_token: response.data.auth_token})
       })
       .catch(error => {

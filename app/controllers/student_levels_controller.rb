@@ -10,7 +10,7 @@ class StudentLevelsController < ApplicationController
 
   # GET /student_levels/1
   def show
-    render json: @student_level
+    render json: @student_level, :include => :random_sentences
   end
 
   # POST /student_levels
@@ -46,6 +46,6 @@ class StudentLevelsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def student_level_params
-      params.require(:student_level).permit(:user_id, :generic_text, :name)
+      params.require(:student_level).permit(:user_id, :generic_text, :name, random_sentences_attributes: [:id, :sentence, :_destroy])
     end
 end

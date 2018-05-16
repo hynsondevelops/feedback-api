@@ -14,15 +14,17 @@ class McmTopicForm extends Component {
 
 		let axiosClient = axios.create({
 		  baseURL: 'http://localhost:3000',
-		  headers: {'Authorization': this.props.auth_token}
+		  headers: {'Authorization': this.props.match.params.auth_token}
 		});
 		this.axiosClient = axiosClient
 		let auth_token = "";
-		
+
+
 		this.state = {
 			mcm_topic: {
+			  id: null,
 			  name: '',
-			  user_id: 1,
+			  user_id: this.props.match.params.user_id,
 			  errors: {},
 			  sentence_scores_attributes: [Object.assign({}, this.emptySentenceScore)]
 			},
@@ -44,8 +46,10 @@ class McmTopicForm extends Component {
 	      .then(response => {
 	      	console.log(response)
 	      	let mcm_topic_JSON = response.data
-	      	let mcm_topic_formatted = {name: mcm_topic_JSON.name, user_id: mcm_topic_JSON.user_id, sentence_scores_attributes: [], errors: {}}
+	      	let mcm_topic_formatted = {name: mcm_topic_JSON.name, user_id: mcm_topic_JSON.user_id, sentence_scores_attributes: [], errors: {}, id: mcm_topic_JSON.id}
 	      	for (let i = 0; i < mcm_topic_JSON.sentence_scores.length; i++) {
+	      		console.log("Sentence")
+	      		console.log(mcm_topic_JSON.sentence_scores[i].sentence)
 	      		mcm_topic_formatted.sentence_scores_attributes.push({sentence: mcm_topic_JSON.sentence_scores[i].sentence, score: mcm_topic_JSON.sentence_scores[i].score, id: mcm_topic_JSON.sentence_scores[i].id, _destroy: false})
 	      	}
 	      	console.log(mcm_topic_formatted)
@@ -123,7 +127,7 @@ class McmTopicForm extends Component {
 	              placeholder="Sentence"
 	              onChange={event => this.onSentenceScoreSentenceChange(event, sentence_score)}
 	              type="text"
-	              value={sentence_score.name}
+	              value={sentence_score.sentence}
 	              className="form-control"/>
 	          </div>
 	        </div>

@@ -23,15 +23,9 @@ class AuthorizeApiRequest
   end
 
   def http_auth_header
-    print("loopie")
-    headers.each do |h|
-      print(h)
-    end
-    print(headers['Authorization'])
     if headers['Authorization'].present?
       return headers['Authorization'].split(' ').last
     else
-      print("missing token")
       errors.add(:token, 'Missing token')
     end
     nil

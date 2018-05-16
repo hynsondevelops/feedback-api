@@ -62,17 +62,17 @@ class UserLogIn extends Component {
   		return (
         <div>
         <h3> Success! </h3>
-        <Link to={{pathname: "/mcm_topics/new/" + this.state.auth_token, state: {auth_token: this.state.auth_token}}}>New MCM Topic</Link>
+        <Link to={{pathname: "/mcm_topics/new/" + this.state.auth_token + "/" + this.state.user_id, state: {auth_token: this.state.auth_token}}}>New MCM Topic</Link>
         <Link to={{pathname: "/mcm_topics/9/edit/" + this.state.auth_token, state: {auth_token: this.state.auth_token}}}>Edit Mcm Topic</Link>
-        <Link to={{pathname: "/student_levels/new/" + this.state.auth_token, state: {auth_token: this.state.auth_token}}}>New Student Level</Link>
+        <Link to={{pathname: "/student_levels/new/" + this.state.auth_token + "/" + this.state.user_id, state: {auth_token: this.state.auth_token}}}>New Student Level</Link>
         <Link to={{pathname: "/student_levels/2/edit/" + this.state.auth_token, state: {auth_token: this.state.auth_token}}}>Edit Student Level</Link>
 
         <Router history={this.props.history}>
           <Switch>
             <Route exact path="/test" component={Test} />
-            <Route path="/mcm_topics/new/:auth_token" component={NewMcmTopic} />
+            <Route path="/mcm_topics/new/:auth_token/:user_id" component={NewMcmTopic} />
             <Route path="/mcm_topics/:id/edit/:auth_token" component={EditMcmTopic} />
-            <Route path="/student_levels/new/:auth_token" component={NewStudentLevel} />
+            <Route path="/student_levels/new/:auth_token/:user_id" component={NewStudentLevel} />
             <Route path="/student_levels/:id/edit/:auth_token" component={EditStudentLevel} />
 
 
@@ -93,7 +93,8 @@ class UserLogIn extends Component {
         password: this.state.password
       })
       .then(response => {
-      	this.setState({auth_token: response.data.auth_token})
+        console.log(response.data)
+      	this.setState({auth_token: response.data.auth_token, user_id: response.data.user_id})
       })
       .catch(error => {
         this.setState({ user: error.response.data });

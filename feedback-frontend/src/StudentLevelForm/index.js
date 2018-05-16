@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router'
+
 let axios = require('axios');
 
 class StudentLevelForm extends Component {
@@ -20,13 +22,15 @@ class StudentLevelForm extends Component {
 		
 		this.state = {
 			student_level: {
+			  id: null,
 			  name: '',
 			  generic_text: '',
 			  user_id: 1,
 			  errors: {},
 			  random_sentences_attributes: [Object.assign({}, this.emptyRandomSentence)]
 			},
-			auth_token: this.props.match.params.auth_token
+			auth_token: this.props.match.params.auth_token,
+			time_to_redirect: false
 		};
 	}
 
@@ -44,7 +48,7 @@ class StudentLevelForm extends Component {
 	      .then(response => {
 	      	console.log(response)
 	      	let student_level_JSON = response.data
-	      	let student_level_formatted = {name: student_level_JSON.name, generic_text: student_level_JSON.generic_text, user_id: student_level_JSON.user_id, random_sentences_attributes: [], errors: {}}
+	      	let student_level_formatted = {name: student_level_JSON.name, generic_text: student_level_JSON.generic_text, user_id: student_level_JSON.user_id, random_sentences_attributes: [], errors: {}, id: student_level_JSON.id}
 	      	for (let i = 0; i < student_level_JSON.random_sentences.length; i++) {
 	      		student_level_formatted.random_sentences_attributes.push({sentence: student_level_JSON.random_sentences[i].sentence, id: student_level_JSON.random_sentences[i].id, _destroy: false})
 	      	}
@@ -56,6 +60,11 @@ class StudentLevelForm extends Component {
 
 
 	render() {
+		if (this.state.time_to_redirect)
+		{
+			let url = '/student_levels/new/' + this.state.auth_token
+			return (<Redirect to={url}/>)
+		}
 	  return (
 	    <div className="StudentLevelForm">
 	      <form>
@@ -186,7 +195,7 @@ class StudentLevelForm extends Component {
 	      {student_level: student_level_data}, 
 	    )
 	    .then(response => {
-	      this.props.history.push('/student_levels');
+	    	//this.setState({time_to_redirect: true})
 	    })
 	    .catch(error => {
 	      this.setState({ student_level: error.response.data });

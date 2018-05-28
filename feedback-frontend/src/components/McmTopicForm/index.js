@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router'
+
 let axios = require('axios');
 
 class McmTopicForm extends Component {
@@ -28,7 +30,8 @@ class McmTopicForm extends Component {
 			  errors: {},
 			  sentence_scores_attributes: [Object.assign({}, this.emptySentenceScore)]
 			},
-			auth_token: this.props.match.params.auth_token
+			auth_token: this.props.match.params.auth_token,
+			time_to_redirect: false
 		};
 	}
 
@@ -54,48 +57,58 @@ class McmTopicForm extends Component {
 	      	}
 	      	console.log(mcm_topic_formatted)
 	        this.setState({ mcm_topic: mcm_topic_formatted});
-	      });
+	      })
+	      .catch(error => {
+	      	this.setState({time_to_redirect: true})
+	      	});
 	  }
 	}
 
 
 	render() {
-	  return (
-	    <div className="McmTopicForm">
-	      <form>
-	        <div className="form-group">
-	          <label>Name</label>
-	          <input
-	            type="text"
-	            onChange={e => this.handleMcmTopicNameChange(e)}
-	            value={this.state.mcm_topic.name}
-	            className="form-control" />
-	        </div>
-	        <hr />
-	        <div className="sentence-scores-fieldset">
-	          <h3>Sentence Scores</h3>
-	          {this.renderSentenceScoresForm()}
-	          <button
-	            className="btn btn-success"
-	            onClick={e => this.handleAddSentenceScore()}>
-	            + Add Sentence Score
-	          </button>
-	        </div>
-	        <br />
-	        <button
-	          onClick={e => this.handleFormSubmit()}
-	          className="btn btn-primary">
-	          Save
-	        </button>
-	        &nbsp;
-	        <button
-	          onClick={e => this.handleCancel()}
-	          className="btn btn-default">
-	          Cancel
-	        </button>{' '}
-	      </form>
-	    </div>
-	  );
+		if (this.state.time_to_redirect)
+		{
+			let url = '/mcm_topics/new/' + this.state.auth_token
+			return (<Redirect to={url}/>)
+		}
+		else {
+		  return (
+		    <div className="McmTopicForm">
+		      <form>
+		        <div className="form-group">
+		          <label>Name</label>
+		          <input
+		            type="text"
+		            onChange={e => this.handleMcmTopicNameChange(e)}
+		            value={this.state.mcm_topic.name}
+		            className="form-control" />
+		        </div>
+		        <hr />
+		        <div className="sentence-scores-fieldset">
+		          <h3>Sentence Scores</h3>
+		          {this.renderSentenceScoresForm()}
+		          <button
+		            className="btn btn-success"
+		            onClick={e => this.handleAddSentenceScore()}>
+		            + Add Sentence Score
+		          </button>
+		        </div>
+		        <br />
+		        <button
+		          onClick={e => this.handleFormSubmit()}
+		          className="btn btn-primary">
+		          Save
+		        </button>
+		        &nbsp;
+		        <button
+		          onClick={e => this.handleCancel()}
+		          className="btn btn-default">
+		          Cancel
+		        </button>{' '}
+		      </form>
+		    </div>
+		  );
+		}
 	}
 
 	renderSentenceScoresForm() {

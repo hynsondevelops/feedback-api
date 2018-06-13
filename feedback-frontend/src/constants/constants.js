@@ -6,3 +6,4 @@ export const REQUEST_TOKEN = 'REQUEST_TOKEN';
 export const RECIEVE_TOKEN = 'RECIEVE_TOKEN';
 export const EMAIL_FORM_CHANGE = 'EMAIL_FORM_CHANGE';
 export const PASSWORD_FORM_CHANGE = 'PASSWORD_FORM_CHANGE';
+export const SUCCESSFUL_LOGIN = '/home';

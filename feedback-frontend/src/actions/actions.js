@@ -1,4 +1,4 @@
-import {AUTH_SET_TOKEN, AUTH_DISCARD_TOKEN, AUTH_SET_USER, AUTH_REQUEST, REQUEST_TOKEN, RECIEVE_TOKEN, EMAIL_FORM_CHANGE, PASSWORD_FORM_CHANGE} from '../constants/constants.js'
+import {AUTH_SET_TOKEN, AUTH_DISCARD_TOKEN, AUTH_SET_USER, AUTH_REQUEST, REQUEST_TOKEN, RECIEVE_TOKEN, EMAIL_FORM_CHANGE, PASSWORD_FORM_CHANGE, SUCCESSFUL_LOGIN} from '../constants/constants.js'
 import axiosClient from '../axiosClient';
 
 
@@ -43,6 +43,7 @@ export function recieveToken(json, email) {
 }
 
 export function emailFormChange(email) {
+  console.log(email)
   return {
     type: EMAIL_FORM_CHANGE,
     email
@@ -56,9 +57,16 @@ export function passwordFormChange(password) {
   }
 }
 
+export function successfulLogin() {
+  return {
+    type: SUCCESSFUL_LOGIN
+  }
+}
+
 export function authenticateUser(email, password) {
   console.log("authenticate")
   console.log(email)
+  console.log(password)
   return (dispatch) => {
     console.log(email)
     dispatch(requestToken(email))
@@ -70,6 +78,9 @@ export function authenticateUser(email, password) {
       })
       .then(response => {
         dispatch(recieveToken(response, email))
+      })
+      .then(response => {
+        dispatch(successfulLogin())
       })
       .catch(error => {
         console.log(error)

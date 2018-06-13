@@ -3,19 +3,24 @@ class McmTopicsController < ApplicationController
 
   # GET /mcm_topics
   def index
-    @mcm_topics = McmTopic.all
+    @mcm_topics = McmTopic.where(user_id: @current_user.id)
 
-    render json: @mcm_topics
+    render json: @mcm_topics, :include => :sentence_scores
   end
 
   # GET /mcm_topics/1
   def show
-    render json: @mcm_topic, :include => :sentence_scores
+    if (@mcm_topic.user_id == @current_user.id)
+      render json: @mcm_topic, :include => :sentence_scores
+    else
+      render status: 401
+    end
   end
 
   # POST /mcm_topics
   def create
     @mcm_topic = McmTopic.new(mcm_topic_params)
+    @mcm_topic.user_id = @current_user.id
 
     if @mcm_topic.save
       render json: @mcm_topic, status: :created, location: @mcm_topic

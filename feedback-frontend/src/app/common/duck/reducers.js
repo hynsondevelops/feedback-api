@@ -1,7 +1,12 @@
 import commonTypes from './types';
 import editTypes from '../../mcm_topic_edit/duck/types'
+import newTypes from '../../mcm_topic_new/duck/types'
+
 const INITIAL_STATE = {
-	mcm_topic_edit: null
+	 mcm_topic_edit: {
+      name: "",
+      sentence_scores_attributes: []
+    }
 }
 
 
@@ -40,8 +45,16 @@ function mcmTopicEditReducer(state = {}, action){
         return Object.assign({}, state, {
             mcm_topic_edit: action.mcm_topic_edit
         })
+    case newTypes.CREATE_MCM_TOPIC: 
+    	return Object.assign({}, state, {
+    	    mcm_topic_edit: action.mcm_topic_edit
+    	})
+    case newTypes.NEW_MCM_TOPIC: 
+    	return Object.assign({}, state, {
+    	    mcm_topic_edit: action.mcm_topic_edit
+    	})
     default:
-      return state;
+      return INITIAL_STATE;
   }
 }
 

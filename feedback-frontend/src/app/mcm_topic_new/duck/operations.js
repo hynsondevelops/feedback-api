@@ -1,32 +1,38 @@
-import {authSetToken, authDiscardToken, authSetUser, authRequest, requestToken, recieveToken, emailFormChange, passwordFormChange, successfulLogin} from './types.js'
+import {createMcmTopicNew, initMcmTopicNew} from './actions.js'
+let axios = require('axios');
 
-function authenticateUser(email, password) {
-  return (dispatch) => {
-    dispatch(requestToken(email))
-    let url = "/authenticate"
+const emptyTopic = {
+  name: "",
+  sentence_scores_attributes: []
+}
+
+export function createMcmTopicOp(event) {
+  return function (dispatch) {
+    let token = event.target.dataset.token
+    let topic = JSON.parse(event.target.dataset.topic)
+    let name = document.getElementById("mcm_topic_name").value
+    topic.name = name
+    for (let i = 0; i < topic.sentence_scores_attributes.length; i++) {
+      topic.sentence_scores_attributes[i].errors = undefined
+    }
+    let axiosClient = axios.create({
+      baseURL: 'http://localhost:3000',
+      headers: {'Authorization': token}
+    });
     return axiosClient
-      ["post"](url, {
-        email: email, 
-        password: password
-      })
-      .then(response => {
-        dispatch(recieveToken(response, email))
-      })
-      .then(response => {
-        dispatch(successfulLogin())
-      })
-      .catch(error => {
-        console.log(error)
-      });
+    .post(`/mcm_topics`, {mcm_topic: topic})
+    .then(response => {
+      dispatch(createMcmTopicNew(topic))
+    })
+    .catch(error => {
+      console.log("An error occured", error)
+    }); 
   }
 }
 
-export default {
-	authSetToken,
-	authDiscardToken,
-	authSetUser,
-	authRequest,
-	emailFormChange,
-	passwordFormChange,
-	authenticateUser
+export function newMcmTopicOp() {
+  return function (dispatch) {
+    dispatch(initMcmTopicNew(emptyTopic))
+  }
 }
+

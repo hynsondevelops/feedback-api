@@ -1,5 +1,4 @@
 import {requestMcmTopicEdit, receiveMcmTopicEdit, updateMcmTopic} from './actions.js'
-import {addSentenceScore, removeSentenceScore, updateSentenceScore} from '../../common/duck/actions.js'
 let axios = require('axios');
 
 const emptySentenceScore = {
@@ -54,7 +53,6 @@ export function updateMcmTopicEdit(event) {
       console.log("An error occured", error)
     }); 
   }
-
 }
 
 export default fetchMcmTopicEdit;

@@ -2,6 +2,7 @@ import HomeContainer from './app/home/HomeContainer.js'
 import McmFeedbackGeneratorContainer from './app/mcm_feedback_generator/McmFeedbackGeneratorContainer.js'
 import McmTopicsContainer from './app/mcm_topics/McmTopicsContainer.js'
 import McmTopicEditContainer from './app/mcm_topic_edit/McmTopicEditContainer.js'
+import McmTopicNewContainer from './app/mcm_topic_new/McmTopicNewContainer.js'
 
 
 import React from 'react';
@@ -61,7 +62,7 @@ const BasicExample = () => (
       <Route exact path="/" component={HomeContainer} />
       <Route path="/mcm_feedback_generator" component={McmFeedbackGeneratorContainer} />
       //Change the below to the correct components
-      <Route path="/mcm_topics/new" component={McmFeedbackGeneratorContainer} />
+      <Route path="/mcm_topics/new" component={McmTopicNewContainer} />
       <Route path="/mcm_topics/:id/edit" component={McmTopicEditContainer} />
       <Route exact path="/mcm_topics" component={McmTopicsContainer} />
       <Route path="/student_levels/new" component={McmFeedbackGeneratorContainer} />

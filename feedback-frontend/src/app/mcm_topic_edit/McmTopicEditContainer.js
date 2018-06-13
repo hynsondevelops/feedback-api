@@ -4,8 +4,8 @@ import { connect } from 'react-redux';
 import McmTopicEditComponent from './McmTopicEditComponent';
 import fetchMcmTopicEdit from './duck/operations';
 import { onComponentDidMount } from 'react-redux-lifecycle'
-import {addSentenceScoreEdit, removeSentenceScoreEdit, updateSentenceScoreEdit, updateMcmTopicEdit} from './duck/operations';
-
+import {updateMcmTopicEdit} from './duck/operations';
+import {addSentenceScoreEdit, removeSentenceScoreEdit, updateSentenceScoreEdit} from '../common/duck/operations'
 
 const mapStateToProps = state => {
 	const { mcm_topic_edit } = state.mcm_topic_edit;

@@ -18,7 +18,7 @@ import createHistory from 'history/createBrowserHistory'
 import homeReducer from './app/home/duck/reducers'
 import mcmFeedbackGeneratorReducer from './app/mcm_feedback_generator/duck/reducers'
 import mcmIndexReducer from './app/mcm_topics/duck/reducers'
-import mcmTopicEditReducer from './app/mcm_topic_edit/duck/reducers'
+import mcmTopicEditReducer from './app/common/duck/reducers'
 
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import getMcmIndexOperation from './app/mcm_topics/duck/operations'

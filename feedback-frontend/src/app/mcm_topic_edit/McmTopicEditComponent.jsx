@@ -83,8 +83,11 @@ class McmTopicEditComponent extends React.Component {
 					    <div className="form-group">
 					      <label>Name</label>
 					      <input
+					      	id="mcm_topic_name"
 					        type="text"
-					        defaultValue={this.props.mcm_topic_edit.name}
+					        onChange={this.props.handleUpdateName}
+					        data-topic={JSON.stringify(this.props.mcm_topic_edit)}
+					        value={this.props.mcm_topic_edit.name}
 					        className="form-control" />
 					    </div>
 					    <hr />

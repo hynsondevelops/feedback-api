@@ -47,7 +47,14 @@ export function updateMcmTopicEdit(event) {
     return axiosClient
     .patch(`/mcm_topics/${topic.id}`, {mcm_topic: topic})
     .then(response => {
-      dispatch(updateMcmTopic(response.data))
+      let mcm_topic = response.data
+      mcm_topic.sentence_scores_attributes = mcm_topic.sentence_scores;
+      console.log(mcm_topic.sentence_scores_attributes)
+      for (let i = 0; i < mcm_topic.sentence_scores_attributes.length; i++) {
+        mcm_topic.sentence_scores_attributes[i]._destroy = false
+      }
+      mcm_topic.sentence_scores = undefined
+      dispatch(updateMcmTopic(mcm_topic))
     })
     .catch(error => {
       console.log("An error occured", error)

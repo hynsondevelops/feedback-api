@@ -16,7 +16,7 @@ class StudentLevelsController < ApplicationController
   # POST /student_levels
   def create
     @student_level = StudentLevel.new(student_level_params)
-
+    @student_level.user_id = @current_user.id
     if @student_level.save
       render json: @student_level, status: :created, location: @student_level
     else
@@ -27,7 +27,7 @@ class StudentLevelsController < ApplicationController
   # PATCH/PUT /student_levels/1
   def update
     if @student_level.update(student_level_params)
-      render json: @student_level
+      render json: @student_level, :include => :random_sentences
     else
       render json: @student_level.errors, status: :unprocessable_entity
     end

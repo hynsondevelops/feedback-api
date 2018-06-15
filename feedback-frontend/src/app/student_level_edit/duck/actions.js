@@ -1,61 +1,31 @@
-import {types} from './types.js'
+import types from './types.js'
 
 
-export function authSetToken(token) {
+
+export function invalidateStudentLevel() {
   return {
-    type: types.AUTH_SET_TOKEN,
-    token
+    type: types.INVALIDATE_STUDENT_LEVEL,
   }
 }
 
-export function authDiscardToken() {
-  return {type: types.AUTH_DISCARD_TOKEN}
-}
-
-export function authSetUser(user) {
-  return { 
-    type: types.AUTH_SET_USER,
-    user
+export function requestStudentLevel(student_level) {
+  return {
+    type: types.REQUEST_STUDENT_LEVEL,
+    student_level
   }
 }
 
-export function authRequest() {
-  return {type: types.AUTH_REQUEST}
-}
-
-export function requestToken(email) {
+export function receiveStudentLevel(student_level) {
   return {
-    type: types.REQUEST_TOKEN,
-    token: null,
-    email: email
+    type: types.RECEIVE_STUDENT_LEVEL,
+    student_level,
+    receivedAt: Date.now()
   }
 }
 
-export function recieveToken(json, email) {
+export function updateStudentLevel(student_level) {
   return {
-    type: types.RECIEVE_TOKEN,
-    token: json.data.auth_token,
-    recievedAt: Date.now(), 
-    email
-  }
-}
-
-export function emailFormChange(email) {
-  return {
-    type: types.EMAIL_FORM_CHANGE,
-    email
-  }
-}
-
-export function passwordFormChange(password) {
-  return {
-    type: types.PASSWORD_FORM_CHANGE,
-    password
-  }
-}
-
-export function successfulLogin() {
-  return {
-    type: types.SUCCESSFUL_LOGIN
+    type: types.UPDATE_STUDENT_LEVEL,
+    student_level
   }
 }

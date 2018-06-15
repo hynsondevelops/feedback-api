@@ -1,8 +1,11 @@
 import commonTypes from './types';
-import editTypes from '../../mcm_topic_edit/duck/types'
-import newTypes from '../../mcm_topic_new/duck/types'
+import mcmEditTypes from '../../mcm_topic_edit/duck/types'
+import mcmNewTypes from '../../mcm_topic_new/duck/types'
+import studentEditTypes from '../../student_level_edit/duck/types'
+import studentNewTypes from '../../student_level_new/duck/types'
 
-const INITIAL_STATE = {
+//Mcm Topic
+const INITIAL_MCM_TOPIC_STATE = {
 	 mcm_topic_edit: {
       name: "",
       sentence_scores_attributes: []
@@ -11,18 +14,18 @@ const INITIAL_STATE = {
 
 
 
-function mcmTopicEditReducer(state = {}, action){
+export function mcmTopicEditReducer(state = {}, action){
   switch(action.type){
-    case editTypes.INVALIDATE_MCM_TOPIC_EDIT: 
+    case mcmEditTypes.INVALIDATE_MCM_TOPIC_EDIT: 
     	return Object.assign({}, state, {
     		didInvalidate: true
     	})
-    case editTypes.REQUEST_MCM_TOPIC_EDIT: 
+    case mcmEditTypes.REQUEST_MCM_TOPIC_EDIT: 
     	return Object.assign({}, state, {
     		didInvalidate: false,
     		isFetching: true
     	})
-    case editTypes.RECEIVE_MCM_TOPIC_EDIT: 
+    case mcmEditTypes.RECEIVE_MCM_TOPIC_EDIT: 
     	return Object.assign({}, state, {
     		didInvalidate: false,
     		isFetching: false,
@@ -41,21 +44,88 @@ function mcmTopicEditReducer(state = {}, action){
         return Object.assign({}, state, {
             mcm_topic_edit: action.mcm_topic_edit
         })
-    case editTypes.UPDATE_MCM_TOPIC: 
+    case commonTypes.UPDATE_MCM_TOPIC_NAME: 
         return Object.assign({}, state, {
             mcm_topic_edit: action.mcm_topic_edit
         })
-    case newTypes.CREATE_MCM_TOPIC: 
+    case mcmEditTypes.UPDATE_MCM_TOPIC_EDIT: 
+        return Object.assign({}, state, {
+            mcm_topic_edit: action.mcm_topic_edit
+        })
+    case mcmNewTypes.CREATE_MCM_TOPIC: 
     	return Object.assign({}, state, {
     	    mcm_topic_edit: action.mcm_topic_edit
     	})
-    case newTypes.NEW_MCM_TOPIC: 
+    case mcmNewTypes.NEW_MCM_TOPIC: 
     	return Object.assign({}, state, {
     	    mcm_topic_edit: action.mcm_topic_edit
     	})
     default:
-      return INITIAL_STATE;
+      return INITIAL_MCM_TOPIC_STATE;
   }
 }
 
-export default mcmTopicEditReducer;
+const INITIAL_STUDENT_LEVEL_STATE = {
+     student_level: {
+      name: "",
+      random_sentences_attributes: []
+    }
+}
+
+
+//Student Level
+export function studentLevelReducer(state = {}, action){
+  switch(action.type){
+    case studentEditTypes.INVALIDATE_STUDENT_LEVEL: 
+        return Object.assign({}, state, {
+            didInvalidate: true
+        })
+    case studentEditTypes.REQUEST_STUDENT_LEVEL: 
+        return Object.assign({}, state, {
+            didInvalidate: false,
+            isFetching: true
+        })
+    case studentEditTypes.RECEIVE_STUDENT_LEVEL: 
+        return Object.assign({}, state, {
+            didInvalidate: false,
+            isFetching: false,
+            student_level: action.student_level,
+            lastUpdate: action.receivedAt
+        })
+    case commonTypes.ADD_RANDOM_SENTENCE: 
+        return Object.assign({}, state, {
+            student_level: action.student_level
+        })
+    case commonTypes.REMOVE_RANDOM_SENTENCE: 
+        return Object.assign({}, state, {
+            student_level: action.student_level
+        })
+    case commonTypes.UPDATE_RANDOM_SENTENCE: 
+        return Object.assign({}, state, {
+            student_level: action.student_level
+        })
+    case commonTypes.UPDATE_STUDENT_LEVEL_NAME:
+        return Object.assign({}, state, {
+            student_level: action.student_level
+        })
+    case commonTypes.UPDATE_STUDENT_LEVEL_TEXT:
+        return Object.assign({}, state, {
+            student_level: action.student_level
+        })
+    case studentEditTypes.UPDATE_STUDENT_LEVEL: 
+        return Object.assign({}, state, {
+            student_level: action.student_level
+        })
+    case studentNewTypes.CREATE_STUDENT_LEVEL: 
+        return Object.assign({}, state, {
+            student_level: action.student_level
+        })
+    case studentNewTypes.NEW_STUDENT_LEVEL: 
+        return Object.assign({}, state, {
+            student_level: action.student_level
+        })
+    default:
+      return INITIAL_STUDENT_LEVEL_STATE;
+  }
+}
+

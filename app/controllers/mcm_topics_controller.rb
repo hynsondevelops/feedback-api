@@ -32,7 +32,7 @@ class McmTopicsController < ApplicationController
   # PATCH/PUT /mcm_topics/1
   def update
     if @mcm_topic.update(mcm_topic_params)
-      render json: @mcm_topic
+      render json: @mcm_topic,  :include => :sentence_scores
     else
       render json: @mcm_topic.errors, status: :unprocessable_entity
     end

@@ -3,62 +3,52 @@ import { Form, Field } from 'react-final-form'
 import {Link} from 'react-router-dom'
 
 
-class McmTopicNewComponent extends React.Component {
+class StudentLevelNewComponent extends React.Component {
 	constructor(props) {
 		super(props);
 	}
 
 
 	componentWillMount() {
-		this.props.newMcmTopic()
+		this.props.newStudentLevel()
 	}
 
-	renderSentenceScores() {
+	renderRandomSentences() {
 		let counter = 0;
-		return this.props.mcm_topic_edit.sentence_scores_attributes.map((sentence_score, index) => {
-		  if (sentence_score._destroy === false) {
-		    let sentenceScoreDOM = (
-		      <div className="sentence-score-form" key={index}>
+		return this.props.student_level.random_sentences_attributes.map((random_sentence, index) => {
+		  if (random_sentence._destroy === false) {
+		    let randomSentenceDOM = (
+		      <div className="random-sentence-form" key={index}>
 		        <div className="form-group">
 		          <div className="clearfix" style={{ marginBottom: 5 }}>
 		            <label>
-		              sentence_score {counter + 1}
+		              random_sentence {counter + 1}
 		            </label>
 		            <button
 		              type="button"
 		              className="btn btn-danger"
 		              style={{ padding: '5px 10px', float: 'right' }}
-		              data-topic={JSON.stringify(this.props.mcm_topic_edit)}
+		              data-level={JSON.stringify(this.props.student_level)}
 		              data-sentence_index={index}
 		              onClick={this.props.removeSentence}>
 		              X
 		            </button>
 		          </div>
 		          <input
-		            placeholder="Score"
-		            onChange={this.props.updateSentence}
-		            data-topic={JSON.stringify(this.props.mcm_topic_edit)}
-		            data-index={index}
-		            type="text"
-		            className="form-control"
-		            value={sentence_score.score}
-		            id={"score-" + index}/>
-		          <input
 		            placeholder="Sentence"
 		            onChange={this.props.updateSentence}
-		            data-topic={JSON.stringify(this.props.mcm_topic_edit)}
+		            data-level={JSON.stringify(this.props.student_level)}
 		            data-sentence={document.getElementById("sentence-" + index)}
-		            data-score={document.getElementById("score-" + index)}
 		            data-index={index}
 		            type="text"
-		            value={sentence_score.sentence}
+		            value={random_sentence.sentence}
 		            className="form-control"
 		            id={"sentence-" + index}/>
 		        </div>
 		      </div>
 		    );
 		    counter++;
-		    return sentenceScoreDOM;
+		    return randomSentenceDOM;
 		  } 
 		  else {
 		    return null;
@@ -68,42 +58,53 @@ class McmTopicNewComponent extends React.Component {
 
 
 	render() {
-		let sentenceScores = ''
-		if (this.props.mcm_topic_edit != undefined) {
-			sentenceScores = this.renderSentenceScores()
+		console.log("Rendering edit")
+		console.log(this.props.student_level.name)
+		let randomSentences = ''
+		if (this.props.student_level != undefined) {
+			randomSentences = this.renderRandomSentences()
 		}
-		if (this.props.mcm_topic_edit != undefined) {  
+		console.log(randomSentences)
+		if (this.props.student_level != undefined) {  
 			return (
 				<div>
-					<div className="McmTopicForm">
+					<div className="StudentLevelForm">
 					  <form>
 					    <div className="form-group">
 					      <label>Name</label>
 					      <input
-					      	id="mcm_topic_name"
+					      	id="student_level_name"
 					      	onChange={this.props.handleUpdateName}
-					      	data-topic={JSON.stringify(this.props.mcm_topic_edit)}
+					      	data-level={JSON.stringify(this.props.student_level)}
 					        type="text"
-					        value={this.props.mcm_topic_edit.name}
+					        value={this.props.student_level.name}
 					        className="form-control" />
+					        <label>Generic Text</label>
+					        <input
+					        	id="student_level_text"
+					        	onChange={this.props.handleUpdateText}
+					        	data-level={JSON.stringify(this.props.student_level)}
+					          type="text"
+					          value={this.props.student_level.generic_text}
+					          className="form-control" />
 					    </div>
 					    <hr />
-					    <div className="sentence-scores-fieldset">
-					      <h3>Sentence Scores</h3>
+					    <div className="random-sentences-fieldset">
+					      <h3>Random Sentence</h3>
 					      <button
 					      	type="button"
 					        className="btn btn-success"
-					        data-topic={JSON.stringify(this.props.mcm_topic_edit)}
+					        data-level={JSON.stringify(this.props.student_level)}
 					        onClick={this.props.addSentence}>
-					        + Add Sentence Score
+					        + Add Random Sentence
 					      </button>
 					    </div>
 					    <br />
 					    <button
 					      type="button"
-					      data-topic={JSON.stringify(this.props.mcm_topic_edit)}
+					      data-level={JSON.stringify(this.props.student_level)}
 					      data-token={this.props.token}
-					      onClick={this.props.createMcmTopic}
+					      onClick={this.props.createStudentLevel}
 					      className="btn btn-primary">
 					      Save
 					    </button>
@@ -113,18 +114,18 @@ class McmTopicNewComponent extends React.Component {
 					      className="btn btn-default">
 					      Cancel
 					    </button>{' '}
-					    {sentenceScores}
+					    {randomSentences}
 					  </form>
 					</div>
 				</div>	
 			)
 		}
 		else {
-			return (<h3> New </h3>)
+			return (<h3> Loading </h3>)
 		}
 	}
 
 }
 
-export default McmTopicNewComponent;
+export default StudentLevelNewComponent;
 

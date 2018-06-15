@@ -1,32 +1,64 @@
-import {authSetToken, authDiscardToken, authSetUser, authRequest, requestToken, recieveToken, emailFormChange, passwordFormChange, successfulLogin} from './types.js'
+import {requestStudentLevel, receiveStudentLevel, updateStudentLevel} from './actions.js'
+let axios = require('axios');
 
-function authenticateUser(email, password) {
-  return (dispatch) => {
-    dispatch(requestToken(email))
-    let url = "/authenticate"
+const emptyRandomSentence = {
+    sentence: '',
+    id: null,
+    errors: {},
+    _destroy: false
+};
+
+function fetchStudentLevelOp(token, student_level_id) {
+  return function (dispatch) {
+    dispatch(requestStudentLevel())
+    let axiosClient = axios.create({
+      baseURL: 'http://localhost:3000',
+      headers: {'Authorization': token}
+    });
     return axiosClient
-      ["post"](url, {
-        email: email, 
-        password: password
-      })
-      .then(response => {
-        dispatch(recieveToken(response, email))
-      })
-      .then(response => {
-        dispatch(successfulLogin())
-      })
-      .catch(error => {
-        console.log(error)
-      });
+    .get(`/student_levels/${student_level_id}`)
+    .then(response => {
+      let student_level = response.data
+      student_level.random_sentences_attributes = student_level.random_sentences;
+      console.log(student_level.random_sentences_attributes)
+      for (let i = 0; i < student_level.random_sentences_attributes.length; i++) {
+        student_level.random_sentences_attributes[i]._destroy = false
+      }
+      student_level.random_sentences = undefined
+      dispatch(receiveStudentLevel(student_level))
+    })
+    .catch(error => {
+      console.log("An error occured", error)
+    }); 
+  }
+
+}
+
+export function updateStudentLevelOp(event) {
+  return function (dispatch) {
+    let token = event.target.dataset.token
+    let level = JSON.parse(event.target.dataset.level)
+    console.log(level)
+    let axiosClient = axios.create({
+      baseURL: 'http://localhost:3000',
+      headers: {'Authorization': token}
+    });
+    return axiosClient
+    .patch(`/student_levels/${level.id}`, {student_level: level})
+    .then(response => {
+      let student_level = response.data
+      student_level.random_sentences_attributes = student_level.random_sentences;
+      console.log(student_level.random_sentences_attributes)
+      for (let i = 0; i < student_level.random_sentences_attributes.length; i++) {
+        student_level.random_sentences_attributes[i]._destroy = false
+      }
+      student_level.random_sentences = undefined
+      dispatch(updateStudentLevel(student_level))
+    })
+    .catch(error => {
+      console.log("An error occured", error)
+    }); 
   }
 }
 
-export default {
-	authSetToken,
-	authDiscardToken,
-	authSetUser,
-	authRequest,
-	emailFormChange,
-	passwordFormChange,
-	authenticateUser
-}
+export default fetchStudentLevelOp;

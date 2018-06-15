@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import McmTopicNewComponent from './McmTopicNewComponent';
 import { onComponentDidMount } from 'react-redux-lifecycle'
 import {createMcmTopicOp, newMcmTopicOp} from './duck/operations';
-import {addSentenceScoreEdit, removeSentenceScoreEdit, updateSentenceScoreEdit} from '../common/duck/operations'
+import {addSentenceScoreEdit, removeSentenceScoreEdit, updateSentenceScoreEdit, updateMcmTopicNameOp} from '../common/duck/operations'
 
 const mapStateToProps = state => {
 	const { mcm_topic_edit } = state.mcm_topic_edit;
@@ -31,7 +31,10 @@ const mapDispatchToProps = (dispatch) => {
     const newMcmTopic = () => {
     	dispatch(newMcmTopicOp())
     }
-    return { addSentence, removeSentence, updateSentence, createMcmTopic, newMcmTopic}
+    const handleUpdateName = (event) => {
+        dispatch(updateMcmTopicNameOp(event))
+    }
+    return { addSentence, removeSentence, updateSentence, createMcmTopic, newMcmTopic, handleUpdateName}
 }
 
 

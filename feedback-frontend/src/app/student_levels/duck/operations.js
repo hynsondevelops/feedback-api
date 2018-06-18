@@ -1,32 +1,25 @@
-import {authSetToken, authDiscardToken, authSetUser, authRequest, requestToken, recieveToken, emailFormChange, passwordFormChange, successfulLogin} from './types.js'
+import {getStudentLevelIndex, invalidateStudentLevels, requestStudentLevels, receiveStudentLevels} from './actions.js'
+let axios = require('axios');
 
-function authenticateUser(email, password) {
-  return (dispatch) => {
-    dispatch(requestToken(email))
-    let url = "/authenticate"
+
+function fetchStudentLevels(token) {
+  return function (dispatch) {
+    dispatch(requestStudentLevels())
+    let axiosClient = axios.create({
+      baseURL: 'http://localhost:3000',
+      headers: {'Authorization': token}
+    });
     return axiosClient
-      ["post"](url, {
-        email: email, 
-        password: password
-      })
-      .then(response => {
-        dispatch(recieveToken(response, email))
-      })
-      .then(response => {
-        dispatch(successfulLogin())
-      })
-      .catch(error => {
-        console.log(error)
-      });
+    .get(`/student_levels`)
+    .then(response => {
+      console.log(response.data)
+      dispatch(receiveStudentLevels(response.data))
+    })
+    .catch(error => {
+      console.log("An error occured", error)
+    }); 
   }
+
 }
 
-export default {
-	authSetToken,
-	authDiscardToken,
-	authSetUser,
-	authRequest,
-	emailFormChange,
-	passwordFormChange,
-	authenticateUser
-}
+export default fetchStudentLevels;

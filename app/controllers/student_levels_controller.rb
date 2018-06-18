@@ -5,7 +5,7 @@ class StudentLevelsController < ApplicationController
   def index
     @student_levels = StudentLevel.all
 
-    render json: @student_levels
+    render json: @student_levels,  :include => :random_sentences
   end
 
   # GET /student_levels/1

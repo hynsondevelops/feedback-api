@@ -25,7 +25,7 @@ export function removeSentenceScoreEdit(event) {
     let sentence_index = event.target.dataset.sentence_index
     console.log(topic.sentence_scores_attributes)
     console.log(sentence_index)
-    topic.sentence_scores_attributes.splice(sentence_index, 1)
+    topic.sentence_scores_attributes[sentence_index]._destroy = true
     console.log(topic.sentence_scores_attributes)
     console.log(sentence_index)
     return dispatch(removeSentenceScore(topic))

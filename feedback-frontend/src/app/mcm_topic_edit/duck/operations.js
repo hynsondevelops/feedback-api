@@ -39,6 +39,15 @@ export function updateMcmTopicEdit(event) {
   return function (dispatch) {
     let token = event.target.dataset.token
     let topic = JSON.parse(event.target.dataset.topic)
+    console.log(topic.sentence_scores_attributes)
+    for (let i = 0; i < topic.sentence_scores_attributes.length; i++) {
+      topic.sentence_scores_attributes[i].mcm_topic_id = undefined
+      topic.sentence_scores_attributes[i].created_at = undefined
+      topic.sentence_scores_attributes[i].updated_at = undefined
+    }
+    topic.sentence_scores = undefined
+    topic.created_at = undefined
+    topic.updated_at = undefined
     console.log(topic)
     let axiosClient = axios.create({
       baseURL: 'http://localhost:3000',
@@ -52,8 +61,13 @@ export function updateMcmTopicEdit(event) {
       console.log(mcm_topic.sentence_scores_attributes)
       for (let i = 0; i < mcm_topic.sentence_scores_attributes.length; i++) {
         mcm_topic.sentence_scores_attributes[i]._destroy = false
+        mcm_topic.sentence_scores_attributes[i].mcm_topic_id = undefined
+        mcm_topic.sentence_scores_attributes[i].created_at = undefined
+        mcm_topic.sentence_scores_attributes[i].updated_at = undefined
       }
       mcm_topic.sentence_scores = undefined
+      mcm_topic.created_at = undefined
+      mcm_topic.updated_at = undefined
       dispatch(updateMcmTopic(mcm_topic))
     })
     .catch(error => {

@@ -5,6 +5,7 @@ import McmTopicEditContainer from './app/mcm_topic_edit/McmTopicEditContainer.js
 import McmTopicNewContainer from './app/mcm_topic_new/McmTopicNewContainer.js'
 import StudentLevelEditContainer from './app/student_level_edit/StudentLevelEditContainer.js'
 import StudentLevelNewContainer from './app/student_level_new/StudentLevelNewContainer.js'
+import StudentLevels from './app/student_levels/StudentLevelsContainer.js'
 
 
 import React from 'react';
@@ -21,6 +22,7 @@ import createHistory from 'history/createBrowserHistory'
 import homeReducer from './app/home/duck/reducers'
 import mcmFeedbackGeneratorReducer from './app/mcm_feedback_generator/duck/reducers'
 import mcmIndexReducer from './app/mcm_topics/duck/reducers'
+import studentLevelIndexReducer from './app/student_levels/duck/reducers'
 import {mcmTopicEditReducer, studentLevelReducer} from './app/common/duck/reducers'
 
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
@@ -37,7 +39,7 @@ const routesMap = {
 }
 console.log(studentLevelReducer)
 const { reducer, middleware, enhancer } = connectRoutes(history, routesMap) // yes, 3 redux aspe
-const rootReducer = combineReducers({location: reducer, home: homeReducer, mcmFeedbackGenerator: mcmFeedbackGeneratorReducer, mcm_index: mcmIndexReducer, mcm_topic_edit: mcmTopicEditReducer, student_level: studentLevelReducer})
+const rootReducer = combineReducers({location: reducer, home: homeReducer, mcmFeedbackGenerator: mcmFeedbackGeneratorReducer, mcm_index: mcmIndexReducer, mcm_topic_edit: mcmTopicEditReducer, student_level: studentLevelReducer, student_level_index: studentLevelIndexReducer})
 
 const middlewares = applyMiddleware(thunk, logger, middleware);
 const store = createStore(rootReducer, compose(enhancer, middlewares));
@@ -69,7 +71,7 @@ const BasicExample = () => (
       <Route exact path="/mcm_topics" component={McmTopicsContainer} />
       <Route path="/student_levels/new" component={StudentLevelNewContainer} />
       <Route path="/student_levels/:id/edit" component={StudentLevelEditContainer} />
-      <Route exact path="/student_levels" component={McmFeedbackGeneratorContainer} />
+      <Route exact path="/student_levels" component={StudentLevels} />
     </div>
   </Router>
 );

@@ -6,3 +6,10 @@ export function viewMcmFeedbackGenerator() {
     type: types.VIEW_MCM_FEEDBACK_GENERATOR
   }
 }
+
+
+export function generateMcmFeedback() {
+  return {
+    type: types.GENERATE_MCM_FEEDBACK
+  }
+}

@@ -28,7 +28,7 @@ class McmTopicsComponent extends React.Component {
 					<h3> Sentence Scores </h3>
 					{}
 					{this.props.mcm_index.map(mcm_topic => (
-                      <Link to={`/mcm_topics/${mcm_topic.id}`} key={mcm_topic.id}>{mcm_topic.name}</Link>
+                      <Link to={`/mcm_topics/${mcm_topic.id}/edit`} key={mcm_topic.id}>{mcm_topic.name}</Link>
 
                     ))}
 				</div>	

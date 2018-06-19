@@ -28,7 +28,7 @@ class StudentLevelsComponent extends React.Component {
 					<h3> Random Sentences </h3>
 					{}
 					{this.props.student_level_index.map(student_level => (
-                      <Link to={`/student_levels/${student_level.id}`} key={student_level.id}>{student_level.name, student_level.generic_text}</Link>
+                      <Link to={`/student_levels/${student_level.id}/edit`} key={student_level.id}>{student_level.name, student_level.generic_text}</Link>
 
                     ))}
 				</div>	

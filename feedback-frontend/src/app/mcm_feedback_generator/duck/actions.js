@@ -1,4 +1,4 @@
-import {types} from './types.js'
+import types from './types.js'
 
 
 export function viewMcmFeedbackGenerator() {
@@ -8,8 +8,9 @@ export function viewMcmFeedbackGenerator() {
 }
 
 
-export function generateMcmFeedback() {
+export function generateMcmFeedback(feedback) {
   return {
-    type: types.GENERATE_MCM_FEEDBACK
+    type: types.GENERATE_MCM_FEEDBACK,
+    feedback
   }
 }

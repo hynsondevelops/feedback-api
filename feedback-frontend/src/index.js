@@ -1,5 +1,6 @@
 import HomeContainer from './app/home/HomeContainer.js'
 import McmFeedbackGeneratorContainer from './app/mcm_feedback_generator/McmFeedbackGeneratorContainer.js'
+import StudentLevelFeedbackGeneratorContainer from './app/student_feedback_generator/StudentLevelGeneratorContainer.js'
 import McmTopicsContainer from './app/mcm_topics/McmTopicsContainer.js'
 import McmTopicEditContainer from './app/mcm_topic_edit/McmTopicEditContainer.js'
 import McmTopicNewContainer from './app/mcm_topic_new/McmTopicNewContainer.js'
@@ -21,6 +22,7 @@ import { combineReducers, createStore, applyMiddleware, compose } from 'redux'
 import createHistory from 'history/createBrowserHistory'
 import homeReducer from './app/home/duck/reducers'
 import mcmFeedbackGeneratorReducer from './app/mcm_feedback_generator/duck/reducers'
+import studentLevelFeedbackGeneratorReducer from './app/student_feedback_generator/duck/reducers'
 import mcmIndexReducer from './app/mcm_topics/duck/reducers'
 import studentLevelIndexReducer from './app/student_levels/duck/reducers'
 import {mcmTopicEditReducer, studentLevelReducer} from './app/common/duck/reducers'
@@ -29,7 +31,7 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import getMcmIndexOperation from './app/mcm_topics/duck/operations'
 
 
-const history = createHistory()
+export const history = createHistory()
 
 // THE WORK:
 const routesMap = { 
@@ -39,7 +41,7 @@ const routesMap = {
 }
 console.log(studentLevelReducer)
 const { reducer, middleware, enhancer } = connectRoutes(history, routesMap) // yes, 3 redux aspe
-const rootReducer = combineReducers({location: reducer, home: homeReducer, mcmFeedbackGenerator: mcmFeedbackGeneratorReducer, mcm_index: mcmIndexReducer, mcm_topic_edit: mcmTopicEditReducer, student_level: studentLevelReducer, student_level_index: studentLevelIndexReducer})
+const rootReducer = combineReducers({location: reducer, home: homeReducer, mcmFeedbackGenerator: mcmFeedbackGeneratorReducer, mcm_index: mcmIndexReducer, mcm_topic_edit: mcmTopicEditReducer, student_level: studentLevelReducer, student_level_index: studentLevelIndexReducer, student_level_feedback: studentLevelFeedbackGeneratorReducer})
 
 const middlewares = applyMiddleware(thunk, logger, middleware);
 const store = createStore(rootReducer, compose(enhancer, middlewares));
@@ -47,7 +49,7 @@ const store = createStore(rootReducer, compose(enhancer, middlewares));
 //
 
 const BasicExample = () => (
-  <Router>
+  <Router history = {history}>
     <div>
       <ul>
         <li>
@@ -65,6 +67,7 @@ const BasicExample = () => (
 
       <Route exact path="/" component={HomeContainer} />
       <Route path="/mcm_feedback_generator" component={McmFeedbackGeneratorContainer} />
+      <Route path="/student_level_feedback_generator" component={StudentLevelFeedbackGeneratorContainer} />
       //Change the below to the correct components
       <Route path="/mcm_topics/new" component={McmTopicNewContainer} />
       <Route path="/mcm_topics/:id/edit" component={McmTopicEditContainer} />

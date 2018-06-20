@@ -1,32 +1,25 @@
-import {authSetToken, authDiscardToken, authSetUser, authRequest, requestToken, recieveToken, emailFormChange, passwordFormChange, successfulLogin} from './types.js'
+import {generateMcmFeedback} from './actions.js'
+let axios = require('axios');
 
-function authenticateUser(email, password) {
-  return (dispatch) => {
-    dispatch(requestToken(email))
-    let url = "/authenticate"
-    return axiosClient
-      ["post"](url, {
-        email: email, 
-        password: password
-      })
-      .then(response => {
-        dispatch(recieveToken(response, email))
-      })
-      .then(response => {
-        dispatch(successfulLogin())
-      })
-      .catch(error => {
-        console.log(error)
-      });
+export function generateMcmFeedbackOp(event) {
+  return function (dispatch) {
+    let feedback = ""
+    const mcm_index = JSON.parse(event.target.dataset.index)
+    console.log(mcm_index.length)
+    for (let i = 0; i < mcm_index.length; i++) {
+      console.log(mcm_index[i])
+      for (let j = 0; j < mcm_index[i].sentence_scores.length; j++) {
+        let topicScoreButton = document.getElementById(mcm_index[i].name + mcm_index[i].sentence_scores[j].score)
+        console.log(topicScoreButton.checked)
+        if (topicScoreButton.checked) {
+          feedback += "\n" + topicScoreButton.name + ": " + topicScoreButton.value
+        }
+      }
+    }
+    console.log(feedback)
+
+    dispatch(generateMcmFeedback(feedback))
   }
 }
 
-export default {
-	authSetToken,
-	authDiscardToken,
-	authSetUser,
-	authRequest,
-	emailFormChange,
-	passwordFormChange,
-	authenticateUser
-}
+export default generateMcmFeedbackOp;

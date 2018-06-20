@@ -1,4 +1,6 @@
 import {createStudentLevelNew, initStudentLevelNew} from './actions.js'
+import { history } from '../../../index.js'
+
 let axios = require('axios');
 
 const emptyLevel = {
@@ -25,6 +27,7 @@ export function createStudentLevelOp(event) {
     return axiosClient
     .post(`/student_levels`, {student_level: level})
     .then(response => {
+      history.push("/student_levels")
       dispatch(createStudentLevelNew(level))
     })
     .catch(error => {

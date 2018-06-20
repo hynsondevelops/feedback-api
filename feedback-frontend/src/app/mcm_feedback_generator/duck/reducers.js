@@ -11,10 +11,11 @@ function mcmFeedbackGeneratorReducer(state = {}, action){
     case types.VIEW_MCM_FEEDBACK_GENERATOR:
       return {yes: "woo"}
     case types.GENERATE_MCM_FEEDBACK:
-      return {yes: "woo"}
+      return {feedback: action.feedback}
     default:
       return state;
   }
 }
+
 
 export default mcmFeedbackGeneratorReducer

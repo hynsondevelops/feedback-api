@@ -78,7 +78,7 @@ export function removeRandomSentenceOp(event) {
     let sentence_index = event.target.dataset.sentence_index
     console.log(level.random_sentences_attributes)
     console.log(sentence_index)
-    level.random_sentences_attributes.splice(sentence_index, 1)
+    level.random_sentences_attributes[sentence_index]._destroy = true
     console.log(level.random_sentences_attributes)
     console.log(sentence_index)
     return dispatch(removeRandomSentence(level))

@@ -2,6 +2,8 @@ import React from 'react';
 import { Form, Field } from 'react-final-form'
 import {Link} from 'react-router-dom'
 import StudentLevelEditLink from '../common/buttons/StudentLevelEditLink'
+import StudentLevelCard from '../common/StudentLevelCard'
+import Grid from '@material-ui/core/Grid';
 
 
 class StudentLevelsComponent extends React.Component {
@@ -21,12 +23,12 @@ class StudentLevelsComponent extends React.Component {
 			return (
 				<div>
 					<h3> Student Levels </h3>
-					{this.props.student_level_index.map(student_level => (
-                      <div>
-                      	<StudentLevelEditLink student_level={student_level} />
-                      </div>
-
+					<Grid container spacing={12}>
+					{this.props.student_level_index.map(student_level => (                    						<Grid item xs={5} style={{margin: "10px 1.5%"}}> 		
+	                    	<StudentLevelCard student_level={student_level} />
+	                    </Grid>
                     ))}
+					</Grid>
 				</div>	
 			)
 		}

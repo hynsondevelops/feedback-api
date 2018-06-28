@@ -47,7 +47,9 @@ function McmTopicCard(props) {
             {mcm_topic.name}
           </Typography>
           {sentenceScores}
-          <McmTopicEditLink mcm_topic={props.mcm_topic} />
+          <Typography style={{float: "right"}}>
+            <McmTopicEditLink mcm_topic={props.mcm_topic} />
+          </Typography>
         </CardContent>
       </Card>
     </div>

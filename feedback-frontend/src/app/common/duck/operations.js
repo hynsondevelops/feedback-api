@@ -2,18 +2,16 @@ import {addSentenceScore, removeSentenceScore, updateSentenceScore, addRandomSen
 let axios = require('axios');
 
 //Mcm Topics
-const emptySentenceScore = {
-    sentence: '',
-    score: '',
-    id: null,
-    errors: {},
-    _destroy: false
-};
 
-export function addSentenceScoreEdit(event) {
+export function addSentenceScoreEdit(event, topic) {
   return function (dispatch) {
-    let topic = JSON.parse(event.target.dataset.topic)
-    console.log(JSON.parse(event.target.dataset.topic))
+    const emptySentenceScore = {
+        sentence: '',
+        score: '',
+        id: null,
+        errors: {},
+        _destroy: false
+    };
     topic.sentence_scores_attributes.push(emptySentenceScore)
     return dispatch(addSentenceScore(topic))
   }
@@ -32,24 +30,29 @@ export function removeSentenceScoreEdit(event) {
   }
 }
 
-export function updateSentenceScoreEdit(event) {
+export function updateSentenceScoreEdit(event, index, topic) {
   return function (dispatch) {
-    let index = parseInt(event.target.dataset.index)
+    console.log(index)
     let sentence = document.getElementById("sentence-" + index).value
     let score = parseInt(document.getElementById("score-" + index).value)
-    let topic = JSON.parse(event.target.dataset.topic)
     console.log(topic)
+    console.log(sentence)
+    console.log(score)
     topic.sentence_scores_attributes[index].sentence = sentence
     topic.sentence_scores_attributes[index].score = score
+    console.log(topic)
     return dispatch(updateSentenceScore(topic))
   }
 }
 
-export function updateMcmTopicNameOp(event) {
+export function updateMcmTopicNameOp(event, name, topic) {
   return function (dispatch) {
-    let newName = document.getElementById("mcm_topic_name").value
-    let topic = JSON.parse(event.target.dataset.topic)
-    topic.name = newName
+    console.log(topic)
+    console.log(name)
+    console.log(event)
+    //let newName = document.getElementById("mcm_topic_name").value
+    //let topic = JSON.parse(event.target.dataset.topic)
+    topic.name = name
     return dispatch(updateMcmTopicName(topic))
   }
 }

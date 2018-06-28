@@ -8,10 +8,8 @@ const emptyTopic = {
   sentence_scores_attributes: []
 }
 
-export function createMcmTopicOp(event) {
+export function createMcmTopicOp(event, token, topic) {
   return function (dispatch) {
-    let token = event.target.dataset.token
-    let topic = JSON.parse(event.target.dataset.topic)
     let name = document.getElementById("mcm_topic_name").value
     topic.name = name
     for (let i = 0; i < topic.sentence_scores_attributes.length; i++) {

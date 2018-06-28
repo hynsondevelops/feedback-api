@@ -9,7 +9,7 @@ function StudentLevelEditLink({
 		<div>
 			<Link style={{ textDecoration: 'none' }} to={`/student_levels/${student_level.id}/edit`} key={student_level.id}>
 				<Button variant="contained" color="primary">
-					{student_level.name}
+					Edit
 				</Button>
 			</Link>
 		</div>

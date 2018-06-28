@@ -16,23 +16,23 @@ const mapStateToProps = state => {
 //addSentence
 //removeSentence
 const mapDispatchToProps = (dispatch) => {
-    const addSentence = (event) => {
-    	dispatch(addSentenceScoreEdit(event))
+    const addSentence = (event, topic) => {
+    	dispatch(addSentenceScoreEdit(event, topic))
     }
     const removeSentence = (event) => {
     	dispatch(removeSentenceScoreEdit(event))
     }
-    const updateSentence = (event) => {
-    	dispatch(updateSentenceScoreEdit(event))
+    const updateSentence = (event, index, topic) => {
+    	dispatch(updateSentenceScoreEdit(event, index, topic))
     }
-    const createMcmTopic = (event) => {
-    	dispatch(createMcmTopicOp(event))
+    const createMcmTopic = (event, token, topic) => {
+    	dispatch(createMcmTopicOp(event, token, topic))
     }
     const newMcmTopic = () => {
     	dispatch(newMcmTopicOp())
     }
-    const handleUpdateName = (event) => {
-        dispatch(updateMcmTopicNameOp(event))
+    const handleUpdateName = (event, name, topic) => {
+        dispatch(updateMcmTopicNameOp(event, name, topic))
     }
     return { addSentence, removeSentence, updateSentence, createMcmTopic, newMcmTopic, handleUpdateName}
 }

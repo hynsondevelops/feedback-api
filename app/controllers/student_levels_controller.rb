@@ -3,7 +3,7 @@ class StudentLevelsController < ApplicationController
 
   # GET /student_levels
   def index
-    @student_levels = StudentLevel.all
+    @student_levels = StudentLevel.where(user_id: current_user.id)
 
     render json: @student_levels,  :include => :random_sentences
   end
@@ -18,7 +18,7 @@ class StudentLevelsController < ApplicationController
     @student_level = StudentLevel.new(student_level_params)
     @student_level.user_id = @current_user.id
     if @student_level.save
-      render json: @student_level, status: :created, location: @student_level
+      render json: @student_level, status: :created, location: @student_level, :include => :random_sentences
     else
       render json: @student_level.errors, status: :unprocessable_entity
     end

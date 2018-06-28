@@ -23,7 +23,7 @@ class McmTopicsController < ApplicationController
     @mcm_topic.user_id = @current_user.id
 
     if @mcm_topic.save
-      render json: @mcm_topic, status: :created, location: @mcm_topic
+      render json: @mcm_topic, status: :created, location: @mcm_topic, :include => :sentence_scores
     else
       render json: @mcm_topic.errors, status: :unprocessable_entity
     end

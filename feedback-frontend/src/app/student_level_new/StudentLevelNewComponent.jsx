@@ -61,6 +61,9 @@ class StudentLevelNewComponent extends React.Component {
 		console.log("Rendering edit")
 		console.log(this.props.student_level.name)
 		let randomSentences = ''
+		if (this.props.student_level.id != undefined) {
+			this.props.history.push("/student_levels")
+		}
 		if (this.props.student_level != undefined) {
 			randomSentences = this.renderRandomSentences()
 		}

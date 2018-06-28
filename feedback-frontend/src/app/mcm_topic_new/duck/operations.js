@@ -1,4 +1,6 @@
 import {createMcmTopicNew, initMcmTopicNew} from './actions.js'
+
+
 let axios = require('axios');
 
 const emptyTopic = {
@@ -22,7 +24,16 @@ export function createMcmTopicOp(event) {
     return axiosClient
     .post(`/mcm_topics`, {mcm_topic: topic})
     .then(response => {
-      dispatch(createMcmTopicNew(topic))
+      let mcm_topic = response.data
+      mcm_topic.sentence_scores_attributes = mcm_topic.sentence_scores;
+      console.log(mcm_topic.sentence_scores_attributes)
+      for (let i = 0; i < mcm_topic.sentence_scores_attributes.length; i++) {
+        mcm_topic.sentence_scores_attributes[i]._destroy = false
+      }
+      mcm_topic.sentence_scores = undefined
+      dispatch(createMcmTopicNew(mcm_topic))
+    })
+    .then(response => {
     })
     .catch(error => {
       console.log("An error occured", error)

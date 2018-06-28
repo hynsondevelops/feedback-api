@@ -27,8 +27,14 @@ export function createStudentLevelOp(event) {
     return axiosClient
     .post(`/student_levels`, {student_level: level})
     .then(response => {
-      history.push("/student_levels")
-      dispatch(createStudentLevelNew(level))
+      let student_level = response.data
+      student_level.random_sentences_attributes = student_level.random_sentences;
+      console.log(student_level.random_sentences_attributes)
+      for (let i = 0; i < student_level.random_sentences_attributes.length; i++) {
+        student_level.random_sentences_attributes[i]._destroy = false
+      }
+      student_level.random_sentences = undefined
+      dispatch(createStudentLevelNew(student_level))
     })
     .catch(error => {
       console.log("An error occured", error)

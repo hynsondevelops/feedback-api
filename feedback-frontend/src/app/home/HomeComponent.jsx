@@ -1,5 +1,27 @@
 import React from 'react';
 import LoginContainer from './LoginContainer';
+import RegisterContainer from './RegisterContainer';
+import Button from '@material-ui/core/Button';
+
+//MCM Topic Buttons
+import McmFeedbackGeneratorLink from '../common/buttons/McmFeedbackGeneratorLink'
+import McmTopicIndexLink from '../common/buttons/McmTopicIndexLink'
+import McmTopicNewLink from '../common/buttons/McmTopicNewLink'
+import McmTopicEditLink from '../common/buttons/McmTopicEditLink'
+
+//Student Level Buttons
+import StudentFeedbackGeneratorLink from '../common/buttons/StudentFeedbackGeneratorLink'
+import StudentLevelIndexLink from '../common/buttons/StudentLevelIndexLink'
+import StudentLevelNewLink from '../common/buttons/StudentLevelNewLink'
+import StudentLevelEditLink from '../common/buttons/StudentLevelEditLink'
+import Grid from '@material-ui/core/Grid';
+
+
+//Cards
+import McmCard from './McmCard.jsx'
+import StudentCard from './StudentCard.jsx'
+
+
 import {Link} from 'react-router-dom'
 
 function HomeComponent({
@@ -10,14 +32,14 @@ function HomeComponent({
 		return (
 			<div>
 				<h3> Welcome, {email} </h3>
-				<Link to="/mcm_feedback_generator">MCM Generator</Link> // action updates location state + changes address bar
-				<Link to="/mcm_topics">MCM Topics</Link> // action updates location state + changes address bar
-				<Link to="/mcm_topics/new">New MCM Topic</Link> // action updates location state + changes address bar
-				<Link to="/mcm_topics/9/edit">Edit MCM Topic #1</Link> // action updates location state + changes address bar
-				<Link to="/student_level_feedback_generator">Student Level Generator</Link> // action updates location state + changes address bar
-				<Link to="/student_levels">Student Levels</Link> // action updates location state + changes address bar
-				<Link to="/student_levels/new">New Student Level</Link> // action updates location state + changes address bar
-				<Link to="/student_levels/1/edit">Edit Student Level #1</Link> // action updates location state + changes address bar
+				<Grid container spacing={12}>
+					<Grid item xs={6}>		
+						<McmCard />
+					</Grid>
+					<Grid item xs={6}>		
+						<StudentCard />
+					</Grid>
+				</Grid>
 			</div>
 		)
 	}
@@ -25,7 +47,14 @@ function HomeComponent({
 	  return (
 	    <div>
 	      <h3>Welcome to Feedback Forms</h3>
-	      <LoginContainer/>
+	      <Grid container spacing={12}>
+	      	<Grid item xs={6}>		
+	      		<LoginContainer/>
+	      	</Grid>
+	      	<Grid item xs={6}>		
+	      	<RegisterContainer/>
+	      	</Grid>
+	      </Grid>
 	    </div>
 	  )
 	}

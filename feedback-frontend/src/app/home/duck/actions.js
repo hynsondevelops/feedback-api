@@ -59,3 +59,9 @@ export function successfulLogin() {
     type: types.SUCCESSFUL_LOGIN
   }
 }
+
+export function createUser() {
+  return {
+    type: types.CREATE_USER
+  }
+}

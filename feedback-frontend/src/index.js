@@ -30,6 +30,9 @@ import {mcmTopicEditReducer, studentLevelReducer} from './app/common/duck/reduce
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import getMcmIndexOperation from './app/mcm_topics/duck/operations'
 
+import ResponsiveDrawer from './app/common/Sidebar'
+import SidebarContainer from './app/common/SidebarContainer'
+
 
 export const history = createHistory()
 
@@ -53,7 +56,7 @@ const BasicExample = () => (
     <div>
       <ul>
         <li>
-          <Link to="/">Home</Link>
+          <Link id="home_link" to="/">Home</Link>
         </li>
         <li>
           <Link to="/mcm_feedback_generator">About</Link>
@@ -64,7 +67,6 @@ const BasicExample = () => (
       </ul>
 
       <hr />
-
       <Route exact path="/" component={HomeContainer} />
       <Route path="/mcm_feedback_generator" component={McmFeedbackGeneratorContainer} />
       <Route path="/student_level_feedback_generator" component={StudentLevelFeedbackGeneratorContainer} />
@@ -84,7 +86,7 @@ const BasicExample = () => (
 
 ReactDOM.render(
   <Provider store={store}>
-    <BasicExample />
+    <SidebarContainer />
   </Provider>,
   document.getElementById('root')
 );

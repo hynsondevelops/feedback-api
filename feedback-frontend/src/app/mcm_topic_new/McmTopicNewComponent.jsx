@@ -1,6 +1,6 @@
 import React from 'react';
 import { Form, Field } from 'react-final-form'
-import {Link} from 'react-router-dom'
+import {Link, withRouter} from 'react-router-dom'
 
 
 class McmTopicNewComponent extends React.Component {
@@ -68,9 +68,13 @@ class McmTopicNewComponent extends React.Component {
 
 
 	render() {
+		console.log(this.props)
 		let sentenceScores = ''
 		if (this.props.mcm_topic_edit != undefined) {
 			sentenceScores = this.renderSentenceScores()
+		}
+		if (this.props.mcm_topic_edit.id != undefined) {
+			this.props.history.push("/mcm_topics")
 		}
 		if (this.props.mcm_topic_edit != undefined) {  
 			return (
@@ -103,6 +107,7 @@ class McmTopicNewComponent extends React.Component {
 					      type="button"
 					      data-topic={JSON.stringify(this.props.mcm_topic_edit)}
 					      data-token={this.props.token}
+					      data-history={JSON.stringify(this.props.history)}
 					      onClick={this.props.createMcmTopic}
 					      className="btn btn-primary">
 					      Save
@@ -126,5 +131,5 @@ class McmTopicNewComponent extends React.Component {
 
 }
 
-export default McmTopicNewComponent;
+export default withRouter(McmTopicNewComponent);
 

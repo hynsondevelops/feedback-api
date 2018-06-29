@@ -1,7 +1,9 @@
 import React from 'react';
 import { Form, Field } from 'react-final-form'
 import {Link} from 'react-router-dom'
-
+import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
+import FormControl from '@material-ui/core/FormControl';
 
 class McmTopicEditComponent extends React.Component {
 	constructor(props) {
@@ -21,9 +23,6 @@ class McmTopicEditComponent extends React.Component {
 		      <div className="sentence-score-form" key={index}>
 		        <div className="form-group">
 		          <div className="clearfix" style={{ marginBottom: 5 }}>
-		            <label>
-		              sentence_score {counter + 1}
-		            </label>
 		            <button
 		              type="button"
 		              className="btn btn-danger"
@@ -34,26 +33,25 @@ class McmTopicEditComponent extends React.Component {
 		              X
 		            </button>
 		          </div>
-		          <input
+		          <TextField
+		          	label="Score"
 		            placeholder="Score"
-		            onChange={this.props.updateSentence}
-		            data-topic={JSON.stringify(this.props.mcm_topic_edit)}
-		            data-index={index}
+		            onChange={(e) => {this.props.updateSentence(e, index, this.props.mcm_topic_edit); this.forceUpdate()}}
 		            type="text"
 		            className="form-control"
 		            value={sentence_score.score}
 		            id={"score-" + index}/>
-		          <input
-		            placeholder="Sentence"
-		            onChange={this.props.updateSentence}
-		            data-topic={JSON.stringify(this.props.mcm_topic_edit)}
-		            data-sentence={document.getElementById("sentence-" + index)}
-		            data-score={document.getElementById("score-" + index)}
-		            data-index={index}
-		            type="text"
-		            value={sentence_score.sentence}
-		            className="form-control"
-		            id={"sentence-" + index}/>
+		          <FormControl fullWidth >
+		          	<TextField
+			          	style={{margin: "0 0 0 2%"}}
+			          	label="Sentence"
+			            placeholder="Sentence"
+			            onChange={(e) => {this.props.updateSentence(e, index, this.props.mcm_topic_edit); this.forceUpdate()}}
+			            type="text"
+			            value={sentence_score.sentence}
+			            className="form-control"
+			            id={"sentence-" + index}/>
+		           </FormControl>
 		        </div>
 		      </div>
 		    );
@@ -81,42 +79,35 @@ class McmTopicEditComponent extends React.Component {
 					<div className="McmTopicForm">
 					  <form>
 					    <div className="form-group">
-					      <label>Name</label>
-					      <input
+					      <TextField 
+					      	label="Name"
 					      	id="mcm_topic_name"
+					      	onChange={(e, value) => {this.props.handleUpdateName(e, e.target.value, this.props.mcm_topic_edit); this.forceUpdate()}}
 					        type="text"
-					        onChange={this.props.handleUpdateName}
-					        data-topic={JSON.stringify(this.props.mcm_topic_edit)}
 					        value={this.props.mcm_topic_edit.name}
 					        className="form-control" />
 					    </div>
 					    <hr />
 					    <div className="sentence-scores-fieldset">
-					      <h3>Sentence Scores</h3>
-					      <button
-					      	type="button"
-					        className="btn btn-success"
-					        data-topic={JSON.stringify(this.props.mcm_topic_edit)}
-					        onClick={this.props.addSentence}>
-					        + Add Sentence Score
-					      </button>
-					    </div>
-					    <br />
-					    <button
-					      type="button"
-					      data-topic={JSON.stringify(this.props.mcm_topic_edit)}
-					      data-token={this.props.token}
-					      onClick={this.props.updateMcmTopic}
-					      className="btn btn-primary">
-					      Save
-					    </button>
-					    &nbsp;
-					    <button
-					      onClick={e => this.handleCancel()}
-					      className="btn btn-default">
-					      Cancel
-					    </button>{' '}
-					    {sentenceScores}
+						    <h3>Sentence Scores</h3>
+						    {sentenceScores}
+						    <div style={{margin: "2% 0 0 25%"}}>
+								<Button
+									type="button"
+									className="btn btn-success"
+									data-topic={JSON.stringify(this.props.mcm_topic_edit)}
+									onClick={(e) => {this.props.addSentence(e, this.props.mcm_topic_edit); this.forceUpdate()}}>
+									Add Sentence Score
+								</Button>
+							    <Button
+							      type="button"
+							      onClick={(e) => {this.props.updateMcmTopic(e, this.props.token, this.props.mcm_topic_edit); document.getElementById("mcm_topic_index_link").click()}}
+							      className="btn btn-primary">
+							      Save
+							    </Button>
+							</div>
+						</div>
+
 					  </form>
 					</div>
 				</div>	

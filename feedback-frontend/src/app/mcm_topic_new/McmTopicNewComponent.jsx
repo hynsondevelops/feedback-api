@@ -38,7 +38,7 @@ class McmTopicNewComponent extends React.Component {
 		          <TextField 
 		          	label="Score"
 		            placeholder="Score"
-		            onChange={(e) => {this.props.updateSentence(e, index, topic); this.forceUpdate()}}
+		            onChange={(e) => {this.props.updateSentence(e, index, this.props.mcm_topic_edit); this.forceUpdate()}}
 		            type="text"
 		            className="form-control"
 		            value={sentence_score.score}
@@ -48,7 +48,7 @@ class McmTopicNewComponent extends React.Component {
 			          	style={{margin: "0 0 0 2%"}}
 			          	label="Sentence"
 			            placeholder="Sentence"
-			            onChange={(e) => {this.props.updateSentence(e, index, topic); this.forceUpdate()}}
+			            onChange={(e) => {this.props.updateSentence(e, index, this.props.mcm_topic_edit); this.forceUpdate()}}
 			            type="text"
 			            value={sentence_score.sentence}
 			            className="form-control"

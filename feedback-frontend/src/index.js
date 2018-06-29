@@ -33,7 +33,15 @@ import getMcmIndexOperation from './app/mcm_topics/duck/operations'
 import ResponsiveDrawer from './app/common/Sidebar'
 import SidebarContainer from './app/common/SidebarContainer'
 
+import { persistStore, persistReducer } from 'redux-persist'
+import storage from 'redux-persist/lib/storage' // defaults to localStorage for web and AsyncStorage for react-native
+import { PersistGate } from 'redux-persist/integration/react'
 
+
+const persistConfig = {
+  key: 'root',
+  storage,
+}
 export const history = createHistory()
 
 // THE WORK:
@@ -46,8 +54,12 @@ console.log(studentLevelReducer)
 const { reducer, middleware, enhancer } = connectRoutes(history, routesMap) // yes, 3 redux aspe
 const rootReducer = combineReducers({location: reducer, home: homeReducer, mcmFeedbackGenerator: mcmFeedbackGeneratorReducer, mcm_index: mcmIndexReducer, mcm_topic_edit: mcmTopicEditReducer, student_level: studentLevelReducer, student_level_index: studentLevelIndexReducer, student_level_feedback: studentLevelFeedbackGeneratorReducer})
 
+const persistedReducer = persistReducer(persistConfig, rootReducer)
+
+
 const middlewares = applyMiddleware(thunk, logger, middleware);
-const store = createStore(rootReducer, compose(enhancer, middlewares));
+const store = createStore(persistedReducer, compose(enhancer, middlewares));
+let persistor = persistStore(store)
 
 //
 
@@ -86,7 +98,9 @@ const BasicExample = () => (
 
 ReactDOM.render(
   <Provider store={store}>
-    <SidebarContainer />
+    <PersistGate loading={null} persistor={persistor}>
+      <SidebarContainer />
+    </PersistGate>
   </Provider>,
   document.getElementById('root')
 );

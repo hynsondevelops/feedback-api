@@ -177,7 +177,7 @@ class ResponsiveDrawer extends React.Component {
                 </ListItem>
               </Link>
               <Link to="/mcm_topics">
-                <ListItem button className={classes.nested}>
+                <ListItem button id="mcm_topic_index_link" className={classes.nested}>
                   <ListItemIcon>
                     <ListIcon />
                   </ListItemIcon>

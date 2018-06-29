@@ -35,10 +35,8 @@ function fetchMcmTopicEdit(token, mcm_topic_edit_id) {
 
 }
 
-export function updateMcmTopicEdit(event) {
+export function updateMcmTopicEdit(event, token, topic) {
   return function (dispatch) {
-    let token = event.target.dataset.token
-    let topic = JSON.parse(event.target.dataset.topic)
     console.log(topic.sentence_scores_attributes)
     for (let i = 0; i < topic.sentence_scores_attributes.length; i++) {
       topic.sentence_scores_attributes[i].mcm_topic_id = undefined

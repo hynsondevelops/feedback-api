@@ -21,23 +21,24 @@ const mapDispatchToProps = (dispatch) => {
     	dispatch(fetchMcmTopicEdit(token, mcm_topic_edit_id));
     }
     console.log(addSentenceScoreEdit)
-    const addSentence = (event) => {
-    	dispatch(addSentenceScoreEdit(event))
+    const addSentence = (event, topic) => {
+        dispatch(addSentenceScoreEdit(event, topic))
     }
     const removeSentence = (event) => {
     	dispatch(removeSentenceScoreEdit(event))
     }
-    const updateSentence = (event) => {
-    	dispatch(updateSentenceScoreEdit(event))
+    const updateSentence = (event, index, topic) => {
+        dispatch(updateSentenceScoreEdit(event, index, topic))
     }
-    const updateMcmTopic = (event) => {
-    	dispatch(updateMcmTopicEdit(event))
+    const updateMcmTopic = (event, token, topic) => {
+    	dispatch(updateMcmTopicEdit(event, token, topic))
     }
-    const handleUpdateName = (event) => {
-        dispatch(updateMcmTopicNameOp(event))
+    const handleUpdateName = (event, name, topic) => {
+        dispatch(updateMcmTopicNameOp(event, name, topic))
     }
     return {getMcmTopic, addSentence, removeSentence, updateSentence, updateMcmTopic, handleUpdateName}
 }
+
 
 
 

@@ -18,23 +18,23 @@ const mapStateToProps = state => {
 //addSentence
 //removeSentence
 const mapDispatchToProps = (dispatch) => {
-    const addSentence = (event) => {
-    	dispatch(addRandomSentenceOp(event))
+    const addSentence = (event, level) => {
+    	dispatch(addRandomSentenceOp(event, level))
     }
     const removeSentence = (event) => {
     	dispatch(removeRandomSentenceOp(event))
     }
-    const updateSentence = (event) => {
-    	dispatch(updateRandomSentenceOp(event))
+    const updateSentence = (event, index, level) => {
+    	dispatch(updateRandomSentenceOp(event, index, level))
     }
-    const createStudentLevel = (event) => {
-    	dispatch(createStudentLevelOp(event))
+    const createStudentLevel = (event, token, level) => {
+    	dispatch(createStudentLevelOp(event, token, level))
     }
-    const handleUpdateName = (event) => {
-        dispatch(updateStudentLevelNameOp(event))
+    const handleUpdateName = (event, name, level) => {
+        dispatch(updateStudentLevelNameOp(event, name, level))
     }
-    const handleUpdateText = (event) => {
-        dispatch(updateStudentLevelTextOp(event))
+    const handleUpdateText = (event, text, level) => {
+        dispatch(updateStudentLevelTextOp(event, text, level))
     }
     const newStudentLevel = () => {
         dispatch(newStudentLevelOp())

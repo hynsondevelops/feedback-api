@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 import ResponsiveDrawer from './Sidebar';
+import {logoutUser} from '../home/duck/actions.js';
 
 const mapStateToProps = state => {
 	console.log(state)
@@ -8,10 +9,10 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => {
-  // '1' is the number by which you want to increment the count
-  
-  return {
-  }
+	const logout = () => {
+  		dispatch(logoutUser())	
+  	}
+  	return {logout}
 };
 
 const SidebarContainer = connect(

@@ -65,3 +65,9 @@ export function createUser() {
     type: types.CREATE_USER
   }
 }
+
+export function logoutUser() {
+  return {
+    type: types.USER_LOGOUT
+  }
+}

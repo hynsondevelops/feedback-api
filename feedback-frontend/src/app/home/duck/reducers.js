@@ -29,6 +29,8 @@ function homeReducer(state = {}, action){
     case types.RECIEVE_TOKEN: 
     	console.log("TOKEN")
       return Object.assign({}, state, token(state, action))
+    case types.USER_LOGOUT: 
+      return Object.assign({}, state, {email: undefined, password: undefined, token: undefined})
     // as always, on default do nothing
     case types.SUCCESSFUL_LOGIN:
       return {...state}

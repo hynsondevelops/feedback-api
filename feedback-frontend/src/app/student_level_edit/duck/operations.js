@@ -34,11 +34,8 @@ function fetchStudentLevelOp(token, student_level_id) {
 
 }
 
-export function updateStudentLevelOp(event) {
+export function updateStudentLevelOp(event, token, level) {
   return function (dispatch) {
-    let token = event.target.dataset.token
-    let level = JSON.parse(event.target.dataset.level)
-    console.log(level)
     let axiosClient = axios.create({
       baseURL: 'http://localhost:3000',
       headers: {'Authorization': token}

@@ -59,17 +59,15 @@ export function updateMcmTopicNameOp(event, name, topic) {
 
 
 //Student Level
-const emptyRandomSentence = {
-    sentence: '',
-    id: null,
-    errors: {},
-    _destroy: false
-};
 
-export function addRandomSentenceOp(event) {
+export function addRandomSentenceOp(event, level) {
   return function (dispatch) {
-    let level = JSON.parse(event.target.dataset.level)
-    console.log(JSON.parse(event.target.dataset.level))
+    const emptyRandomSentence = {
+        sentence: '',
+        id: null,
+        errors: {},
+        _destroy: false
+    };
     level.random_sentences_attributes.push(emptyRandomSentence)
     return dispatch(addRandomSentence(level))
   }
@@ -88,34 +86,24 @@ export function removeRandomSentenceOp(event) {
   }
 }
 
-export function updateRandomSentenceOp(event) {
+export function updateRandomSentenceOp(event, index, level) {
   return function (dispatch) {
-    let index = parseInt(event.target.dataset.index)
     let sentence = document.getElementById("sentence-" + index).value
-    let level = JSON.parse(event.target.dataset.level)
-    console.log(level)
     level.random_sentences_attributes[index].sentence = sentence
     return dispatch(updateRandomSentence(level))
   }
 }
 
-export function updateStudentLevelNameOp(event) {
+export function updateStudentLevelNameOp(event, name, level) {
   return function (dispatch) {
-    let newName = document.getElementById("student_level_name").value
-    console.log(JSON.parse(event.target.dataset.level))
-    let level = JSON.parse(event.target.dataset.level)
-    level.name = newName
+    level.name = name
     return dispatch(updateStudentLevelName(level))
   }
 }
 
-export function updateStudentLevelTextOp(event) {
+export function updateStudentLevelTextOp(event, text, level) {
   return function (dispatch) {
-    let newText = document.getElementById("student_level_text").value
-    console.log(JSON.parse(event.target.dataset.level))
-
-    let level = JSON.parse(event.target.dataset.level)
-    level.generic_text = newText
+    level.generic_text = text
     return dispatch(updateStudentLevelText(level))
   }
 }

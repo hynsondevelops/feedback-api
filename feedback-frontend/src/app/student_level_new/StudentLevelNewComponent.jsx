@@ -1,7 +1,8 @@
 import React from 'react';
 import { Form, Field } from 'react-final-form'
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-
+import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
 
 class StudentLevelNewComponent extends React.Component {
 	constructor(props) {
@@ -21,9 +22,6 @@ class StudentLevelNewComponent extends React.Component {
 		      <div className="random-sentence-form" key={index}>
 		        <div className="form-group">
 		          <div className="clearfix" style={{ marginBottom: 5 }}>
-		            <label>
-		              random_sentence {counter + 1}
-		            </label>
 		            <button
 		              type="button"
 		              className="btn btn-danger"
@@ -34,12 +32,10 @@ class StudentLevelNewComponent extends React.Component {
 		              X
 		            </button>
 		          </div>
-		          <input
+		          <TextField
+		          	label="Sentence"
 		            placeholder="Sentence"
-		            onChange={this.props.updateSentence}
-		            data-level={JSON.stringify(this.props.student_level)}
-		            data-sentence={document.getElementById("sentence-" + index)}
-		            data-index={index}
+		            onChange={(e) => {this.props.updateSentence(e, index, this.props.student_level); this.forceUpdate()}}
 		            type="text"
 		            value={random_sentence.sentence}
 		            className="form-control"
@@ -70,23 +66,23 @@ class StudentLevelNewComponent extends React.Component {
 		console.log(randomSentences)
 		if (this.props.student_level != undefined) {  
 			return (
-				<Router>
 					<div>
+						<h3> Create a New Student Level </h3>
+
 						<div className="StudentLevelForm">
 						  <form>
 						    <div className="form-group">
-						      <label>Name</label>
-						      <input
+						      <TextField
+						      	label="Name"
 						      	id="student_level_name"
-						      	onChange={this.props.handleUpdateName}
-						      	data-level={JSON.stringify(this.props.student_level)}
+						      	onChange={(e, value) => {this.props.handleUpdateName(e, e.target.value, this.props.student_level); this.forceUpdate()}}
 						        type="text"
 						        value={this.props.student_level.name}
 						        className="form-control" />
-						        <label>Generic Text</label>
-						        <input
+						        <TextField
+						        	label="Generic Text"
 						        	id="student_level_text"
-						        	onChange={this.props.handleUpdateText}
+						        	onChange={(e, value) => {this.props.handleUpdateText(e, e.target.value, this.props.student_level); this.forceUpdate() } }
 						        	data-level={JSON.stringify(this.props.student_level)}
 						          type="text"
 						          value={this.props.student_level.generic_text}
@@ -95,34 +91,30 @@ class StudentLevelNewComponent extends React.Component {
 						    <hr />
 						    <div className="random-sentences-fieldset">
 						      <h3>Random Sentence</h3>
-						      <button
-						      	type="button"
-						        className="btn btn-success"
-						        data-level={JSON.stringify(this.props.student_level)}
-						        onClick={this.props.addSentence}>
-						        + Add Random Sentence
-						      </button>
-						    </div>
-						    <br />
-						    <button
-						      type="button"
-						      data-level={JSON.stringify(this.props.student_level)}
-						      data-token={this.props.token}
-						      onClick={this.props.createStudentLevel}
-						      className="btn btn-primary">
-						      Save
-						    </button>
-						    &nbsp;
-						    <button
-						      onClick={e => this.handleCancel()}
-						      className="btn btn-default">
-						      Cancel
-						    </button>{' '}
-						    {randomSentences}
+						      {randomSentences}
+						      <div style={{margin: "2% 0 0 25%"}}>
+							      <Button
+							      	type="button"
+							        className="btn btn-success"
+							        data-level={JSON.stringify(this.props.student_level)}
+							        onClick={(e) => {this.props.addSentence(e, this.props.student_level); this.forceUpdate()}}>
+							        Add Random Sentence
+							      </Button>
+							    <br />
+							    <Button
+							      type="button"
+							      data-level={JSON.stringify(this.props.student_level)}
+							      data-token={this.props.token}
+							      onClick={(e) => this.props.createStudentLevel(e, this.props.token, this.props.student_level)}
+							      className="btn btn-primary">
+							      Save
+							    </Button>
+							</div>
+
+							</div>
 						  </form>
 						</div>
 					</div>
-				</Router>
 			)
 		}
 		else {

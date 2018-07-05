@@ -20,23 +20,23 @@ const mapDispatchToProps = (dispatch) => {
 	const getStudentLevel = (token, student_level_id) => {
     	dispatch(fetchStudentLevelOp(token, student_level_id));
     }
-    const addSentence = (event) => {
-    	dispatch(addRandomSentenceOp(event))
+    const addSentence = (event, level) => {
+        dispatch(addRandomSentenceOp(event, level))
     }
     const removeSentence = (event) => {
-    	dispatch(removeRandomSentenceOp(event))
+        dispatch(removeRandomSentenceOp(event))
     }
-    const updateSentence = (event) => {
-    	dispatch(updateRandomSentenceOp(event))
+    const updateSentence = (event, index, level) => {
+        dispatch(updateRandomSentenceOp(event, index, level))
     }
-    const updateStudentLevel = (event) => {
-    	dispatch(updateStudentLevelOp(event))
+    const updateStudentLevel = (event, token, level) => {
+    	dispatch(updateStudentLevelOp(event, token, level))
     }
-    const handleUpdateName = (event) => {
-        dispatch(updateStudentLevelNameOp(event))
+    const handleUpdateName = (event, name, level) => {
+        dispatch(updateStudentLevelNameOp(event, name, level))
     }
-    const handleUpdateText = (event) => {
-        dispatch(updateStudentLevelTextOp(event))
+    const handleUpdateText = (event, text, level) => {
+        dispatch(updateStudentLevelTextOp(event, text, level))
     }
     return {getStudentLevel, addSentence, removeSentence, updateSentence, updateStudentLevel, handleUpdateName, handleUpdateText}
 }

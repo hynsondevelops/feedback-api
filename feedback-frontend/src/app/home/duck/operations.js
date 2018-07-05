@@ -1,4 +1,4 @@
-import {authSetToken, authDiscardToken, authSetUser, authRequest, requestToken, recieveToken, emailFormChange, passwordFormChange, successfulLogin, createUser} from './actions.js'
+import {authSetToken, authDiscardToken, authSetUser, authRequest, requestToken, recieveToken, emailFormChange, passwordFormChange, successfulLogin, createUser, logoutUser} from './actions.js'
 import axiosClient from '../../../axiosClient';
 
 
@@ -42,6 +42,8 @@ export function registerUser(email, password) {
     }); 
   }
 }
+
+
 export default {
 	authSetToken,
 	authDiscardToken,

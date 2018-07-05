@@ -118,6 +118,7 @@ class ResponsiveDrawer extends React.Component {
   };
 
   render() {
+    console.log(this.props)
     const { classes, theme, componentToRender } = this.props;
 
     const loggedInLinks = (<div><List>
@@ -138,7 +139,7 @@ class ResponsiveDrawer extends React.Component {
                   <ListItemText primary={"Feedback Generator"} />
                 </ListItem>
                </Link>
-              <Link to="/student_levels">
+              <Link id="student_level_index_link" to="/student_levels">
                 <ListItem button className={classes.nested}>
                   <ListItemIcon>
                     <ListIcon />
@@ -209,7 +210,7 @@ class ResponsiveDrawer extends React.Component {
 
     const loggedInNavbar = (
         <Link to="/" style={{ textDecoration: 'none', color: "white" }}>
-          <Button color="inherit">Logout</Button>
+          <Button onClick={this.props.logout} color="inherit">Logout</Button>
         </Link>
     )
 
@@ -294,7 +295,7 @@ class ResponsiveDrawer extends React.Component {
               <main className={classes.content}>
                 <div className={classes.toolbar} />
                 	{componentToRender}
-                <Typography noWrap>
+                <Typography noWrap style={{margin: "0 5%"}}>
                     <div>
                       {accessibleRoutes} 
                     </div>

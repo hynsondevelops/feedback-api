@@ -1,6 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom'
-
+import LevelRadioGroup from './LevelRadioGroup'
+import Grid from '@material-ui/core/Grid';
 
 class StudentLevelFeedbackGeneratorComponent extends React.Component {
 	constructor(props) {
@@ -14,8 +15,23 @@ class StudentLevelFeedbackGeneratorComponent extends React.Component {
 
 	
 	render() {
+		let student_level_index = this.props.student_level_index
+		let student_level = undefined/*
+		for (let i = 0; i < student_level_index.length; i++) {
+		  let student_level_button = document.getElementById(student_level_index[i].name)
+		  console.log(i)
+		  console.log(student_level_button)
+		  if (student_level_button.checked) {
+		    student_level = student_level_index[i]
+		  }
+		}
 		console.log(this.props.student_level_index)
-		console.log(this.props.student_level_index != undefined)
+		console.log(this.props.student_level_index != undefined)*/
+		let generic_text = ""
+		if (student_level) {
+			generic_text = student_level.generic_text
+		}
+		console.log(document.getElementById("student_levels"))
 		if (this.props.student_level_index != undefined) {
 			console.log(">>>>>")
 			const levelButtons = this.props.student_level_index.map(student_level => {
@@ -31,19 +47,35 @@ class StudentLevelFeedbackGeneratorComponent extends React.Component {
 				}
 				return (
 					<div>
-						<h3> Welcome, {this.props.email} </h3>
-						<Link to="/home">StudentLevelFeedbackGenerator</Link> // action updates location state + changes address bar
-						<br />
-						{levelButtons}
-						<button
-						  type="button"
-						  data-index={JSON.stringify(this.props.student_level_index)}
-						  onClick={this.props.generateFeedback}
-						  className="btn btn-primary">
-						  Save
-						</button>
-						
-							<textarea value={feedback}> </textarea>
+						<h3> Student Feedback Generator </h3>
+						<hr />
+						<Grid container spacing={12}>
+							<Grid container xs={3}>
+								<LevelRadioGroup student_level_index={this.props.student_level_index}/>
+								<div style={{display: "block"}}>
+								</div>
+							</Grid>
+							<Grid container xs={9}>
+								<div style={{margin: "0 20%"}}>
+									<h3> Pre-formatted Feedback </h3>
+									<textarea id="student_level_generic" style={{fontSize: "20px", width: "inherit", minWidth: "400px", maxWidth: "600px", height: "200px"}} value={generic_text}> </textarea>
+									<h3> Generated Feedback </h3>
+									<textarea style={{fontSize: "20px", width: "inherit", minWidth: "500px",  maxWidth: "600px", height: "200px"}}value={feedback}> </textarea>
+								</div>
+
+							</Grid>
+						</Grid>
+						<Grid container spacing={12}>
+							<Grid container xs={3}>
+								<button
+								  type="button"
+								  data-index={JSON.stringify(this.props.student_level_index)}
+								  onClick={this.props.generateFeedback}
+								  className="btn btn-primary">
+								  Generate
+								</button>
+							</Grid>
+						</Grid>
 					</div>
 				)
 			}

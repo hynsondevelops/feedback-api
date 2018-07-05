@@ -3,10 +3,7 @@ import {createMcmTopicNew, initMcmTopicNew} from './actions.js'
 
 let axios = require('axios');
 
-const emptyTopic = {
-  name: "",
-  sentence_scores_attributes: []
-}
+
 
 export function createMcmTopicOp(event, token, topic) {
   return function (dispatch) {
@@ -32,6 +29,12 @@ export function createMcmTopicOp(event, token, topic) {
       dispatch(createMcmTopicNew(mcm_topic))
     })
     .then(response => {
+      dispatch(initMcmTopicNew(
+        {
+          name: "",
+          sentence_scores_attributes: []
+        }
+      ))
     })
     .catch(error => {
       console.log("An error occured", error)
@@ -41,7 +44,12 @@ export function createMcmTopicOp(event, token, topic) {
 
 export function newMcmTopicOp() {
   return function (dispatch) {
-    dispatch(initMcmTopicNew(emptyTopic))
+    dispatch(initMcmTopicNew(
+    {
+      name: "",
+      sentence_scores_attributes: []
+    }
+    ))
   }
 }
 

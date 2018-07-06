@@ -44,8 +44,7 @@ class McmFeedbackGeneratorComponent extends React.Component {
 				}
 				return (
 					<div>
-						<h3> Welcome, {this.props.email} </h3>
-						<Link to="/home">McmFeedbackGenerator</Link> // action updates location state + changes address bar
+						MCM Feedback Generator						
 						<br />
 						<Grid container spacing={12}>
 							<Grid container xs={8}>

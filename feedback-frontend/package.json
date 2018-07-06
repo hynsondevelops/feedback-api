@@ -19,8 +19,8 @@
     "redux-persist": "^5.10.0",
     "redux-thunk": "^2.2.0",
     "react-redux": "^5.0.0",
-    "redux": "^3.0.0"
-
+    "redux": "^3.0.0",
+    "react-first-router": "0.0.16-next"
   },
   "scripts": {
     "start": "react-scripts start",

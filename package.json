@@ -4,8 +4,8 @@
     "node": "6.3.1"
   },
   "scripts": {
-    "build": "cd client && npm install && npm run build && cd ..",
-    "deploy": "cp -a client/build/. public/",
+    "build": "cd feedback-frontend && npm install && npm run build && cd ..",
+    "deploy": "cp -a feedback-frontend/build/. public/",
     "postinstall": "npm run build && npm run deploy && echo 'Client built!'"
   }
 }

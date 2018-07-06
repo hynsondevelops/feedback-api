@@ -4,7 +4,6 @@ import { render } from 'react-dom'
 import { Form, Field } from 'react-final-form'
 import store from '../../store/configureStore.js'
 import {authenticateUser, emailFormChange, passwordFormChange} from '../../actions/actions.js'
-import Link from 'redux-first-router-link'
 
 const onSubmit = async values => {
 	console.log(values)

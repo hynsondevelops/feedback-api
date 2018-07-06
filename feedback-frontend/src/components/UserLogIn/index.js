@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import axiosClient from '../../axiosClient.js';
-import Link from 'redux-first-router-link'
 import {authenticateUser, emailFormChange, passwordFormChange} from '../../actions/actions.js'
 import store from '../../store/configureStore'
 

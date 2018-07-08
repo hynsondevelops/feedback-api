@@ -1,7 +1,7 @@
 let axios = require('axios');
 
 let axiosClient = axios.create({
-  baseURL: 'http://localhost:3001',
+  baseURL: 'https://boiling-temple-96661.herokuapp.com/',
 });
 
 export default axiosClient;

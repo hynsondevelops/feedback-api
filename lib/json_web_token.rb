@@ -1,4 +1,3 @@
-require 'jwt'
 
 class JsonWebToken
  class << self

@@ -13,7 +13,7 @@ function fetchMcmTopicEdit(token, mcm_topic_edit_id) {
   return function (dispatch) {
     dispatch(requestMcmTopicEdit())
     let axiosClient = axios.create({
-      baseURL: 'http://localhost:3000',
+      baseURL: 'https://boiling-temple-96661.herokuapp.com',
       headers: {'Authorization': token}
     });
     return axiosClient
@@ -48,7 +48,7 @@ export function updateMcmTopicEdit(event, token, topic) {
     topic.updated_at = undefined
     console.log(topic)
     let axiosClient = axios.create({
-      baseURL: 'http://localhost:3000',
+      baseURL: 'https://boiling-temple-96661.herokuapp.com',
       headers: {'Authorization': token}
     });
     return axiosClient

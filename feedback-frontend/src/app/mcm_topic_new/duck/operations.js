@@ -13,7 +13,7 @@ export function createMcmTopicOp(event, token, topic) {
       topic.sentence_scores_attributes[i].errors = undefined
     }
     let axiosClient = axios.create({
-      baseURL: 'http://localhost:3000',
+      baseURL: 'https://boiling-temple-96661.herokuapp.com',
       headers: {'Authorization': token}
     });
     return axiosClient

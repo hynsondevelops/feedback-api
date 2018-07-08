@@ -11,7 +11,7 @@ export function createStudentLevelOp(event, token, level) {
       level.random_sentences_attributes[i].errors = undefined
     }
     let axiosClient = axios.create({
-      baseURL: 'http://localhost:3000',
+      baseURL: 'https://boiling-temple-96661.herokuapp.com',
       headers: {'Authorization': token}
     });
     return axiosClient

@@ -43,11 +43,12 @@ class McmTopicNewComponent extends React.Component {
 		            className="form-control"
 		            value={sentence_score.score}
 		            id={"score-" + index}/>
-		          <FormControl fullWidth >
+		          <FormControl style={{minWidth: "500px"}}>
 			          <TextField
 			          	style={{margin: "0 0 0 2%"}}
 			          	label="Sentence"
 			            placeholder="Sentence"
+			            multiline={true}
 			            onChange={(e) => {this.props.updateSentence(e, index, this.props.mcm_topic_edit); this.forceUpdate()}}
 			            type="text"
 			            value={sentence_score.sentence}

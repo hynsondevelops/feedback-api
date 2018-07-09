@@ -41,8 +41,9 @@ class McmTopicEditComponent extends React.Component {
 		            className="form-control"
 		            value={sentence_score.score}
 		            id={"score-" + index}/>
-		          <FormControl fullWidth >
+		          <FormControl style={{minWidth: "500px"}} >
 		          	<TextField
+		          		multiline={true}
 			          	style={{margin: "0 0 0 2%"}}
 			          	label="Sentence"
 			            placeholder="Sentence"

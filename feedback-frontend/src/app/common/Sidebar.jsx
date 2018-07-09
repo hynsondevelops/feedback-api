@@ -295,7 +295,7 @@ class ResponsiveDrawer extends React.Component {
               <main className={classes.content}>
                 <div className={classes.toolbar} />
                 	{componentToRender}
-                <Typography noWrap style={{margin: "0 5%"}}>
+                <Typography noWrap style={{margin: "0 2%"}}>
                     <div>
                       {accessibleRoutes} 
                     </div>

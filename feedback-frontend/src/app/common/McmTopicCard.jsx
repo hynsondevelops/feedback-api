@@ -34,15 +34,15 @@ function McmTopicCard(props) {
   const bull = <span className={classes.bullet}>•</span>;
   console.log(mcm_topic.sentence_scores)
   const sentenceScores = mcm_topic.sentence_scores.map(sentence_score => (
-    (<Typography component="p">
+    (<Typography component="p" style={{wordWrap: "break-word",   whiteSpace: "normal"}}>
       {sentence_score.score}: {sentence_score.sentence}
     </Typography>)
   ))
 
   return (
-    <div>
-      <Card className={classes.card}>
-        <CardContent>
+    <div style={{margin: "50px 1%"}}>
+      <Card className={classes.card} style={{maxHeight: "300px", overflow: 'auto'}}>
+        <CardContent >
           <Typography variant="headline" component="h2">
             {mcm_topic.name}
           </Typography>

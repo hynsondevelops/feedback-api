@@ -25,7 +25,7 @@ class McmTopicsComponent extends React.Component {
 					<h3> Mcm Topics </h3>
 					<Grid container spacing={12}>
 						{this.props.mcm_index.map(mcm_topic => (
-						<Grid item xs={3} style={{margin: "10px 1.5%"}}> 		
+						<Grid item xs={4} > 		
 	                    	<McmTopicCard mcm_topic={mcm_topic} />
 	                    </Grid>
                     ))}

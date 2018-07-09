@@ -13,7 +13,7 @@ function fetchMcmTopicEdit(token, mcm_topic_edit_id) {
   return function (dispatch) {
     dispatch(requestMcmTopicEdit())
     let axiosClient = axios.create({
-      baseURL: 'https://boiling-temple-96661.herokuapp.com',
+      baseURL: 'https://feedback-friend.herokuapp.com',
       headers: {'Authorization': token}
     });
     return axiosClient

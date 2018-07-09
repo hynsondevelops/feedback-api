@@ -48,7 +48,7 @@ export function updateMcmTopicEdit(event, token, topic) {
     topic.updated_at = undefined
     console.log(topic)
     let axiosClient = axios.create({
-      baseURL: 'https://boiling-temple-96661.herokuapp.com',
+      baseURL: 'https://feedback-friend.herokuapp.com',
       headers: {'Authorization': token}
     });
     return axiosClient

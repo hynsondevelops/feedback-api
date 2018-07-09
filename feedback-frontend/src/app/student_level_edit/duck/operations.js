@@ -37,7 +37,7 @@ function fetchStudentLevelOp(token, student_level_id) {
 export function updateStudentLevelOp(event, token, level) {
   return function (dispatch) {
     let axiosClient = axios.create({
-      baseURL: 'http://localhost:3000',
+      baseURL: 'https://feedback-friend.herokuapp.com',
       headers: {'Authorization': token}
     });
     return axiosClient

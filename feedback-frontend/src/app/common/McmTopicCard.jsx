@@ -7,7 +7,8 @@ import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import McmTopicEditLink from '../common/buttons/McmTopicEditLink'
-
+import ThumbUp from '@material-ui/icons/ThumbUp';
+import ThumbDown from '@material-ui/icons/ThumbDown';
 
 
 const styles = {
@@ -35,7 +36,7 @@ function McmTopicCard(props) {
   console.log(mcm_topic.sentence_scores)
   const sentenceScores = mcm_topic.sentence_scores.map(sentence_score => (
     (<Typography component="p" style={{wordWrap: "break-word",   whiteSpace: "normal"}}>
-      {sentence_score.score}: {sentence_score.sentence}
+      {sentence_score.quality ? <ThumbUp /> : <ThumbDown />} {sentence_score.score}: {sentence_score.sentence}
     </Typography>)
   ))
 

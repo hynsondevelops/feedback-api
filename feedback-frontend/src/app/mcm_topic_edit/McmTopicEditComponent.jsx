@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom'
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import FormControl from '@material-ui/core/FormControl';
-
+import QualityRadioGroup from '../mcm_topic_new/QualityRadioGroup'
 class McmTopicEditComponent extends React.Component {
 	constructor(props) {
 		super(props);
@@ -53,6 +53,7 @@ class McmTopicEditComponent extends React.Component {
 			            className="form-control"
 			            id={"sentence-" + index}/>
 		           </FormControl>
+		           <QualityRadioGroup index={index} mcm_topic_edit={this.props.mcm_topic_edit} updateSentence={this.props.updateSentence}/>
 		        </div>
 		      </div>
 		    );

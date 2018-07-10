@@ -23,7 +23,7 @@ class QualityRadioGroup extends React.Component {
 	};
 
 	handleChange = event => {
-		document.getElementById("quality-0").value=event.target.value
+		document.getElementById("quality-" + this.props.index).value=event.target.value
 		this.setState({ value: event.target.value });
 		this.props.updateSentence(event, this.props.index, this.props.mcm_topic_edit);
 		this.forceUpdate();

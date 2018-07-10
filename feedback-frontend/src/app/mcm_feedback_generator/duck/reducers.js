@@ -11,7 +11,7 @@ function mcmFeedbackGeneratorReducer(state = {}, action){
     case types.VIEW_MCM_FEEDBACK_GENERATOR:
       return {yes: "woo"}
     case types.GENERATE_MCM_FEEDBACK:
-      return {feedback: action.feedback}
+      return {goodFeedback: action.goodFeedback, improvementFeedback: action.improvementFeedback}
     default:
       return state;
   }

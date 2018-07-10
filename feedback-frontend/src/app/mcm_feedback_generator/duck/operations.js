@@ -3,7 +3,8 @@ let axios = require('axios');
 
 export function generateMcmFeedbackOp(event) {
   return function (dispatch) {
-    let feedback = ""
+    let goodFeedback = ""
+    let improvementFeedback = ""
     const mcm_index = JSON.parse(event.target.dataset.index)
     console.log(mcm_index)
     for (let i = 0; i < mcm_index.length; i++) {
@@ -13,13 +14,16 @@ export function generateMcmFeedbackOp(event) {
         let topicScoreButton = document.getElementById(mcm_index[i].name + mcm_index[i].sentence_scores[j].score)
         console.log(topicScoreButton.checked)
         if (topicScoreButton.checked) {
-          feedback += "\n" + topicScoreButton.name + ": " + topicScoreButton.value
+          if (mcm_index[i].sentence_scores[j].quality) { //good quality
+            goodFeedback += "\n" + topicScoreButton.name + ": " + topicScoreButton.value
+          }
+          else { //needs improvement
+            improvementFeedback += "\n" + topicScoreButton.name + ": " + topicScoreButton.value
+          }
         }
       }
     }
-    console.log(feedback)
-
-    dispatch(generateMcmFeedback(feedback))
+    dispatch(generateMcmFeedback(goodFeedback, improvementFeedback))
   }
 }
 

@@ -12,15 +12,22 @@ import FormLabel from '@material-ui/core/FormLabel';
 class QualityRadioGroup extends React.Component {
 	constructor(props) {
 		super(props);
+		let quality = ""
+		if (this.props.mcm_topic_edit.sentence_scores_attributes[this.props.index].quality) {
+			quality = "1"
+		}
+		else {
+			quality = "0"
+		}
+		this.state = {
+			value: quality
+		};
 	}
 
 
 	componentWillMount() {
 	}
 
-	state = {
-		value: '0',
-	};
 
 	handleChange = event => {
 		document.getElementById("quality-" + this.props.index).value=event.target.value
@@ -31,6 +38,7 @@ class QualityRadioGroup extends React.Component {
 
 	
 	render() {
+		console.log(this.props.mcm_topic_edit.sentence_scores_attributes[this.props.index].quality)
 		return (
 		<FormControl component="fieldset" required>
 	         <FormLabel component="legend">Quality</FormLabel>

@@ -8,9 +8,10 @@ export function viewMcmFeedbackGenerator() {
 }
 
 
-export function generateMcmFeedback(feedback) {
+export function generateMcmFeedback(goodFeedback, improvementFeedback) {
   return {
     type: types.GENERATE_MCM_FEEDBACK,
-    feedback
+    goodFeedback,
+    improvementFeedback
   }
 }

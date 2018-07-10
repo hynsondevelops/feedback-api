@@ -6,8 +6,8 @@ import generateMcmFeedbackOp from './duck/operations'
 const mapStateToProps = state => {
 	const { token, email } = state.home;
 	const {mcm_index } = state.mcm_index;
-  const {feedback} = state.mcmFeedbackGenerator;
-	return { token, email, mcm_index, feedback }
+  const {goodFeedback, improvementFeedback} = state.mcmFeedbackGenerator;
+	return { token, email, mcm_index, goodFeedback, improvementFeedback }
 };
 
 const mapDispatchToProps = dispatch => {

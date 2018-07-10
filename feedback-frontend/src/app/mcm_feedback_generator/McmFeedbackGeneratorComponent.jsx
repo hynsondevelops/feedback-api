@@ -40,27 +40,41 @@ class McmFeedbackGeneratorComponent extends React.Component {
 			})
 			if (this.props.token!=null) {
 				console.log(topicButtons)
-				let feedback = "Feedback goes here."
-				if (this.props.feedback != undefined) {
-					feedback = this.props.feedback
+				let goodFeedback = "Good feedback goes here."
+				let improvementFeedback = "Improvement feedback goes here."
+
+				if (this.props.goodFeedback != undefined) {
+					goodFeedback = this.props.goodFeedback
+				}
+				if (this.props.improvementFeedback != undefined) {
+					improvementFeedback = this.props.improvementFeedback
 				}
 				return (
 					<div>
-						MCM Feedback Generator						
+						<h3> MCM Feedback Generator </h3>						
 						<br />
 						<Grid container spacing={12}>
-							<Grid container xs={8}>
+							<Grid container xs={4}>
 								{topicButtons}
 							</Grid>
-							<Grid xs={4}>
-								<textarea style={{width: "80%", minHeight: "300px", height: "50%"}} value={feedback}> </textarea><br />
-								<button
-								  type="button"
-								  data-index={JSON.stringify(this.props.mcm_index)}
-								  onClick={this.props.generateFeedback}
-								  className="btn btn-primary">
-								  Save
-								</button>
+							<Grid container xs={8}>
+								<Grid xs={6} >
+									<h3> Good Feedback </h3>
+									<textarea style={{marginRight: "5%", width: "95%", maxHeight: "600px", height: "100%"}} value={goodFeedback}> </textarea>
+								</Grid>
+								<Grid xs={6} >
+									<h3> Improvement Feedback </h3>
+									<textarea style={{width: "95%", maxHeight: "600px", height: "100%"}} value={improvementFeedback}> </textarea><br />
+								</Grid>
+								<Grid xs={12}>
+									<button
+									  type="button"
+									  data-index={JSON.stringify(this.props.mcm_index)}
+									  onClick={this.props.generateFeedback}
+									  className="btn btn-primary">
+									  Save
+									</button>
+								</Grid>
 							</Grid>
 						</Grid>
 						

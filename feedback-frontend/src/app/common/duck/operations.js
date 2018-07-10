@@ -9,6 +9,7 @@ export function addSentenceScoreEdit(event, topic) {
         sentence: '',
         score: '',
         id: null,
+        quality: false,
         errors: {},
         _destroy: false
     };
@@ -21,11 +22,7 @@ export function removeSentenceScoreEdit(event) {
   return function (dispatch) {
     let topic = JSON.parse(event.target.dataset.topic)
     let sentence_index = event.target.dataset.sentence_index
-    console.log(topic.sentence_scores_attributes)
-    console.log(sentence_index)
     topic.sentence_scores_attributes[sentence_index]._destroy = true
-    console.log(topic.sentence_scores_attributes)
-    console.log(sentence_index)
     return dispatch(removeSentenceScore(topic))
   }
 }
@@ -35,12 +32,12 @@ export function updateSentenceScoreEdit(event, index, topic) {
     console.log(index)
     let sentence = document.getElementById("sentence-" + index).value
     let score = parseInt(document.getElementById("score-" + index).value)
-    console.log(topic)
-    console.log(sentence)
-    console.log(score)
+    let quality = document.getElementById("quality-" + index).value
     topic.sentence_scores_attributes[index].sentence = sentence
     topic.sentence_scores_attributes[index].score = score
+    topic.sentence_scores_attributes[index].quality = quality
     console.log(topic)
+
     return dispatch(updateSentenceScore(topic))
   }
 }

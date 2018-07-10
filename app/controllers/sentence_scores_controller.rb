@@ -46,6 +46,6 @@ class SentenceScoresController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def sentence_score_params
-      params.require(:sentence_score).permit(:mcm_topic_id, :sentence, :score)
+      params.require(:sentence_score).permit(:mcm_topic_id, :sentence, :score, :quality)
     end
 end

@@ -13,7 +13,7 @@ export function createMcmTopicOp(event, token, topic) {
       topic.sentence_scores_attributes[i].errors = undefined
     }
     let axiosClient = axios.create({
-      baseURL: 'https://feedback-friend.herokuapp.com',
+      baseURL: 'http://localhost:3000',
       headers: {'Authorization': token}
     });
     return axiosClient

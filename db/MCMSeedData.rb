@@ -32,7 +32,12 @@ class Topic
 	def databaseCreateFormat()
 		formatted = "\ntopic = McmTopic.create!(user_id: user.id, name: \"#{@name}\");"
 		@pointsDescription.each do |p|
-			formatted += "\nSentenceScore.create!(mcm_topic_id: topic.id, sentence: \"#{p[1]}\", score: #{p[0]});" 
+			formatted += "\nSentenceScore.create!(mcm_topic_id: topic.id, sentence: \"#{p[1]}\", score: #{p[0]}, " 
+			if (checkGood(p[0], p[1]))
+				formatted += "quality: true);"
+			else
+				formatted += "quality: false);"
+			end
 		end
 		return formatted
 	end

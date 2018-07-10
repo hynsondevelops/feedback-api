@@ -20,6 +20,7 @@ function fetchMcmTopicEdit(token, mcm_topic_edit_id) {
     .get(`/mcm_topics/${mcm_topic_edit_id}`)
     .then(response => {
       let mcm_topic = response.data
+      mcm_topic.sentence_scores.sort(function(a, b) { return a.score - b.score})
       mcm_topic.sentence_scores_attributes = mcm_topic.sentence_scores;
       console.log(mcm_topic.sentence_scores_attributes)
       for (let i = 0; i < mcm_topic.sentence_scores_attributes.length; i++) {

@@ -12,7 +12,12 @@ function fetchMcmTopics(token) {
     return axiosClient
     .get(`/mcm_topics`)
     .then(response => {
-      dispatch(receiveMcmTopics(response.data))
+      let index = response.data
+      for (let i = 0; i < index.length; i++) {
+        index[i].sentence_scores.sort(function(a, b) { return a.score - b.score})
+      }
+
+      dispatch(receiveMcmTopics(index))
     })
     .catch(error => {
       console.log("An error occured", error)

@@ -42,25 +42,27 @@ function StudentLevelCard(props) {
 
   return (
     <div>
-      <Card className={classes.card}>
+      <Card className={classes.card} style={{maxHeight: "500px", overflow: 'auto'}}>
         <CardContent>
           <Typography variant="headline" component="h2">
             {student_level.name}
           </Typography>
           <Grid container spacing={12}>
           	<Grid item xs={6}>		
-				<Typography variant="headline" component="h4">
-				  Preformated
-				</Typography>
-				<Typography variant="body2" component="p">
-				  {student_level.generic_text}
-				</Typography>	
+      				<Typography variant="headline" component="h4">
+      				  Preformated
+      				</Typography>
+      				<Typography variant="body2" component="p" style={{wordWrap: "break-word",   whiteSpace: "normal"}}>
+      				  {student_level.generic_text}
+      				</Typography>	
           	</Grid>
-          	<Grid item xs={6}>
+            <Grid item xs={1}>
+            </Grid>
+          	<Grid item xs={5}>
           		<Typography variant="headline" component="h4">
           		  Sentence Bank
           		</Typography>
-          		<Typography variant="body2" component="p">
+          		<Typography variant="body2" component="p" style={{wordWrap: "break-word",   whiteSpace: "normal"}}>
           			{sentenceScores}
           		</Typography>			
           	</Grid>

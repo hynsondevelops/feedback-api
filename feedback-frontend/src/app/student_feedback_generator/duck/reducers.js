@@ -11,7 +11,7 @@ function studentLevelFeedbackGeneratorReducer(state = {}, action){
     case types.VIEW_STUDENT_LEVEL_FEEDBACK_GENERATOR:
       return {yes: "woo"}
     case types.GENERATE_STUDENT_LEVEL_FEEDBACK:
-      return {feedback: action.feedback}
+      return {feedback: action.feedback, generic_text: action.generic_text}
     default:
       return state;
   }

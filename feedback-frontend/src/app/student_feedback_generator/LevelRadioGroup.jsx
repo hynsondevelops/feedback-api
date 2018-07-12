@@ -25,14 +25,14 @@ class LevelRadioGroup extends React.Component {
 	handleChange = event => {
 		console.log(event.target.value)
 		let generic_text_box = document.getElementById("student_level_generic")
-		for (let i = 0; i < this.props.student_level_index.length; i++) {
+		/*for (let i = 0; i < this.props.student_level_index.length; i++) {
 			console.log(this.props.student_level_index[i])
 			console.log(event.target.value)
 			if (this.props.student_level_index[i].name == event.target.value) {
 				console.log("HIT")
 				generic_text_box.value = this.props.student_level_index[i].generic_text
 			}
-		}
+		}*/
 		this.setState({ selectedValue: event.target.value });
 		this.forceUpdate()
 	};
@@ -52,7 +52,7 @@ class LevelRadioGroup extends React.Component {
 		            id="student_levels"
 		            value={this.state.selectedValue}
                     onChange={this.handleChange}
-                    style={{maxHeight: "400px"}}>
+                    style={{maxHeight: "600px"}}>
                 		{levels}
 
                     	 </RadioGroup>

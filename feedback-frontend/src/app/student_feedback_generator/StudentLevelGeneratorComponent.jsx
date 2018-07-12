@@ -2,6 +2,10 @@ import React from 'react';
 import {Link} from 'react-router-dom'
 import LevelRadioGroup from './LevelRadioGroup'
 import Grid from '@material-ui/core/Grid';
+import GenderRadioGroup from './GenderRadioGroup'
+import TextField from '@material-ui/core/TextField';
+
+
 
 class StudentLevelFeedbackGeneratorComponent extends React.Component {
 	constructor(props) {
@@ -49,16 +53,29 @@ class StudentLevelFeedbackGeneratorComponent extends React.Component {
 					<div>
 						<h3> Student Feedback Generator </h3>
 						<hr />
-						<Grid container spacing={12}>
+						<Grid container style={{minHeight: "600px"}} spacing={12}>
 							<Grid container xs={3}>
 								<LevelRadioGroup student_level_index={this.props.student_level_index}/>
 								<div style={{display: "block"}}>
 								</div>
 							</Grid>
-							<Grid container xs={9}>
+							<Grid container xs={2} >
+								<GenderRadioGroup />
+								<TextField
+									label="Student Name"
+								  placeholder="Student Name"
+								  type="text"
+								  className="form-control"
+								  id="student_name"/>
+								<h3>Introductory Sentence </h3>
+								<textarea id="intro">It was very nice to see name today.</textarea>
+								<h3>Conclusion Sentence </h3>
+								<textarea id="conclusion" >See you again soon! -From Teacher Deborah H</textarea>
+							</Grid>
+							<Grid container xs={7}>
 								<div style={{margin: "0 20%"}}>
 									<h3> Pre-formatted Feedback </h3>
-									<textarea id="student_level_generic" style={{fontSize: "20px", width: "inherit", minWidth: "400px", maxWidth: "600px", height: "200px"}} value={generic_text}> </textarea>
+									<textarea id="student_level_generic" style={{fontSize: "20px", width: "inherit", minWidth: "400px", maxWidth: "600px", height: "200px"}} value={this.props.generic_text}> </textarea>
 									<h3> Generated Feedback </h3>
 									<textarea style={{fontSize: "20px", width: "inherit", minWidth: "500px",  maxWidth: "600px", height: "200px"}}value={feedback}> </textarea>
 								</div>

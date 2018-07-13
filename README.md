@@ -10,24 +10,39 @@ password: password
 
 Allows for creation of standard feedback that can be reused based on the level of the student. 
 
+![Student Feedback Generator](Screenshots/StudentLevelEdit.png)
+
+All feedback can be viewed and edited.
+
+![Student Feedback Generator](Screenshots/StudentLevelIndex.png)
+
+Allows for creation of mock class mentor topics with scores and associated feedback.
+
+![Student Feedback Generator](Screenshots/MCMTopicEdit.png)
+
+All mock class mentor topics can be viewed and edited.
+
+![Student Feedback Generator](Screenshots/MCMTopicIndex.png)
+
 **Generated feedback**
 
 Allows for VIPKID contractors to setup a bank of sentences that apply to each level. This bank of sentences is then used to generate a paragraph of feedback based on a few selections. 
 
-Allows for selection of scoring to generate feedback for applicants based on VIPKID's recommended feedback. 
-
-Screenshots
-![Student Feedback Generator](Screenshots/MCMGenerator.png)
-![Student Feedback Generator](Screenshots/MCMTopicEdit.png)
-![Student Feedback Generator](Screenshots/MCMTopicIndex.png)
 ![Student Feedback Generator](Screenshots/StudentGenerator.png)
-![Student Feedback Generator](Screenshots/StudentLevelEdit.png)
-![Student Feedback Generator](Screenshots/StudentLevelIndex.png)
+
+Allows for selection of scoring to generate feedback for applicants based on VIPKID's recommended feedback for mock class mentors. 
+
+![Student Feedback Generator](Screenshots/MCMGenerator.png)
 
 
 ## Built With
 
-* [Ruby On Rails](http://rubyonrails.org/) - The web framework used
+* [Ruby On Rails](http://rubyonrails.org/) - Rails 5 API only mode
+* [ReactJS](https://reactjs.org/) - Javascript framework
+* [Redux](https://redux.js.org/) - State management
+* [MaterialUI](https://material-ui.com/) - Styling
+
+
 
 ## Authors
 

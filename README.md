@@ -17,7 +17,12 @@ Allows for VIPKID contractors to setup a bank of sentences that apply to each le
 Allows for selection of scoring to generate feedback for applicants based on VIPKID's recommended feedback. 
 
 Screenshots
+![Student Feedback Generator](Screenshots/MCMGenerator.png)
+![Student Feedback Generator](Screenshots/MCMTopicEdit.png)
+![Student Feedback Generator](Screenshots/MCMTopicIndex.png)
 ![Student Feedback Generator](Screenshots/StudentGenerator.png)
+![Student Feedback Generator](Screenshots/StudentLevelEdit.png)
+![Student Feedback Generator](Screenshots/StudentLevelIndex.png)
 
 
 ## Built With

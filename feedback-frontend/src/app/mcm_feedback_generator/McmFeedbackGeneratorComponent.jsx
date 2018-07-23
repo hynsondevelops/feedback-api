@@ -59,12 +59,16 @@ class McmFeedbackGeneratorComponent extends React.Component {
 							</Grid>
 							<Grid container xs={8}>
 								<Grid xs={6} >
+									<h3>Introductory Sentence </h3>
+									<textarea style={{height: "100px"}} id="intro">It was a pleasure working with you today. </textarea>
 									<h3> Good Feedback </h3>
-									<textarea style={{marginRight: "5%", width: "95%", maxHeight: "600px", height: "100%"}} value={goodFeedback}> </textarea>
+									<textarea style={{marginRight: "5%", width: "95%", maxHeight: "500px", height: "100%"}} value={goodFeedback}> </textarea>
 								</Grid>
 								<Grid xs={6} >
+									<h3>Conclusion Sentence </h3>
+									<textarea style={{height: "100px"}} id="conclusion" >Best of luck to you in your VIPKID journey. </textarea>
 									<h3> Improvement Feedback </h3>
-									<textarea style={{width: "95%", maxHeight: "600px", height: "100%"}} value={improvementFeedback}> </textarea><br />
+									<textarea style={{width: "95%", maxHeight: "500px", height: "100%"}} value={improvementFeedback}> </textarea><br />
 								</Grid>
 								<Grid xs={12}>
 									<button

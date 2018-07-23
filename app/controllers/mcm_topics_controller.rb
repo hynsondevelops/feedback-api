@@ -3,7 +3,7 @@ class McmTopicsController < ApplicationController
 
   # GET /mcm_topics
   def index
-    @mcm_topics = McmTopic.where(user_id: @current_user.id)
+    @mcm_topics = McmTopic.where(user_id: @current_user.id).order(:id)
 
     render json: @mcm_topics, :include => :sentence_scores
   end
@@ -53,4 +53,5 @@ class McmTopicsController < ApplicationController
     def mcm_topic_params
       params.require(:mcm_topic).permit(:user_id, :name, sentence_scores_attributes: [:id, :score, :sentence, :quality, :_destroy])
     end
+
 end

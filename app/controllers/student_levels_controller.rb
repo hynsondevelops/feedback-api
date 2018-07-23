@@ -3,7 +3,7 @@ class StudentLevelsController < ApplicationController
 
   # GET /student_levels
   def index
-    @student_levels = StudentLevel.where(user_id: current_user.id)
+    @student_levels = StudentLevel.where(user_id: current_user.id).order(:id)
 
     render json: @student_levels,  :include => :random_sentences
   end

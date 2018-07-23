@@ -40,7 +40,10 @@ class StudentLevelEditComponent extends React.Component {
 		            type="text"
 		            value={random_sentence.sentence}
 		            className="form-control"
-		            id={"sentence-" + index}/>
+		            id={"sentence-" + index}
+		            style={{width: "80%"}}
+		            multiline
+		            />
 		        </div>
 		      </div>
 		    );
@@ -81,7 +84,9 @@ class StudentLevelEditComponent extends React.Component {
 					        	data-level={JSON.stringify(this.props.student_level)}
 					          type="text"
 					          value={this.props.student_level.generic_text}
-					          className="form-control" />
+					          className="form-control"
+					          style={{marginLeft: "2%", width: "80%"}}
+					          multiline />
 					    </div>
 					    <hr />
 					    <div className="random-sentences-fieldset">

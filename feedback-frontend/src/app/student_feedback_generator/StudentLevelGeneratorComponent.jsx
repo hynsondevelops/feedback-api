@@ -19,6 +19,7 @@ class StudentLevelFeedbackGeneratorComponent extends React.Component {
 
 	
 	render() {
+		let conclusionWithName = "See you again soon! -From Teacher " + this.props.teacher_name
 		let student_level_index = this.props.student_level_index
 		let student_level = undefined/*
 		for (let i = 0; i < student_level_index.length; i++) {
@@ -70,7 +71,7 @@ class StudentLevelFeedbackGeneratorComponent extends React.Component {
 								<h3>Introductory Sentence </h3>
 								<textarea id="intro">It was very nice to see name today.</textarea>
 								<h3>Conclusion Sentence </h3>
-								<textarea id="conclusion" >See you again soon! -From Teacher {this.props.teacher_name}</textarea>
+								<textarea id="conclusion" >{conclusionWithName}</textarea>
 							</Grid>
 							<Grid container xs={7}>
 								<div style={{margin: "0 20%"}}>

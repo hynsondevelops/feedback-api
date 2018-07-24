@@ -70,7 +70,7 @@ class StudentLevelFeedbackGeneratorComponent extends React.Component {
 								<h3>Introductory Sentence </h3>
 								<textarea id="intro">It was very nice to see name today.</textarea>
 								<h3>Conclusion Sentence </h3>
-								<textarea id="conclusion" >See you again soon! -From Teacher Deborah H</textarea>
+								<textarea id="conclusion" >See you again soon! -From Teacher {this.props.teacher_name}</textarea>
 							</Grid>
 							<Grid container xs={7}>
 								<div style={{margin: "0 20%"}}>

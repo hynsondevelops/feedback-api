@@ -45,7 +45,7 @@ function token(state = {isFetching: false, token: null}, action, email) {
       return Object.assign({}, state, {isFetching: true, token: null, email: null})
     case types.RECIEVE_TOKEN: 
       console.log(state)
-      return Object.assign({}, state, {isFetching: false, token: action.token, recievedAt: action.recievedAt, email: action.email})
+      return Object.assign({}, state, {isFetching: false, token: action.token, recievedAt: action.recievedAt, email: action.email, teacher_name: action.teacher_name})
     default:
       return state
   }

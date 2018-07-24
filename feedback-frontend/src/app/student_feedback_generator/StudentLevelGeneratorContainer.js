@@ -4,10 +4,10 @@ import fetchStudentLevels from '../student_levels/duck/operations';
 import generateStudentLevelFeedbackOp from './duck/operations'
 
 const mapStateToProps = state => {
-	const { token, email } = state.home;
+	const { token, email, teacher_name } = state.home;
 	const {student_level_index } = state.student_level_index;
   	const {feedback, generic_text} = state.student_level_feedback;
-	return { token, email, student_level_index, feedback, generic_text }
+	return { token, email, student_level_index, feedback, generic_text, teacher_name }
 };
 
 const mapDispatchToProps = dispatch => {

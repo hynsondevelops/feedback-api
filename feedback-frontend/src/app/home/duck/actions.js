@@ -36,7 +36,8 @@ export function recieveToken(json, email) {
     type: types.RECIEVE_TOKEN,
     token: json.data.auth_token,
     recievedAt: Date.now(), 
-    email
+    email,
+    teacher_name: json.data.teacher_name
   }
 }
 

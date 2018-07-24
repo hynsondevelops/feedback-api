@@ -52,7 +52,7 @@ function HomeComponent({
 	      		<LoginContainer/>
 	      	</Grid>
 	      	<Grid item xs={6}>		
-	      	<RegisterContainer/>
+	      		<RegisterContainer/>
 	      	</Grid>
 	      </Grid>
 	    </div>

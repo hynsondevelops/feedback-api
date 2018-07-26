@@ -32,7 +32,7 @@ class TopicRadioGroup extends React.Component {
 	
 	render() {
 		let mcm_topic = this.props.mcm_topic
-		let link = <div><Link to={`/mcm_topics/${mcm_topic.id}/edit`} key={mcm_topic.id}>{mcm_topic.name}</Link><br /></div>;
+		let link = <div><Link style={{whiteSpace: "pre-line"}} to={`/mcm_topics/${mcm_topic.id}/edit`} key={mcm_topic.id}>{mcm_topic.name}</Link><br /></div>;
 		let scores = mcm_topic.sentence_scores.map(sentence_score => {
 			let thumb = sentence_score.quality ? [sentence_score.score, " ", <ThumbUp />]  : [sentence_score.score, " ", <ThumbDown />]
 		    let score = <FormControlLabel name={mcm_topic.name} value={sentence_score.sentence} control={<Radio id={mcm_topic.name + sentence_score.score}/>} label={thumb} />

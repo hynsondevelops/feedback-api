@@ -57,6 +57,8 @@ export function updateMcmTopicEdit(event, token, topic) {
       mcm_topic.created_at = undefined
       mcm_topic.updated_at = undefined
       dispatch(updateMcmTopic(mcm_topic))
+      let link = document.getElementById("mcm_topic_index_link");
+      link.click();
     })
     .catch(error => {
       console.log("An error occured", error)

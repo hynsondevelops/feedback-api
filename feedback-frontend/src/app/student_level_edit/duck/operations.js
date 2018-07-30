@@ -41,6 +41,8 @@ export function updateStudentLevelOp(event, token, level) {
       }
       student_level.random_sentences = undefined
       dispatch(updateStudentLevel(student_level))
+      let link = document.getElementById("student_level_index_link")
+      link.click();
     })
     .catch(error => {
       console.log("An error occured", error)

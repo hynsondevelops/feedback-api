@@ -118,18 +118,17 @@ class ResponsiveDrawer extends React.Component {
   };
 
   render() {
-    console.log(this.props)
     const { classes, theme, componentToRender } = this.props;
 
     const loggedInLinks = (<div><List>
-          <ListItem button onClick={this.handleStudentTabClick}>
+          <ListItem id="student_sidebar" button onClick={this.handleStudentTabClick}>
             <ListItemIcon>
               <StudentIcon />
             </ListItemIcon>
             <ListItemText inset>Students </ListItemText>
             {this.state.studentTabOpen ? <ExpandLess /> : <ExpandMore />}
           </ListItem>
-          <Collapse in={this.state.studentTabOpen} timeout="auto" unmountOnExit>
+          <Collapse in={this.state.studentTabOpen} timeout="auto">
             <List component="div" disablePadding>
               <Link to="/student_level_feedback_generator">
                 <ListItem button className={classes.nested}>
@@ -160,14 +159,14 @@ class ResponsiveDrawer extends React.Component {
         </List>
         <Divider />
         <List>
-          <ListItem button onClick={this.handleMcmTabClick}>
+          <ListItem id="mcm_sidebar" button onClick={this.handleMcmTabClick}>
             <ListItemIcon>
               <McmIcon />
             </ListItemIcon>
             <ListItemText inset>Mock Class Mentor </ListItemText>
             {this.state.mcmTabOpen ? <ExpandLess /> : <ExpandMore />}
           </ListItem>
-          <Collapse in={this.state.mcmTabOpen} timeout="auto" unmountOnExit>
+          <Collapse in={this.state.mcmTabOpen} timeout="auto">
             <List component="div" disablePadding>
               <Link to="/mcm_feedback_generator">
                 <ListItem button className={classes.nested}>
@@ -250,8 +249,6 @@ class ResponsiveDrawer extends React.Component {
         {sidebarLinks}
       </div>
     );
-    console.log(classes)
-    console.log(this.props)
       return (
         <div>
           <Router>

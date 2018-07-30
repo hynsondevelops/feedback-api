@@ -104,7 +104,7 @@ class StudentLevelEditComponent extends React.Component {
 							  <br />
 							  <Button
 							    type="button"
-								onClick={(e) => {this.props.updateStudentLevel(e, this.props.token, this.props.student_level); document.getElementById("student_level_index_link").click()}}
+								onClick={(e) => {this.props.updateStudentLevel(e, this.props.token, this.props.student_level);}}
 								className="btn btn-primary">
 								Save
 							  </Button>

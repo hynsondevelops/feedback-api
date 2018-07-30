@@ -15,6 +15,10 @@ class McmTopicEditComponent extends React.Component {
 		this.props.getMcmTopic(this.props.token, this.props.match.params.id)
 	}
 
+	updateMcmTopicRedirect(e) {
+		this.props.updateMcmTopic(e, this.props.token, this.props.mcm_topic_edit); 
+	}
+
 	renderSentenceScores() {
 		let counter = 0;
 		return this.props.mcm_topic_edit.sentence_scores_attributes.map((sentence_score, index) => {
@@ -103,7 +107,7 @@ class McmTopicEditComponent extends React.Component {
 								</Button>
 							    <Button
 							      type="button"
-							      onClick={(e) => {this.props.updateMcmTopic(e, this.props.token, this.props.mcm_topic_edit); document.getElementById("mcm_topic_index_link").click()}}
+							      onClick={(e) => {this.updateMcmTopicRedirect(e)}}
 							      className="btn btn-primary">
 							      Save
 							    </Button>
@@ -121,6 +125,8 @@ class McmTopicEditComponent extends React.Component {
 	}
 
 }
+
+
 
 export default McmTopicEditComponent;
 

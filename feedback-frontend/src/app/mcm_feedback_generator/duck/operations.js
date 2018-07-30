@@ -1,5 +1,4 @@
 import {generateMcmFeedback} from './actions.js'
-let axios = require('axios');
 
 export function generateMcmFeedbackOp(event) {
   return function (dispatch) {

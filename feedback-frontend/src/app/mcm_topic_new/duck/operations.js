@@ -1,8 +1,5 @@
 import {createMcmTopicNew, initMcmTopicNew} from './actions.js'
-
-
-let axios = require('axios');
-
+import axiosClient from '../../../axiosClient';
 
 
 export function createMcmTopicOp(event, token, topic) {
@@ -12,16 +9,11 @@ export function createMcmTopicOp(event, token, topic) {
     for (let i = 0; i < topic.sentence_scores_attributes.length; i++) {
       topic.sentence_scores_attributes[i].errors = undefined
     }
-    let axiosClient = axios.create({
-      baseURL: 'https://feedback-friend.herokuapp.com',
-      headers: {'Authorization': token}
-    });
     return axiosClient
-    .post(`/mcm_topics`, {mcm_topic: topic})
+    .post(`/mcm_topics`, {mcm_topic: topic}, {headers: {'Authorization': token}})
     .then(response => {
       let mcm_topic = response.data
       mcm_topic.sentence_scores_attributes = mcm_topic.sentence_scores;
-      console.log(mcm_topic.sentence_scores_attributes)
       for (let i = 0; i < mcm_topic.sentence_scores_attributes.length; i++) {
         mcm_topic.sentence_scores_attributes[i]._destroy = false
       }

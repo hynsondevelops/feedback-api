@@ -1,16 +1,12 @@
 import {getMcmIndex, invalidateMcmTopics, requestMcmTopics, receiveMcmTopics} from './actions.js'
-let axios = require('axios');
+import axiosClient from '../../../axiosClient';
 
 
 function fetchMcmTopics(token) {
   return function (dispatch) {
     dispatch(requestMcmTopics())
-    let axiosClient = axios.create({
-      baseURL: 'https://feedback-friend.herokuapp.com',
-      headers: {'Authorization': token}
-    });
     return axiosClient
-    .get(`/mcm_topics`)
+    .get(`/mcm_topics`, {headers: {'Authorization': token}})
     .then(response => {
       let index = response.data
       for (let i = 0; i < index.length; i++) {

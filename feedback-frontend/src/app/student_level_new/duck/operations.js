@@ -1,7 +1,6 @@
 import {createStudentLevelNew, initStudentLevelNew} from './actions.js'
 import { history } from '../../../index.js'
-
-let axios = require('axios');
+import axiosClient from '../../../axiosClient';
 
 
 
@@ -10,16 +9,11 @@ export function createStudentLevelOp(event, token, level) {
     for (let i = 0; i < level.random_sentences_attributes.length; i++) {
       level.random_sentences_attributes[i].errors = undefined
     }
-    let axiosClient = axios.create({
-      baseURL: 'https://feedback-friend.herokuapp.com',
-      headers: {'Authorization': token}
-    });
     return axiosClient
-    .post(`/student_levels`, {student_level: level})
+    .post(`/student_levels`, {student_level: level}, {headers: {'Authorization': token}})
     .then(response => {
       let student_level = response.data
       student_level.random_sentences_attributes = student_level.random_sentences;
-      console.log(student_level.random_sentences_attributes)
       for (let i = 0; i < student_level.random_sentences_attributes.length; i++) {
         student_level.random_sentences_attributes[i]._destroy = false
       }

@@ -1,5 +1,5 @@
 import {requestMcmTopicEdit, receiveMcmTopicEdit, updateMcmTopic} from './actions.js'
-let axios = require('axios');
+import axiosClient from '../../../axiosClient';
 
 const emptySentenceScore = {
     sentence: '',
@@ -12,17 +12,12 @@ const emptySentenceScore = {
 function fetchMcmTopicEdit(token, mcm_topic_edit_id) {
   return function (dispatch) {
     dispatch(requestMcmTopicEdit())
-    let axiosClient = axios.create({
-      baseURL: 'https://feedback-friend.herokuapp.com',
-      headers: {'Authorization': token}
-    });
     return axiosClient
-    .get(`/mcm_topics/${mcm_topic_edit_id}`)
+    .get(`/mcm_topics/${mcm_topic_edit_id}`, {headers: {'Authorization': token}})
     .then(response => {
       let mcm_topic = response.data
       mcm_topic.sentence_scores.sort(function(a, b) { return a.score - b.score})
       mcm_topic.sentence_scores_attributes = mcm_topic.sentence_scores;
-      console.log(mcm_topic.sentence_scores_attributes)
       for (let i = 0; i < mcm_topic.sentence_scores_attributes.length; i++) {
         mcm_topic.sentence_scores_attributes[i]._destroy = false
       }
@@ -47,17 +42,11 @@ export function updateMcmTopicEdit(event, token, topic) {
     topic.sentence_scores = undefined
     topic.created_at = undefined
     topic.updated_at = undefined
-    console.log(topic)
-    let axiosClient = axios.create({
-      baseURL: 'https://feedback-friend.herokuapp.com',
-      headers: {'Authorization': token}
-    });
     return axiosClient
-    .patch(`/mcm_topics/${topic.id}`, {mcm_topic: topic})
+    .patch(`/mcm_topics/${topic.id}`, {mcm_topic: topic}, {headers: {'Authorization': token}})
     .then(response => {
       let mcm_topic = response.data
       mcm_topic.sentence_scores_attributes = mcm_topic.sentence_scores;
-      console.log(mcm_topic.sentence_scores_attributes)
       for (let i = 0; i < mcm_topic.sentence_scores_attributes.length; i++) {
         mcm_topic.sentence_scores_attributes[i]._destroy = false
         mcm_topic.sentence_scores_attributes[i].mcm_topic_id = undefined

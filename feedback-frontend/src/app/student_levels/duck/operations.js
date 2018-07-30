@@ -1,18 +1,14 @@
 import {getStudentLevelIndex, invalidateStudentLevels, requestStudentLevels, receiveStudentLevels} from './actions.js'
-let axios = require('axios');
+import axiosClient from '../../../axiosClient';
+
 
 
 function fetchStudentLevels(token) {
   return function (dispatch) {
     dispatch(requestStudentLevels())
-    let axiosClient = axios.create({
-      baseURL: 'https://feedback-friend.herokuapp.com',
-      headers: {'Authorization': token}
-    });
     return axiosClient
-    .get(`/student_levels`)
+    .get(`/student_levels`, {headers: {'Authorization': token}})
     .then(response => {
-      console.log(response.data)
       dispatch(receiveStudentLevels(response.data))
     })
     .catch(error => {

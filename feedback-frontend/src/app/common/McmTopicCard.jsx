@@ -33,7 +33,6 @@ const styles = {
 function McmTopicCard(props) {
   const { classes, mcm_topic } = props;
   const bull = <span className={classes.bullet}>•</span>;
-  console.log(mcm_topic.sentence_scores)
   const sentenceScores = mcm_topic.sentence_scores.map(sentence_score => (
     (<Typography component="p" style={{wordWrap: "break-word",   whiteSpace: "normal"}}>
       {sentence_score.quality ? <ThumbUp /> : <ThumbDown />} {sentence_score.score}: {sentence_score.sentence}

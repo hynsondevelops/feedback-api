@@ -1,5 +1,4 @@
 import {addSentenceScore, removeSentenceScore, updateSentenceScore, addRandomSentence, removeRandomSentence, updateRandomSentence, updateMcmTopicName, updateStudentLevelText, updateStudentLevelName} from './actions.js'
-let axios = require('axios');
 
 //Mcm Topics
 
@@ -29,26 +28,18 @@ export function removeSentenceScoreEdit(event) {
 
 export function updateSentenceScoreEdit(event, index, topic) {
   return function (dispatch) {
-    console.log(index)
     let sentence = document.getElementById("sentence-" + index).value
     let score = parseInt(document.getElementById("score-" + index).value)
     let quality = document.getElementById("quality-" + index).value
     topic.sentence_scores_attributes[index].sentence = sentence
     topic.sentence_scores_attributes[index].score = score
     topic.sentence_scores_attributes[index].quality = quality
-    console.log(topic)
-
     return dispatch(updateSentenceScore(topic))
   }
 }
 
 export function updateMcmTopicNameOp(event, name, topic) {
   return function (dispatch) {
-    console.log(topic)
-    console.log(name)
-    console.log(event)
-    //let newName = document.getElementById("mcm_topic_name").value
-    //let topic = JSON.parse(event.target.dataset.topic)
     topic.name = name
     return dispatch(updateMcmTopicName(topic))
   }
@@ -74,11 +65,7 @@ export function removeRandomSentenceOp(event) {
   return function (dispatch) {
     let level = JSON.parse(event.target.dataset.level)
     let sentence_index = event.target.dataset.sentence_index
-    console.log(level.random_sentences_attributes)
-    console.log(sentence_index)
     level.random_sentences_attributes[sentence_index]._destroy = true
-    console.log(level.random_sentences_attributes)
-    console.log(sentence_index)
     return dispatch(removeRandomSentence(level))
   }
 }

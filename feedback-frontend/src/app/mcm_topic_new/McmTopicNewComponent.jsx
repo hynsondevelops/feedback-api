@@ -20,6 +20,42 @@ class McmTopicNewComponent extends React.Component {
 		this.props.newMcmTopic()
 	}
 
+	formSubmit(e, topic) {
+		let errors = ""
+		let noName = JSON.parse(document.getElementById("mcm_topic_name").getAttribute("aria-invalid"))
+		let noSentence = false;
+		let firstSentence = document.getElementById("sentence-0")
+		if (firstSentence) { //first sentence exists
+			if (JSON.parse(firstSentence.getAttribute("aria-invalid"))) { //error exists
+				errors += "\nMust have sentence content."
+			}
+			else {//check for any blank sentences
+				console.log(topic.sentence_scores_attributes)
+				console.log(topic.sentence_scores_attributes.length)
+				for (let i = 0; i < topic.sentence_scores_attributes.length; i++) {
+					let curSentence = document.getElementById("sentence-"+ i)
+					if (JSON.parse(curSentence.getAttribute("aria-invalid"))) { //error
+						errors += "\nMust have sentence content."
+					}
+				}
+			}
+		}
+		else {
+			errors += "\nMust have atleast (1) sentence score."
+		}
+
+		if (noName) {
+			errors += "\nMust have a name."
+		}
+
+		if (errors == "") { //no errors
+			this.props.createMcmTopic(e, this.props.token, topic)
+		}
+		else { //errors
+			alert(errors)
+		}
+	}
+
 
 	renderSentenceScores() {
 		console.log(this.state.score)
@@ -53,7 +89,9 @@ class McmTopicNewComponent extends React.Component {
 			            type="text"
 			            value={sentence_score.sentence}
 			            className="form-control"
-			            id={"sentence-" + index}/>
+			            id={"sentence-" + index}
+			            error={sentence_score.sentence == undefined || sentence_score.sentence == ""}
+			            />
 		           </FormControl>
 		           <QualityRadioGroup index={index} mcm_topic_edit={this.props.mcm_topic_edit} updateSentence={this.props.updateSentence}/>
 		        </div>
@@ -91,6 +129,7 @@ class McmTopicNewComponent extends React.Component {
 					      	onChange={(e, value) => {this.props.handleUpdateName(e, e.target.value, topic); this.forceUpdate()}}
 					        type="text"
 					        value={this.props.mcm_topic_edit.name}
+					        error={topic.name == undefined || topic.name == ""}
 					        className="form-control" />
 					    </div>
 					    <div className="sentence-scores-fieldset">
@@ -110,7 +149,7 @@ class McmTopicNewComponent extends React.Component {
 								      data-topic={JSON.stringify(this.props.mcm_topic_edit)}
 								      data-token={this.props.token}
 								      data-history={JSON.stringify(this.props.history)}
-								      onClick={(e) => this.props.createMcmTopic(e, this.props.token, topic)}
+								      onClick={(e) => this.formSubmit(e, topic)}
 								      className="btn btn-primary">
 								      Save
 								    </Button>

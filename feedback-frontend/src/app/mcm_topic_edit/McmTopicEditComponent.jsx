@@ -22,6 +22,40 @@ class McmTopicEditComponent extends React.Component {
 		this.props.updateMcmTopic(e, this.props.token, this.props.mcm_topic_edit); 
 	}
 
+	formSubmit(e) {
+		let errors = ""
+		let noName = JSON.parse(document.getElementById("mcm_topic_name").getAttribute("aria-invalid"))
+		let noSentence = false;
+		let firstSentence = document.getElementById("sentence-0")
+		if (firstSentence) { //first sentence exists
+			if (JSON.parse(firstSentence.getAttribute("aria-invalid"))) { //error exists
+				errors += "\nMust have sentence content."
+			}
+			else {//check for any blank sentences
+				for (let i = 0; i < this.props.mcm_topic_edit.sentence_scores_attributes.length; i++) {
+					let curSentence = document.getElementById("sentence-"+ i)
+					if (JSON.parse(curSentence.getAttribute("aria-invalid"))) { //error
+						errors += "\nMust have sentence content."
+					}
+				}
+			}
+		}
+		else {
+			errors += "\nMust have atleast (1) sentence score."
+		}
+
+		if (noName) {
+			errors += "\nMust have a name."
+		}
+
+		if (errors == "") { //no errors
+			this.props.updateMcmTopic(e, this.props.token, this.props.mcm_topic_edit); 
+		}
+		else { //errors
+			alert(errors)
+		}
+	}
+
 	renderSentenceScores() {
 		let counter = 0;
 		return this.props.mcm_topic_edit.sentence_scores_attributes.map((sentence_score, index) => {
@@ -52,7 +86,9 @@ class McmTopicEditComponent extends React.Component {
 			            type="text"
 			            value={sentence_score.sentence}
 			            className="form-control"
-			            id={"sentence-" + index}/>
+			            id={"sentence-" + index}
+			            error={sentence_score.sentence == undefined || sentence_score.sentence == ""}
+			            />
 		           </FormControl>
 		           <QualityRadioGroup index={index} mcm_topic_edit={this.props.mcm_topic_edit} updateSentence={this.props.updateSentence}/>
 		        </div>
@@ -69,8 +105,6 @@ class McmTopicEditComponent extends React.Component {
 
 
 	render() {
-
-		console.log(this.props)
 		let sentenceScores = ''
 		if (this.props.mcm_topic_edit != undefined) {
 			sentenceScores = this.renderSentenceScores()
@@ -88,7 +122,9 @@ class McmTopicEditComponent extends React.Component {
 					      	onChange={(e, value) => {this.props.handleUpdateName(e, e.target.value, this.props.mcm_topic_edit); this.forceUpdate()}}
 					        type="text"
 					        value={this.props.mcm_topic_edit.name}
-					        className="form-control" />
+					        className="form-control" 
+					        error={this.props.mcm_topic_edit.name == undefined || this.props.mcm_topic_edit.name == ""}
+					        />
 					    </div>
 					    <hr />
 					    <div className="sentence-scores-fieldset">
@@ -104,7 +140,7 @@ class McmTopicEditComponent extends React.Component {
 								</Button>
 							    <Button
 							      type="button"
-							      onClick={(e) => {this.updateMcmTopicRedirect(e)}}
+							      onClick={(e) => {this.formSubmit(e)}}
 							      className="btn btn-primary">
 							      Save
 							    </Button>

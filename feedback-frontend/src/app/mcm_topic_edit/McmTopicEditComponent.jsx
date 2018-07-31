@@ -4,7 +4,10 @@ import {Link} from 'react-router-dom'
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import FormControl from '@material-ui/core/FormControl';
-import QualityRadioGroup from '../mcm_topic_new/QualityRadioGroup'
+import QualityRadioGroup from '../mcm_topic_new/QualityRadioGroup';
+import ScoreSelect from '../mcm_topic_new/ScoreSelect';
+
+
 class McmTopicEditComponent extends React.Component {
 	constructor(props) {
 		super(props);
@@ -37,14 +40,8 @@ class McmTopicEditComponent extends React.Component {
 		              X
 		            </button>
 		          </div>
-		          <TextField
-		          	label="Score"
-		            placeholder="Score"
-		            onChange={(e) => {this.props.updateSentence(e, index, this.props.mcm_topic_edit); this.forceUpdate()}}
-		            type="text"
-		            className="form-control"
-		            value={sentence_score.score}
-		            id={"score-" + index}/>
+		          <ScoreSelect index={index} callback={this.props.updateSentence} mcm_topic_edit={this.props.mcm_topic_edit} />
+
 		          <FormControl style={{minWidth: "500px"}} >
 		          	<TextField
 		          		multiline={true}

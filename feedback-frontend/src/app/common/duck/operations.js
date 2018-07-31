@@ -31,6 +31,8 @@ export function updateSentenceScoreEdit(event, index, topic) {
     let sentence = document.getElementById("sentence-" + index).value
     let score = parseInt(document.getElementById("score-" + index).value)
     let quality = document.getElementById("quality-" + index).value
+
+    console.log(score)
     topic.sentence_scores_attributes[index].sentence = sentence
     topic.sentence_scores_attributes[index].score = score
     topic.sentence_scores_attributes[index].quality = quality

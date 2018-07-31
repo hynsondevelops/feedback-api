@@ -5,10 +5,14 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import FormControl from '@material-ui/core/FormControl';
 import QualityRadioGroup from './QualityRadioGroup';
+import ScoreSelect from './ScoreSelect'
+
 
 class McmTopicNewComponent extends React.Component {
 	constructor(props) {
 		super(props);
+
+		this.state = {scores: []}
 	}
 
 
@@ -16,7 +20,9 @@ class McmTopicNewComponent extends React.Component {
 		this.props.newMcmTopic()
 	}
 
+
 	renderSentenceScores() {
+		console.log(this.state.score)
 		let counter = 0;
 		let topic = this.props.mcm_topic_edit
 		return this.props.mcm_topic_edit.sentence_scores_attributes.map((sentence_score, index) => {
@@ -35,14 +41,8 @@ class McmTopicNewComponent extends React.Component {
 		              X
 		            </button>
 		          </div>
-		          <TextField 
-		          	label="Score"
-		            placeholder="Score"
-		            onChange={(e) => {this.props.updateSentence(e, index, this.props.mcm_topic_edit); this.forceUpdate()}}
-		            type="text"
-		            className="form-control"
-		            value={sentence_score.score}
-		            id={"score-" + index}/>
+		          <ScoreSelect index={index} callback={this.props.updateSentence} mcm_topic_edit={this.props.mcm_topic_edit} />
+		          
 		          <FormControl style={{minWidth: "500px"}}>
 			          <TextField
 			          	style={{margin: "0 0 0 2%"}}
@@ -70,10 +70,8 @@ class McmTopicNewComponent extends React.Component {
 
 
 	render() {
-		console.log(this.props)
 		let sentenceScores = ''
 		let topic = this.props.mcm_topic_edit
-		console.log(this.props.mcm_topic_edit.name)
 		if (this.props.mcm_topic_edit != undefined) {
 			sentenceScores = this.renderSentenceScores()
 		}

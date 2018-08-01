@@ -14,29 +14,35 @@ class StudentLevelNewComponent extends React.Component {
 		this.props.newStudentLevel()
 	}
 
+	sentencePresence() {
+		let atleastOneSentence = false
+		let emptySentence = false
+		for (let i = 0; i < this.props.student_level.random_sentences_attributes.length; i++) {
+			let curSentence = document.getElementById("sentence-"+ i)
+			if (curSentence) {
+				atleastOneSentence = true
+				if (JSON.parse(curSentence.getAttribute("aria-invalid"))) { //error
+					emptySentence = true
+				}
+			}
+		}
+		if (!atleastOneSentence) {
+			return "\nMust have atleast (1) sentence."
+		}
+		else if (emptySentence) {
+			return "\nMust have sentence content." 
+		}
+		else {
+			return "" 
+		}
+	}
+
 	formSubmit(e) {
 		let errors = ""
 		let noName = JSON.parse(document.getElementById("student_level_name").getAttribute("aria-invalid"))
 		let noText = JSON.parse(document.getElementById("student_level_text").getAttribute("aria-invalid"))
 
-		let noSentence = false;
-		let firstSentence = document.getElementById("sentence-0")
-		if (firstSentence) { //first sentence exists
-			if (JSON.parse(firstSentence.getAttribute("aria-invalid"))) { //error exists
-				errors += "\nMust have sentence content."
-			}
-			else {//check for any blank sentences
-				for (let i = 0; i < this.props.student_level.random_sentences_attributes.length; i++) {
-					let curSentence = document.getElementById("sentence-"+ i)
-					if (JSON.parse(curSentence.getAttribute("aria-invalid"))) { //error
-						errors += "\nMust have sentence content."
-					}
-				}
-			}
-		}
-		else {
-			errors += "\nMust have atleast (1) sentence score."
-		}
+		errors += this.sentencePresence()
 
 		if (noName) {
 			errors += "\nMust have a name."
@@ -99,8 +105,6 @@ class StudentLevelNewComponent extends React.Component {
 
 
 	render() {
-		console.log("Rendering edit")
-		console.log(this.props.student_level.name)
 		let randomSentences = ''
 		if (this.props.student_level.id != undefined) {
 			this.props.history.push("/student_levels")

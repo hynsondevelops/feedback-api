@@ -95,6 +95,7 @@ class McmTopicNewComponent extends React.Component {
 			            className="form-control"
 			            id={"sentence-" + index}
 			            error={sentence_score.sentence == undefined || sentence_score.sentence == ""}
+			            helperText={(sentence_score.sentence == undefined || sentence_score.sentence == "") ? "Required" : "" }
 			            />
 		           </FormControl>
 		           <QualityRadioGroup index={index} mcm_topic_edit={this.props.mcm_topic_edit} updateSentence={this.props.updateSentence}/>
@@ -134,7 +135,8 @@ class McmTopicNewComponent extends React.Component {
 					        type="text"
 					        value={this.props.mcm_topic_edit.name}
 					        error={topic.name == undefined || topic.name == ""}
-					        className="form-control" />
+					        className="form-control" 
+					        helperText={this.props.mcm_topic_edit.name == "" ? "Required" : "" }/>
 					    </div>
 					    <div className="sentence-scores-fieldset">
 					      <h3>Sentence Scores</h3>

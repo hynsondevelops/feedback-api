@@ -14,6 +14,47 @@ class StudentLevelNewComponent extends React.Component {
 		this.props.newStudentLevel()
 	}
 
+	formSubmit(e) {
+		let errors = ""
+		let noName = JSON.parse(document.getElementById("student_level_name").getAttribute("aria-invalid"))
+		let noText = JSON.parse(document.getElementById("student_level_text").getAttribute("aria-invalid"))
+
+		let noSentence = false;
+		let firstSentence = document.getElementById("sentence-0")
+		if (firstSentence) { //first sentence exists
+			if (JSON.parse(firstSentence.getAttribute("aria-invalid"))) { //error exists
+				errors += "\nMust have sentence content."
+			}
+			else {//check for any blank sentences
+				for (let i = 0; i < this.props.student_level.random_sentences_attributes.length; i++) {
+					let curSentence = document.getElementById("sentence-"+ i)
+					if (JSON.parse(curSentence.getAttribute("aria-invalid"))) { //error
+						errors += "\nMust have sentence content."
+					}
+				}
+			}
+		}
+		else {
+			errors += "\nMust have atleast (1) sentence score."
+		}
+
+		if (noName) {
+			errors += "\nMust have a name."
+		}
+
+		if (noText) {
+			errors += "\nMust have generic text."
+		}
+
+		if (errors == "") { //no errors
+			this.props.createStudentLevel(e, this.props.token, this.props.student_level)	
+		}
+		else { //errors
+			alert(errors)
+		}
+	}
+
+
 	renderRandomSentences() {
 		let counter = 0;
 		return this.props.student_level.random_sentences_attributes.map((random_sentence, index) => {
@@ -42,6 +83,7 @@ class StudentLevelNewComponent extends React.Component {
 		            id={"sentence-" + index}
 		            style={{width: "80%"}}
 		            multiline
+		            error={random_sentence.sentence == ""} 
 		            />
 		        </div>
 		      </div>
@@ -81,7 +123,9 @@ class StudentLevelNewComponent extends React.Component {
 						      	onChange={(e, value) => {this.props.handleUpdateName(e, e.target.value, this.props.student_level); this.forceUpdate()}}
 						        type="text"
 						        value={this.props.student_level.name}
-						        className="form-control" />
+						        className="form-control" 
+						        error={this.props.student_level.name == ""} 
+						        />
 						        <TextField
 						        	label="Generic Text"
 						        	id="student_level_text"
@@ -91,7 +135,9 @@ class StudentLevelNewComponent extends React.Component {
 						          value={this.props.student_level.generic_text}
 						          className="form-control"
 						          multiline
-						          style={{marginLeft: "2%", width: "80%"}} />
+						          style={{marginLeft: "2%", width: "80%"}}
+						          error={this.props.student_level.generic_text == ""} 
+						          />
 						    </div>
 						    <hr />
 						    <div className="random-sentences-fieldset">
@@ -110,7 +156,7 @@ class StudentLevelNewComponent extends React.Component {
 							      type="button"
 							      data-level={JSON.stringify(this.props.student_level)}
 							      data-token={this.props.token}
-							      onClick={(e) => this.props.createStudentLevel(e, this.props.token, this.props.student_level)}
+							      onClick={(e) => this.formSubmit(e)}
 							      className="btn btn-primary">
 							      Save
 							    </Button>

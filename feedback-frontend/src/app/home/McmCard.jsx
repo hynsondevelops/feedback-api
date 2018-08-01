@@ -6,6 +6,7 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import Grid from '@material-ui/core/Grid';
 
 //MCM Topic Buttons
 import McmFeedbackGeneratorLink from '../common/buttons/McmFeedbackGeneratorLink'
@@ -44,9 +45,18 @@ function McmCard(props) {
           <Typography variant="headline" component="h2">
           	Mock Class Mentor
           </Typography>
-          <McmFeedbackGeneratorLink />
-          <McmTopicNewLink />
-          <McmTopicIndexLink />
+          <p style={{whiteSpace: "pre-line"}}> Edit paragraph dit paragraph dit paragraphdit paragraphdit paragraphdit paragraph dit paragraph dit paragraph dit paragraphdit paragraph dit paragraph dit paragraph dit paragraph dit paragraph dit paragraph dit paragraph ppppp </p>
+          <Grid container spacing={12}>
+            <Grid item xs={4} >
+              <McmFeedbackGeneratorLink />
+            </Grid>
+            <Grid item xs={4} >
+              <McmTopicNewLink />
+            </Grid>
+            <Grid item xs={4} >
+              <McmTopicIndexLink />
+            </Grid>
+          </Grid>
         </CardContent>
       </Card>
     </div>

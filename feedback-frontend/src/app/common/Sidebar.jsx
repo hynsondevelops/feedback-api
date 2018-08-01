@@ -53,6 +53,8 @@ import GeneratorIcon from '@material-ui/icons/Build';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 
 
+import feedbackPic from "../home/feedback-2800867.png"
+
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 
@@ -293,7 +295,7 @@ class ResponsiveDrawer extends React.Component {
                 <div className={classes.toolbar} />
                 	{componentToRender}
                 <Typography noWrap style={{margin: "0 2%"}}>
-                    <div>
+                    <div >
                       {accessibleRoutes} 
                     </div>
                 </Typography>

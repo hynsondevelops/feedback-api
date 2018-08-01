@@ -90,6 +90,7 @@ class StudentLevelNewComponent extends React.Component {
 		            style={{width: "80%"}}
 		            multiline
 		            error={random_sentence.sentence == ""} 
+		            helperText={random_sentence.sentence == "" ? "Required" : "" }
 		            />
 		        </div>
 		      </div>
@@ -129,6 +130,7 @@ class StudentLevelNewComponent extends React.Component {
 						        value={this.props.student_level.name}
 						        className="form-control" 
 						        error={this.props.student_level.name == ""} 
+						        helperText={this.props.student_level.name == "" ? "Required" : "" }
 						        />
 						        <TextField
 						        	label="Generic Text"
@@ -140,7 +142,8 @@ class StudentLevelNewComponent extends React.Component {
 						          className="form-control"
 						          multiline
 						          style={{marginLeft: "2%", width: "80%"}}
-						          error={this.props.student_level.generic_text == ""} 
+						          error={this.props.student_level.generic_text == ""}
+						          helperText={this.props.student_level.generic_text == "" ? "Required" : "" } 
 						          />
 						    </div>
 						    <hr />

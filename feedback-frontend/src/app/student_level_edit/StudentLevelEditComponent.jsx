@@ -90,6 +90,7 @@ class StudentLevelEditComponent extends React.Component {
 		            style={{width: "80%"}}
 		            multiline
 		            error={random_sentence.sentence == ""}
+		            helperText={random_sentence.sentence == "" ? "Required" : "" }
 		            />
 		        </div>
 		      </div>
@@ -125,6 +126,7 @@ class StudentLevelEditComponent extends React.Component {
 					        value={this.props.student_level.name}
 					        className="form-control" 
 					        error={this.props.student_level.name == ""}
+					        helperText={this.props.student_level.name == "" ? "Required" : "" }
 					        />
 					        <TextField
 					        	label="Generic Text"
@@ -137,6 +139,8 @@ class StudentLevelEditComponent extends React.Component {
 					          style={{marginLeft: "2%", width: "80%"}}
 					          multiline 
 					          error={this.props.student_level.generic_text == ""}
+					          helperText={this.props.student_level.generic_text == "" ? "Required" : "" }
+
 					          />
 					    </div>
 					    <hr />

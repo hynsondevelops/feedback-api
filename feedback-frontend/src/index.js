@@ -7,7 +7,7 @@ import McmTopicNewContainer from './app/mcm_topic_new/McmTopicNewContainer.js'
 import StudentLevelEditContainer from './app/student_level_edit/StudentLevelEditContainer.js'
 import StudentLevelNewContainer from './app/student_level_new/StudentLevelNewContainer.js'
 import StudentLevels from './app/student_levels/StudentLevelsContainer.js'
-
+import SessionContainer from './app/login/SessionContainer.js'
 
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -80,6 +80,7 @@ const BasicExample = () => (
 
       <hr />
       <Route exact path="/" component={HomeContainer} />
+      <Route path="/login" component={SessionContainer} />
       <Route path="/mcm_feedback_generator" component={McmFeedbackGeneratorContainer} />
       <Route path="/student_level_feedback_generator" component={StudentLevelFeedbackGeneratorContainer} />
       //Change the below to the correct components

@@ -23,7 +23,7 @@ import StudentLevelIndexLink from '../common/buttons/StudentLevelIndexLink'
 import StudentLevelNewLink from '../common/buttons/StudentLevelNewLink'
 import StudentLevelEditLink from '../common/buttons/StudentLevelEditLink'
 
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 import HomeContainer from '../home/HomeContainer.js'
 import McmFeedbackGeneratorContainer from '../mcm_feedback_generator/McmFeedbackGeneratorContainer.js'
 import StudentLevelFeedbackGeneratorContainer from '../student_feedback_generator/StudentLevelGeneratorContainer.js'
@@ -33,6 +33,7 @@ import McmTopicNewContainer from '../mcm_topic_new/McmTopicNewContainer.js'
 import StudentLevelEditContainer from '../student_level_edit/StudentLevelEditContainer.js'
 import StudentLevelNewContainer from '../student_level_new/StudentLevelNewContainer.js'
 import StudentLevels from '../student_levels/StudentLevelsContainer.js'
+import SessionContainer from '../login/SessionContainer.js'
 
 
 import ListItem from '@material-ui/core/ListItem';
@@ -198,7 +199,7 @@ class ResponsiveDrawer extends React.Component {
           </Collapse>
         </List></div>)
     const loggedOutLinks = (<div>
-      <Link to="/">
+      <Link to="/login">
         <ListItem button className={classes.nested}>
           <ListItemIcon>
             <AccountCircle />
@@ -216,7 +217,7 @@ class ResponsiveDrawer extends React.Component {
     )
 
     const loggedOutNavbar = (
-        <Link to="/" style={{ textDecoration: 'none', color: "white" }}>
+        <Link to="/login" style={{ textDecoration: 'none', color: "white" }}>
           <Button color="inherit">Login</Button>
         </Link>
     )
@@ -225,21 +226,41 @@ class ResponsiveDrawer extends React.Component {
     let sidebarLinks = ""
     let navbarLinks = ""
     if (this.props.token != undefined) {
-      accessibleRoutes =  (<div><Route exact path="/" component={HomeContainer} />
-      <Route path="/mcm_feedback_generator" component={McmFeedbackGeneratorContainer} />
-      <Route path="/student_level_feedback_generator" component={StudentLevelFeedbackGeneratorContainer} />
-      <Route path="/mcm_topics/new" component={McmTopicNewContainer} />
-      <Route path="/mcm_topics/:id/edit" component={McmTopicEditContainer} />
-      <Route exact path="/mcm_topics" component={McmTopicsContainer} />
-      <Route path="/student_levels/new" component={StudentLevelNewContainer} />
-      <Route path="/student_levels/:id/edit" component={StudentLevelEditContainer} />
-      <Route exact path="/student_levels" component={StudentLevels} /></div>)
+      accessibleRoutes =  (
+        <Route path='/'>
+             <div>
+                <Switch>
+                 
+                  <Route exact path="/mcm_feedback_generator" component={McmFeedbackGeneratorContainer} />
+                  <Route exact path="/student_level_feedback_generator" component={StudentLevelFeedbackGeneratorContainer} />
+                  <Route exact path="/mcm_topics/new" component={McmTopicNewContainer} />
+                  <Route exact path="/mcm_topics/:id/edit" component={McmTopicEditContainer} />
+                  <Route exact path="/mcm_topics" component={McmTopicsContainer} />
+                  <Route exact path="/student_levels/new" component={StudentLevelNewContainer} />
+                  <Route exact path="/student_levels/:id/edit" component={StudentLevelEditContainer} />
+                  <Route exact path="/student_levels" component={StudentLevels} />
+                <Route path="/" component={HomeContainer} /> {/* Order of routes matter. Exact must come first to work. */}
+                </Switch>
+             </div>
+        </Route>
+
+
+        )
       sidebarLinks = loggedInLinks
       navbarLinks = loggedInNavbar
     }
     else
     {
-      accessibleRoutes = (<div><Route path="/" component={HomeContainer} /></div>)
+      accessibleRoutes = (
+        <Route path='/'>
+             <div>
+                <Switch>
+                  <Route exact path='/login'   component={SessionContainer} />
+                  <Route path='/' component={HomeContainer} />
+                </Switch>
+             </div>
+        </Route>
+      )
       sidebarLinks = loggedOutLinks
       navbarLinks = loggedOutNavbar
     }
@@ -258,7 +279,9 @@ class ResponsiveDrawer extends React.Component {
               <AppBar position="absolute" className={classes.appBar}>
                 <Toolbar>
                   <Typography variant="title" color="inherit" style={{ flex: 1 }} noWrap>
-                    Feedback Friend
+                    <Link to="/" style={{ textDecoration: 'none', color: "white" }}>
+                      <Button color="inherit">Feedback Friend</Button>
+                    </Link>
                   </Typography>
                   {navbarLinks}
 

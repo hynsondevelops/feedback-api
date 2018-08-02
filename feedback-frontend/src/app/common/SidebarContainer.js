@@ -3,7 +3,6 @@ import ResponsiveDrawer from './Sidebar';
 import {logoutUser} from '../home/duck/actions.js';
 
 const mapStateToProps = state => {
-	console.log(state)
 	const { token, email } = state.home;
 	return { token, email }
 };

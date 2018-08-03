@@ -46,18 +46,3 @@ class GifPlayer extends React.Component {
 }
 
 export default GifPlayer;
-{/* <figure style={{position: "relative"}}>
-			<img ref="mcm_gif" id="mcm_gif" onClick={(e) => {if (e.target.src.includes(mcmGif)) {e.target.src = mcmStill} else {e.target.src=mcmGif}}} src={mcmStill} />
-			<div onClick={() => {let image = React.findDOMNode(this.refs.mcm_gif); if (image.target.src.includes(mcmGif)) {image.target.src = mcmStill} else {image.target.src=mcmGif}}} src={mcmStill} style={{position: "absolute",
-			   display: "block",
-			   background: "url(http://www.slatecube.com/images/play-btn.png) no-repeat center",
-			    backgroundSize:"contain",
-			   height: "30%",
-			   width: "30%",
-			   top: "35%",
-			   left: "35%"}}>
-			</div>
-
-			
-			<figcaption>Mock Class Mentor Demo</figcaption>
-		</figure> */}

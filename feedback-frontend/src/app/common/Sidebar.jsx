@@ -10,6 +10,9 @@ import IconButton from '@material-ui/core/IconButton';
 import Hidden from '@material-ui/core/Hidden';
 import Divider from '@material-ui/core/Divider';
 import MenuIcon from '@material-ui/icons/Menu';
+import Grid from '@material-ui/core/Grid';
+
+
 
 //MCM Topic Buttons
 import McmFeedbackGeneratorLink from '../common/buttons/McmFeedbackGeneratorLink'
@@ -53,6 +56,9 @@ import McmIcon from '@material-ui/icons/SupervisorAccount';
 import GeneratorIcon from '@material-ui/icons/Build';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 
+//Images
+import {GoMarkGithub, GoMail} from 'react-icons/go/'
+import {TiFolderOpen} from 'react-icons/ti'
 
 import feedbackPic from "../home/feedback-2800867.png"
 
@@ -317,12 +323,37 @@ class ResponsiveDrawer extends React.Component {
               <main className={classes.content}>
                 <div className={classes.toolbar} />
                 	{componentToRender}
-                <Typography noWrap style={{margin: "0 2%"}}>
+                <Typography noWrap style={{margin: "0 2%", paddingBottom: "100px"}}>
                     <div >
                       {accessibleRoutes} 
                     </div>
                 </Typography>
+                <Grid container spacing={12} style={{position: "absolute", height: "64px", width: "100%", bottom: 0, backgroundColor: "#3f51b5", left: drawerWidth}}>
+                    <Grid item xs={3}>
+                      <Link to="/" style={{ textDecoration: 'none', color: "white", lineHeight: "64px" }}>
+                        <Button color="inherit">Feedback Friend</Button>
+                      </Link>
+                    </Grid>
+
+                    <Grid item xs={3}>
+                    </Grid>
+                    <Grid item xs={4}>
+                      <bold style={{color: "white", marginRight:"1ch", textAlign: "center", verticalAlign: "middle", lineHeight: "32px", float: "left", width: "100%"}}> Developed by Adam Hynson</bold><br/>
+                      <div style={{textAlign: "center"}}>
+                        <a href="https://hynson-tech-blog.herokuapp.com/portfolio" style={{ textDecoration: 'none', color: "white"}}>
+                          <Button color="inherit"><TiFolderOpen style={{marginRight: "1ch"}}/> {' '} Portfolio</Button>
+                        </a>
+                        <a href="https://github.com/hynsondevelops" style={{ textDecoration: 'none', color: "white"}}>
+                          <Button color="inherit"> <GoMarkGithub style={{marginRight: "1ch"}} /> Github</Button>
+                        </a>
+                        <a href="mailto:hynsondevelops@gmail.com" style={{ textDecoration: 'none', color: "white"}}>
+                          <Button color="inherit"> <GoMail style={{marginRight: "1ch"}} /> Email Contact</Button>
+                        </a>
+                      </div>
+                    </Grid>
+                  </Grid>
               </main>
+
             </div>
           </Router>
           </div>

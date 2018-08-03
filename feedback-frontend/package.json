@@ -11,6 +11,7 @@
     "react": "^16.3.2",
     "react-dom": "^16.3.2",
     "react-final-form": "^3.4.2",
+    "react-icons": "^3.0.4",
     "react-redux": "^5.0.0",
     "react-redux-lifecycle": "^2.2.0",
     "react-router": "^4.2.0",

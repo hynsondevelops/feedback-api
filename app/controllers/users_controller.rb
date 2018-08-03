@@ -1,3 +1,6 @@
+require_relative '../../db/seeds.rb'
+
+
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :update, :destroy]
   skip_before_action :authenticate_request, only: [:create]
@@ -18,8 +21,8 @@ class UsersController < ApplicationController
   # POST /users
   def create
     @user = User.new(user_params)
-
     if @user.save
+      seedUser(@user)
       render json: @user, status: :created, location: @user
     else
       render json: @user.errors, status: :unprocessable_entity

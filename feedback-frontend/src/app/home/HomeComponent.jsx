@@ -3,6 +3,8 @@ import LoginContainer from './LoginContainer';
 import RegisterContainer from './RegisterContainer';
 import Button from '@material-ui/core/Button';
 
+
+import GifPlayer from './GifPlayer'
 //MCM Topic Buttons
 import McmFeedbackGeneratorLink from '../common/buttons/McmFeedbackGeneratorLink'
 import McmTopicIndexLink from '../common/buttons/McmTopicIndexLink'
@@ -23,8 +25,10 @@ import StudentCard from './StudentCard.jsx'
 
 //Images
 import feedbackPic from "./feedback-2800867.png"
-import studentLevelGif from './StudentLevelCut.gif'
+import studentGif from './Student.gif'
 import mcmGif from './Mcm.gif'
+import studentStill from './Student.png'
+import mcmStill from './Mcm.png'
 
 
 //Icons
@@ -77,10 +81,8 @@ function HomeComponent({
 				</Grid>
 				<Grid container style={{marginTop: "3%"}} spacing={12}>
 					<Grid item xs={6} >
-						<figure> 
-							<img src={studentLevelGif} />
-							<figcaption>Student Feedback Demo</figcaption>
-						</figure>
+						<GifPlayer gif={studentGif} still={studentStill} caption="Student feedback demo"/>
+
 					</Grid>
 					<Grid item xs={6} >
 						<div style={{width: "60%", margin: "0 auto", height: "100%", display: "table"}}>
@@ -101,10 +103,7 @@ function HomeComponent({
 						</div>
 					</Grid>
 					<Grid item xs={6} >
-						<figure>
-							<img src={mcmGif} />
-							<figcaption>Mock Class Mentor Demo</figcaption>
-						</figure>
+						<GifPlayer gif={mcmGif} still={mcmStill} caption="Mock class mentor feedback demo"/>
 					</Grid>
 				</Grid>
 			</div>
@@ -152,10 +151,8 @@ function HomeComponent({
 	    		</Grid>
 	    		<Grid container style={{marginTop: "3%"}} spacing={12}>
 	    			<Grid item xs={6} >
-	    				<figure> 
-	    					<img src={studentLevelGif} />
-	    					<figcaption>Student Feedback Demo</figcaption>
-	    				</figure>
+	    				<GifPlayer gif={studentGif} still={studentStill} caption="Student feedback demo"/>
+
 	    			</Grid>
 	    			<Grid item xs={6} >
 	    				<div style={{width: "60%", margin: "0 auto", height: "100%", display: "table"}}>
@@ -176,10 +173,7 @@ function HomeComponent({
 	    				</div>
 	    			</Grid>
 	    			<Grid item xs={6} >
-	    				<figure>
-	    					<img src={mcmGif} />
-	    					<figcaption>Mock Class Mentor Demo</figcaption>
-	    				</figure>
+	    				<GifPlayer gif={mcmGif} still={mcmStill} caption="Mock class mentor feedback demo"/>
 	    			</Grid>
 	    		</Grid>
 	    	</div>

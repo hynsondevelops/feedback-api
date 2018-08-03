@@ -18,7 +18,7 @@ class ScoreSelect extends React.Component {
 		let score = 0
 
 		if (this.props.mcm_topic_edit.sentence_scores_attributes[this.props.index].score) {
-			score = this.props.mcm_topic_edit.sentence_scores_attributes[this.props.index].score
+			score = this.props.mcm_topic_edit.sentence_scores_attributes[this.props.index].scoreF
 		}
 		this.state = {
 			score: score
@@ -27,19 +27,16 @@ class ScoreSelect extends React.Component {
 
 
 	componentDidUpdate() {
-		console.log(this.state.score)
 		this.props.callback(false, this.props.index, this.props.mcm_topic_edit)
 
 	}
 
 	handleScoreChange(e, index) {
-		console.log(e.target.value)
 		this.setState({score: e.target.value})
 	} 
 
 	
 	render() {
-		console.log(this.props.mcm_topic_edit)
 		return (
 			<div>
 				<InputLabel htmlFor={"score-" + this.props.index}>Score</InputLabel>

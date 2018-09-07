@@ -2,7 +2,7 @@ import React from 'react';
 import LoginContainer from './LoginContainer';
 import RegisterContainer from './RegisterContainer';
 import Button from '@material-ui/core/Button';
-
+import '../../App.css';
 
 import GifPlayer from './GifPlayer'
 //MCM Topic Buttons
@@ -116,7 +116,7 @@ function HomeComponent({
 	    	<div>
 	    		<Grid style={{backgroundImage: "url(" + feedbackPic + ")", backgroundSize: 'cover', minHeight: "800px"}} container spacing={12}>
 	    			<Grid item xs={12}>
-	    				<h3 style={{fontSize: "64px", display: "block"}}> Feedback Friend </h3>
+	    				<h3 className="testing"> Feedback Friend </h3>
 	    			</Grid>
 	    			<Grid item xs={3}>
 	    				<p style={{display: "block", fontSize: "32px", whiteSpace: "pre-line", lineHeight: "32px"}}> Student and mock class feedback made easy. </p>

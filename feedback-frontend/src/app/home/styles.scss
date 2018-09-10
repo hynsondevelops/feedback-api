@@ -1,0 +1,51 @@
+
+.masthead__title {
+  font-size: 64px;
+  display: block;
+}
+
+.masthead {
+  background-image: url("feedback-2800867.png");
+  background-size: cover;
+  min-height: 800px;
+}
+
+.masthead__text {
+  display: block;
+  font-size: 32px;
+  white-space: pre-line; 
+  line-height: 32px;
+}
+
+
+.masthead__button-text {
+  text-decoration: none;
+  color: blue;
+  text-align: center;
+}
+
+.vertical-section-box {
+  margin-top: 3%;
+}
+
+.feature-box {
+  width: 60%;
+  margin: 0 auto;
+  height: 100%;
+  display: table;
+}
+
+
+.feature-box__text {
+	text-align: center;
+	vertical-align: middle;
+	display: table-cell;
+	width: 60%;
+	white-space: pre-line;
+}
+
+.action-text {
+  width: 80%;
+  margin: auto;
+  white-space: pre-line;
+}

@@ -4,7 +4,7 @@ import LevelRadioGroup from './LevelRadioGroup'
 import Grid from '@material-ui/core/Grid';
 import GenderRadioGroup from './GenderRadioGroup'
 import TextField from '@material-ui/core/TextField';
-
+import './styles.scss'
 
 
 class StudentLevelFeedbackGeneratorComponent extends React.Component {
@@ -54,11 +54,10 @@ class StudentLevelFeedbackGeneratorComponent extends React.Component {
 					<div>
 						<h3> Student Feedback Generator </h3>
 						<hr />
-						<Grid container style={{minHeight: "600px"}} spacing={12}>
+						<Grid container className="limited-height" spacing={12}>
 							<Grid container xs={3}>
 								<LevelRadioGroup student_level_index={this.props.student_level_index}/>
-								<div style={{display: "block"}}>
-								</div>
+								
 							</Grid>
 							<Grid container xs={2} >
 								<GenderRadioGroup />
@@ -74,11 +73,11 @@ class StudentLevelFeedbackGeneratorComponent extends React.Component {
 								<textarea id="conclusion" >{conclusionWithName}</textarea>
 							</Grid>
 							<Grid container xs={7}>
-								<div style={{margin: "0 20%"}}>
+								<div className="horizontal-margin">
 									<h3> Pre-formatted Feedback </h3>
-									<textarea id="student_level_generic" style={{fontSize: "20px", width: "inherit", minWidth: "400px", maxWidth: "600px", height: "200px"}} value={this.props.generic_text}> </textarea>
+									<textarea id="student_level_generic" className="generator-result-text" value={this.props.generic_text}> </textarea>
 									<h3> Generated Feedback </h3>
-									<textarea style={{fontSize: "20px", width: "inherit", minWidth: "500px",  maxWidth: "600px", height: "200px"}}value={feedback}> </textarea>
+									<textarea className="generator-result-text" value={feedback}> </textarea>
 								</div>
 
 							</Grid>

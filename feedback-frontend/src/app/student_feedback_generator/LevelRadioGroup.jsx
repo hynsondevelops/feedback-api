@@ -50,9 +50,10 @@ class LevelRadioGroup extends React.Component {
 		            aria-label="Student Levels"
 		            name="Student Levels"
 		            id="student_levels"
+		            className="limited-height"
 		            value={this.state.selectedValue}
                     onChange={this.handleChange}
-                    style={{maxHeight: "600px"}}>
+                    >
                 		{levels}
 
                     	 </RadioGroup>

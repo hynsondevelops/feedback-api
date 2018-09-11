@@ -3,7 +3,8 @@ import { Form, Field } from 'react-final-form'
 import {Link} from 'react-router-dom'
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-
+import './styles.scss'
+import '../common/styles.scss'
 
 class StudentLevelEditComponent extends React.Component {
 	constructor(props) {
@@ -68,30 +69,30 @@ class StudentLevelEditComponent extends React.Component {
 		    let randomSentenceDOM = (
 		      <div className="random-sentence-form" key={index}>
 		        <div className="form-group">
-		          <div className="clearfix" style={{ marginBottom: 5 }}>
+		          <div className="clearfix" >
 		            <button
 		              type="button"
-		              className="btn btn-danger"
-		              style={{ padding: '5px 10px', float: 'right' }}
+		              className="btn btn-danger x-btn"
 		              data-level={JSON.stringify(this.props.student_level)}
 		              data-sentence_index={index}
 		              onClick={this.props.removeSentence}>
 		              X
 		            </button>
 		          </div>
-		          <TextField
-		          	label="Sentence"
-		            placeholder="Sentence"
-		            onChange={(e) => {this.props.updateSentence(e, index, this.props.student_level); this.forceUpdate()}}
-		            type="text"
-		            value={random_sentence.sentence}
-		            className="form-control"
-		            id={"sentence-" + index}
-		            style={{width: "80%"}}
-		            multiline
-		            error={random_sentence.sentence == ""}
-		            helperText={random_sentence.sentence == "" ? "Required" : "" }
-		            />
+		          <div className="sentence-field">
+			          <TextField
+			          	label="Sentence"
+			            placeholder="Sentence"
+			            onChange={(e) => {this.props.updateSentence(e, index, this.props.student_level); this.forceUpdate()}}
+			            type="text"
+			            value={random_sentence.sentence}
+			            className="form-control sentence-field"
+			            id={"sentence-" + index}
+			            multiline
+			            error={random_sentence.sentence == ""}
+			            helperText={random_sentence.sentence == "" ? "Required" : "" }
+			            />
+		          </div>
 		        </div>
 		      </div>
 		    );
@@ -126,28 +127,31 @@ class StudentLevelEditComponent extends React.Component {
 					        value={this.props.student_level.name}
 					        className="form-control" 
 					        error={this.props.student_level.name == ""}
-					        helperText={this.props.student_level.name == "" ? "Required" : "" }
-					        />
+					        helperText={this.props.student_level.name == "" ? "Required" : "" }/>
+					        <span className="generic-text-field">
 					        <TextField
-					        	label="Generic Text"
-					        	id="student_level_text"
-					        	onChange={(e, value) => {this.props.handleUpdateText(e, e.target.value, this.props.student_level); this.forceUpdate() } }
-					        	data-level={JSON.stringify(this.props.student_level)}
+				        	  label="Generic Text"
+				        	  id="student_level_text"
+				        	  onChange={(e, value) => {this.props.handleUpdateText(e, e.target.value, this.props.student_level); this.forceUpdate() } }
+				        	  data-level={JSON.stringify(this.props.student_level)}
 					          type="text"
 					          value={this.props.student_level.generic_text}
-					          className="form-control"
-					          style={{marginLeft: "2%", width: "80%"}}
+					          className="form-control generic-text-field"
+					          InputProps={{
+				                  className: "generic-text-field",
+				              }}
 					          multiline 
 					          error={this.props.student_level.generic_text == ""}
 					          helperText={this.props.student_level.generic_text == "" ? "Required" : "" }
 
 					          />
+					          </span>
 					    </div>
 					    <hr />
 					    <div className="random-sentences-fieldset">
 					      <h3>Random Sentence</h3>
 					      {randomSentences}
-					      <div style={{margin: "2% 0 0 25%"}}>
+					      <div className="btn-spacing">
 
 						      <Button
 						      	type="button"

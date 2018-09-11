@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom'
 import StudentLevelEditLink from '../common/buttons/StudentLevelEditLink'
 import StudentLevelCard from '../common/StudentLevelCard'
 import Grid from '@material-ui/core/Grid';
-
+import './styles.scss'
 
 class StudentLevelsComponent extends React.Component {
 	constructor(props) {
@@ -24,7 +24,8 @@ class StudentLevelsComponent extends React.Component {
 				<div>
 					<h3> Student Levels </h3>
 					<Grid container spacing={12}>
-					{this.props.student_level_index.map(student_level => (                    						<Grid item xs={5} style={{margin: "10px 1.5%"}}> 		
+					{this.props.student_level_index.map(student_level => (
+						<Grid item xs={5} className="card-container"> 		
 	                    	<StudentLevelCard student_level={student_level} />
 	                    </Grid>
                     ))}

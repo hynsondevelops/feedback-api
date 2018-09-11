@@ -6,7 +6,7 @@ import Button from '@material-ui/core/Button';
 import FormControl from '@material-ui/core/FormControl';
 import QualityRadioGroup from './QualityRadioGroup';
 import ScoreSelect from './ScoreSelect'
-
+import '../common/styles.scss'
 
 class McmTopicNewComponent extends React.Component {
 	constructor(props) {
@@ -70,11 +70,10 @@ class McmTopicNewComponent extends React.Component {
 		    let sentenceScoreDOM = (
 		      <div className="sentence-score-form" key={index}>
 		        <div className="form-group">
-		          <div className="clearfix" style={{ marginBottom: 5 }}>
+		          <div className="clearfix">
 		            <button
 		              type="button"
-		              className="btn btn-danger"
-		              style={{ padding: '5px 10px', float: 'right' }}
+		              className="btn btn-danger x-btn"
 		              data-topic={JSON.stringify(this.props.mcm_topic_edit)}
 		              data-sentence_index={index}
 		              onClick={this.props.removeSentence}>
@@ -83,16 +82,15 @@ class McmTopicNewComponent extends React.Component {
 		          </div>
 		          <ScoreSelect index={index} callback={this.props.updateSentence} mcm_topic_edit={this.props.mcm_topic_edit} />
 		          
-		          <FormControl style={{minWidth: "500px"}}>
+		          <FormControl className="form-sizing">
 			          <TextField
-			          	style={{margin: "0 0 0 2%"}}
 			          	label="Sentence"
 			            placeholder="Sentence"
 			            multiline={true}
 			            onChange={(e) => {this.props.updateSentence(e, index, this.props.mcm_topic_edit); this.forceUpdate()}}
 			            type="text"
 			            value={sentence_score.sentence}
-			            className="form-control"
+			            className="form-control form-sizing"
 			            id={"sentence-" + index}
 			            error={sentence_score.sentence == undefined || sentence_score.sentence == ""}
 			            helperText={(sentence_score.sentence == undefined || sentence_score.sentence == "") ? "Required" : "" }
@@ -141,8 +139,8 @@ class McmTopicNewComponent extends React.Component {
 					    <div className="sentence-scores-fieldset">
 					      <h3>Sentence Scores</h3>
 					      {sentenceScores}
-					      	<div style={{width: "100%"}}>
-							    <div style={{margin: "2% 0 0 25%"}}>
+					      	<div className="full-width">
+							    <div className="btn-spacing">
 									<Button
 										type="button"
 										className="btn btn-success"

@@ -208,7 +208,7 @@ module.exports = {
                     },
                   ],
                 },
-                { test: /\.scss$/, loaders: ['style-loader', 'css-loader', 'sass-loader'], },
+                { test: /\.scss$/, loaders: ['style', 'css', 'sass'], },
                 extractTextPluginOptions
               )
             ),

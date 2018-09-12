@@ -208,10 +208,14 @@ module.exports = {
                     },
                   ],
                 },
+                // Add SCSS loaders
                 {
                   test: /\.scss$/,
-                  include: paths.appSrc,
-                  loaders: ["style", "css", "sass"]
+                  loaders: [
+                    require.resolve('style-loader'),
+                    require.resolve('css-loader'),
+                    require.resolve('sass-loader')
+                  ]
                 },
                 
                 extractTextPluginOptions

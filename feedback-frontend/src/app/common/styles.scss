@@ -1,19 +1,6 @@
-.centered-text {
-  text-align: center;
-}
-
-.x-btn {
-  padding: 5px 10px;
-  float: right;
-}
-
-.form-sizing .form-sizing {
-  min-width: 500px;
-}
-
-.btn-spacing {
-  margin: 2% 0 0 25%
-}
+/*------------------------------------*\
+  #WIDTHS
+\*------------------------------------*/
 
 .full-width {
   width: 100%;	
@@ -27,3 +14,26 @@
   width: 80%;
   margin-left: 2%;
 }
+
+.form-sizing .form-sizing {
+  min-width: 500px;
+}
+
+.centered-text {
+  text-align: center;
+}
+
+/*------------------------------------*\
+  #BUTTONS
+\*------------------------------------*/
+
+.x-btn {
+  padding: 5px 10px;
+  float: right;
+}
+
+
+.btn-spacing {
+  margin: 2% 0 0 25%
+}
+

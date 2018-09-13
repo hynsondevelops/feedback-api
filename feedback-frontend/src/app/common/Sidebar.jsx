@@ -11,8 +11,7 @@ import Hidden from '@material-ui/core/Hidden';
 import Divider from '@material-ui/core/Divider';
 import MenuIcon from '@material-ui/icons/Menu';
 import Grid from '@material-ui/core/Grid';
-
-
+import './styles.scss'
 
 //MCM Topic Buttons
 import McmFeedbackGeneratorLink from '../common/buttons/McmFeedbackGeneratorLink'
@@ -217,13 +216,13 @@ class ResponsiveDrawer extends React.Component {
         </div>)
 
     const loggedInNavbar = (
-        <Link to="/" style={{ textDecoration: 'none', color: "white" }}>
+        <Link to="/" className="plain-white">
           <Button onClick={this.props.logout} color="inherit">Logout</Button>
         </Link>
     )
 
     const loggedOutNavbar = (
-        <Link to="/login" style={{ textDecoration: 'none', color: "white" }}>
+        <Link to="/login" className="plain-white">
           <Button color="inherit">Login</Button>
         </Link>
     )
@@ -284,8 +283,8 @@ class ResponsiveDrawer extends React.Component {
             <div className={classes.root}>
               <AppBar position="absolute" className={classes.appBar}>
                 <Toolbar>
-                  <Typography variant="title" color="inherit" style={{ flex: 1 }} noWrap>
-                    <Link to="/" style={{ textDecoration: 'none', color: "white" }}>
+                  <Typography variant="title" color="inherit" className="flex" noWrap>
+                    <Link to="/" className="plain-white">
                       <Button color="inherit">Feedback Friend</Button>
                     </Link>
                   </Typography>
@@ -323,14 +322,14 @@ class ResponsiveDrawer extends React.Component {
               <main className={classes.content}>
                 <div className={classes.toolbar} />
                 	{componentToRender}
-                <Typography noWrap style={{margin: "0 2%", paddingBottom: "100px"}}>
+                <Typography noWrap className="bottom-padded">
                     <div >
                       {accessibleRoutes} 
                     </div>
                 </Typography>
-                <Grid container spacing={12} style={{position: "absolute", height: "64px", width: "100%", bottom: 0, backgroundColor: "#3f51b5", left: drawerWidth}}>
+                <Grid container spacing={12} className="footer">
                     <Grid item xs={3}>
-                      <Link to="/" style={{ textDecoration: 'none', color: "white", lineHeight: "64px" }}>
+                      <Link to="/" className="plain-white--tall-line">
                         <Button color="inherit">Feedback Friend</Button>
                       </Link>
                     </Grid>
@@ -338,16 +337,16 @@ class ResponsiveDrawer extends React.Component {
                     <Grid item xs={3}>
                     </Grid>
                     <Grid item xs={4}>
-                      <bold style={{color: "white", marginRight:"1ch", textAlign: "center", verticalAlign: "middle", lineHeight: "32px", float: "left", width: "100%"}}> Developed by Adam Hynson</bold><br/>
+                      <bold className="footer__developed-by"> Developed by Adam Hynson</bold><br/>
                       <div style={{textAlign: "center"}}>
-                        <a href="https://hynson-tech-blog.herokuapp.com/portfolio" style={{ textDecoration: 'none', color: "white"}}>
-                          <Button color="inherit"><TiFolderOpen style={{marginRight: "1ch"}}/> {' '} Portfolio</Button>
+                        <a href="https://hynson-tech-blog.herokuapp.com/portfolio" className="plain-white">
+                          <Button color="inherit"><TiFolderOpen className="char-margin-right"/> {' '} Portfolio</Button>
                         </a>
-                        <a href="https://github.com/hynsondevelops" style={{ textDecoration: 'none', color: "white"}}>
-                          <Button color="inherit"> <GoMarkGithub style={{marginRight: "1ch"}} /> Github</Button>
+                        <a href="https://github.com/hynsondevelops" className="plain-white">
+                          <Button color="inherit"> <GoMarkGithub className="char-margin-right" /> Github</Button>
                         </a>
-                        <a href="mailto:hynsondevelops@gmail.com" style={{ textDecoration: 'none', color: "white"}}>
-                          <Button color="inherit"> <GoMail style={{marginRight: "1ch"}} /> Email Contact</Button>
+                        <a href="mailto:hynsondevelops@gmail.com" className="plain-white">
+                          <Button color="inherit"> <GoMail className="char-margin-right" /> Email Contact</Button>
                         </a>
                       </div>
                     </Grid>

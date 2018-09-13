@@ -1,4 +1,12 @@
 /*------------------------------------*\
+  #MIXINS
+\*------------------------------------*/
+@mixin plain-white {
+  text-decoration: none;
+  color: white;
+}
+
+/*------------------------------------*\
   #WIDTHS
 \*------------------------------------*/
 
@@ -37,3 +45,79 @@
   margin: 2% 0 0 25%
 }
 
+/*------------------------------------*\
+  #TEXT
+\*------------------------------------*/
+
+.plain-white {
+  @include plain-white
+}
+
+.plain-white--tall-line {
+  @include plain-white;
+  line-height: 64px;
+}
+
+/*------------------------------------*\
+  #CARDS
+\*------------------------------------*/
+
+.card-margin {
+  margin: 50px 1%;
+}
+
+.card-height {
+  max-height: 500px;
+  overflow: auto;
+}
+
+
+/*------------------------------------*\
+  #FOOTER
+\*------------------------------------*/
+
+.footer { 
+  position: absolute;
+  height: 64px;
+  width: 100%;
+  bottom: 0;
+  background-color: #3f51b5;
+  left: 240px;
+}
+
+.footer__developed-by {
+  color: white;
+  margin-right: 1ch;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 32px;
+  float: left;
+  width: 100%
+}
+
+/*------------------------------------*\
+  #MISCELLANEOUS 
+\*------------------------------------*/
+
+
+.float-right {
+  float: right;
+}
+
+.flex {
+  flex: 1;
+}
+
+.bottom-padded {
+  margin: 0 2%;
+  padding-bottom: 100px;
+}
+
+.char-margin-right {
+  margin-right: 1ch;
+}
+
+.break-word {
+  word-wrap: break-word;
+  white-space: normal;
+}

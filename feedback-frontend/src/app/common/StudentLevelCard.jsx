@@ -8,7 +8,7 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import StudentLevelEditLink from '../common/buttons/StudentLevelEditLink'
 import Grid from '@material-ui/core/Grid';
-
+import './styles.scss'
 
 
 const styles = {
@@ -33,7 +33,6 @@ const styles = {
 function StudentLevelCard(props) {
   const { classes, student_level } = props;
   const bull = <span className={classes.bullet}>•</span>;
-  console.log(student_level.random_sentences)
   const sentenceScores = student_level.random_sentences.map(random_sentence => (
     (<Typography component="p">
       {random_sentence.sentence}
@@ -42,7 +41,7 @@ function StudentLevelCard(props) {
 
   return (
     <div>
-      <Card className={classes.card} style={{maxHeight: "500px", overflow: 'auto'}}>
+      <Card className={classes.card} className="card-height">
         <CardContent>
           <Typography variant="headline" component="h2">
             {student_level.name}
@@ -52,7 +51,7 @@ function StudentLevelCard(props) {
       				<Typography variant="headline" component="h4">
       				  Preformated
       				</Typography>
-      				<Typography variant="body2" component="p" style={{wordWrap: "break-word",   whiteSpace: "normal"}}>
+      				<Typography variant="body2" component="p" className="break-word">
       				  {student_level.generic_text}
       				</Typography>	
           	</Grid>
@@ -62,12 +61,12 @@ function StudentLevelCard(props) {
           		<Typography variant="headline" component="h4">
           		  Sentence Bank
           		</Typography>
-          		<Typography variant="body2" component="p" style={{wordWrap: "break-word",   whiteSpace: "normal"}}>
+          		<Typography variant="body2" component="p" className="break-word">
           			{sentenceScores}
           		</Typography>			
           	</Grid>
           </Grid>
-          <Typography style={{float: "right"}}>
+          <Typography className="float-right">
             <StudentLevelEditLink student_level={props.student_level} />
           </Typography>
         </CardContent>

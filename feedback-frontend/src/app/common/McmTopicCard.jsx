@@ -9,7 +9,7 @@ import Typography from '@material-ui/core/Typography';
 import McmTopicEditLink from '../common/buttons/McmTopicEditLink'
 import ThumbUp from '@material-ui/icons/ThumbUp';
 import ThumbDown from '@material-ui/icons/ThumbDown';
-
+import './styles.scss'
 
 const styles = {
   card: {
@@ -34,20 +34,20 @@ function McmTopicCard(props) {
   const { classes, mcm_topic } = props;
   const bull = <span className={classes.bullet}>•</span>;
   const sentenceScores = mcm_topic.sentence_scores.map(sentence_score => (
-    (<Typography component="p" style={{wordWrap: "break-word",   whiteSpace: "normal"}}>
+    (<Typography component="p" className="break-word">
       {sentence_score.quality ? <ThumbUp /> : <ThumbDown />} {sentence_score.score}: {sentence_score.sentence}
     </Typography>)
   ))
 
   return (
-    <div style={{margin: "50px 1%"}}>
-      <Card className={classes.card} style={{maxHeight: "300px", overflow: 'auto'}}>
+    <div className="card-margin">
+      <Card className={classes.card} className="card-height">
         <CardContent >
           <Typography variant="headline" component="h2">
             {mcm_topic.name}
           </Typography>
           {sentenceScores}
-          <Typography style={{float: "right"}}>
+          <Typography className="float-right">
             <McmTopicEditLink mcm_topic={props.mcm_topic} />
           </Typography>
         </CardContent>

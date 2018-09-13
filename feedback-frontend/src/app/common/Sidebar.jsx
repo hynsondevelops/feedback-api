@@ -102,6 +102,7 @@ const styles = theme => ({
     flexGrow: 1,
     backgroundColor: theme.palette.background.default,
     padding: theme.spacing.unit * 3,
+    minHeight: "100vh",
   },
 });
 
@@ -338,7 +339,7 @@ class ResponsiveDrawer extends React.Component {
                     </Grid>
                     <Grid item xs={4}>
                       <bold className="footer__developed-by"> Developed by Adam Hynson</bold><br/>
-                      <div style={{textAlign: "center"}}>
+                      <div className="centered-text">
                         <a href="https://hynson-tech-blog.herokuapp.com/portfolio" className="plain-white">
                           <Button color="inherit"><TiFolderOpen className="char-margin-right"/> {' '} Portfolio</Button>
                         </a>

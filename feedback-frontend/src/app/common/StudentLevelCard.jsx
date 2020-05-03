@@ -13,6 +13,7 @@ import './styles.scss'
 
 const styles = {
   card: {
+    height: 500,
     minWidth: 100,
     width: "100%",
   },
@@ -27,7 +28,7 @@ const styles = {
   },
   pos: {
     marginBottom: 12,
-  },
+  }
 };
 
 function StudentLevelCard(props) {
@@ -46,14 +47,16 @@ function StudentLevelCard(props) {
           <Typography variant="headline" component="h2">
             {student_level.name}
           </Typography>
-          <Grid container spacing={12}>
+          <Grid container spacing={12} >
           	<Grid item xs={6}>		
       				<Typography variant="headline" component="h4">
       				  Preformated
       				</Typography>
-      				<Typography variant="body2" component="p" className="break-word">
-      				  {student_level.generic_text}
-      				</Typography>	
+              <div className='inner-content'>
+                <Typography variant="body2" component="p" className="break-word">
+                  {student_level.generic_text}
+                </Typography>
+              </div>
           	</Grid>
             <Grid item xs={1}>
             </Grid>
@@ -61,9 +64,11 @@ function StudentLevelCard(props) {
           		<Typography variant="headline" component="h4">
           		  Sentence Bank
           		</Typography>
-          		<Typography variant="body2" component="p" className="break-word">
-          			{sentenceScores}
-          		</Typography>			
+              <div className='inner-content'>
+            		<Typography variant="body2" component="p" className="break-word">
+            			{sentenceScores}
+            		</Typography>
+              </div>			
           	</Grid>
           </Grid>
           <Typography className="float-right">

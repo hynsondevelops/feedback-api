@@ -46,7 +46,9 @@ function McmTopicCard(props) {
           <Typography variant="headline" component="h2">
             {mcm_topic.name}
           </Typography>
-          {sentenceScores}
+          <div className='inner-content'>
+            {sentenceScores}
+          </div>
           <Typography className="float-right">
             <McmTopicEditLink mcm_topic={props.mcm_topic} />
           </Typography>

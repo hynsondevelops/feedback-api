@@ -71,6 +71,14 @@
   overflow: auto;
 }
 
+.inner-content {
+  max-height: 350px;
+  overflow-y: hidden;
+}
+
+.inner-content:hover {
+  overflow-y: scroll;
+}
 
 /*------------------------------------*\
   #FOOTER
